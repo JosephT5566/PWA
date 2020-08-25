@@ -4,10 +4,10 @@
   "icons": [
     {
       "src": "trash_dove.svg",
-      "sizes": "96x96"
+      "sizes": "144x144"
     }
   ],
-  "start_url": ".",
+  "start_url": "./",
   "display": "standalone",
   "theme_color": "#E6CC96",
   "background_color": "#997221",
