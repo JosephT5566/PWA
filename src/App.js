@@ -1,21 +1,21 @@
 import React from 'react';
-import { createBrowserHistory } from 'history';
-import { Router, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Footer from './components/Footer';
 import ProfilePage from './ProfilePage';
 import MainPage from './MainPage';
 
-let history = createBrowserHistory();
-
 function App() {
     return (
         <div className="App">
-            <Router history={history}>
-                <Route path="/profile-page" component={ProfilePage} />
-                <Route path="/" exact component={MainPage} />
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
+                <Switch>
+                    <Route path="/" exact component={MainPage} />
+                    <Route path="/profile-page" component={ProfilePage} />
+                    <Route component={() => <div>404 Not found </div>} />
+                </Switch>
                 <Footer />
-            </Router>
+            </BrowserRouter>
         </div>
     );
 }
