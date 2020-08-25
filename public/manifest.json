@@ -10,5 +10,6 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#E6CC96",
-  "background_color": "#997221"
+  "background_color": "#997221",
+  "lang": "zh-Hant-TW"
 }
