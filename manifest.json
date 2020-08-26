@@ -5,6 +5,11 @@
     {
       "src": "trash_dove.svg",
       "sizes": "144x144"
+    },
+    {
+      "src": "trash_dove.png",
+      "sizes": "144x144",
+      "type": "image/png"
     }
   ],
   "start_url": "./",
