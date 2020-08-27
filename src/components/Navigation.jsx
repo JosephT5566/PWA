@@ -2,7 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
-import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -13,18 +12,21 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import HomeIcon from '@material-ui/icons/Home';
 import AccountIcon from '@material-ui/icons/AccountCircle';
 
-const useStyles = makeStyles({
-    drewer: {
-        width: 140,
+const useStyles = makeStyles((theme) => ({
+    nav: {
+        [theme.breakpoints.up('lg')]: {
+            flex: 1,
+            order: 1,
+            // backgroundColor: 'DARKKHAKI',
+        },
+        [theme.breakpoints.down('md')]: {
+            order: 0,
+            // backgroundColor: 'GOLDENROD',
+        },
     },
-    bottomNavigation: {
-        position: 'absolute',
-        bottom: 0,
-        width: '100%',
-    },
-});
+}));
 
-export default function Footer() {
+export default function Navigator() {
     const classes = useStyles();
     const history = useHistory();
     const [value, setValue] = React.useState('recents');
@@ -33,27 +35,25 @@ export default function Footer() {
         setValue(newValue);
     };
     return (
-        <div>
+        <div className={classes.nav}>
             <Hidden mdDown>
-                <Drawer className={classes.drewer} variant="permanent" anchor="left">
-                    <List>
-                        <ListItem button onClick={() => history.push('/')}>
-                            <ListItemIcon>
-                                <HomeIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="home" />
-                        </ListItem>
-                        <ListItem button onClick={() => history.push('/profile-page')}>
-                            <ListItemIcon>
-                                <AccountIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="profile" />
-                        </ListItem>
-                    </List>
-                </Drawer>
+                <List>
+                    <ListItem button onClick={() => history.push('/')}>
+                        <ListItemIcon>
+                            <HomeIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="home" />
+                    </ListItem>
+                    <ListItem button onClick={() => history.push('/profile-page')}>
+                        <ListItemIcon>
+                            <AccountIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="profile" />
+                    </ListItem>
+                </List>
             </Hidden>
             <Hidden lgUp>
-                <BottomNavigation className={classes.bottomNavigation} value={value} onChange={handleChange}>
+                <BottomNavigation value={value} onChange={handleChange}>
                     <BottomNavigationAction
                         onClick={() => history.push('/')}
                         label="Home"
