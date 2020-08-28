@@ -7,8 +7,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Hidden from '@material-ui/core/Hidden';
-import FolderIcon from '@material-ui/icons/Folder';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+import AssistantIcon from '@material-ui/icons/Assistant';
+import DataUsageIcon from '@material-ui/icons/DataUsage';
 import HomeIcon from '@material-ui/icons/Home';
 import AccountIcon from '@material-ui/icons/AccountCircle';
 
@@ -50,6 +50,18 @@ export default function Navigator({ basename }) {
                         </ListItemIcon>
                         <ListItemText primary="profile" />
                     </ListItem>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <DataUsageIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Data" />
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <AssistantIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Assistant" />
+                    </ListItem>
                 </List>
             </Hidden>
             <Hidden lgUp>
@@ -60,14 +72,14 @@ export default function Navigator({ basename }) {
                         value="home"
                         icon={<HomeIcon />}
                     />
+                    <BottomNavigationAction label="Data" value="data" icon={<DataUsageIcon />} />
+                    <BottomNavigationAction label="Assistant" value="assistant" icon={<AssistantIcon />} />
                     <BottomNavigationAction
                         onClick={() => navigation.navigate(`${basename}/profile`)}
                         label="Profile"
                         value="profile"
                         icon={<AccountIcon />}
                     />
-                    <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
-                    <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
                 </BottomNavigation>
             </Hidden>
         </div>
