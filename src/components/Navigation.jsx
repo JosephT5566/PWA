@@ -28,23 +28,23 @@ export default function Navigator({ basename }) {
                         </ListItemIcon>
                         <ListItemText primary="home" />
                     </ListItem>
-                    <ListItem button onClick={() => navigation.navigate(`${basename}/profile`)}>
-                        <ListItemIcon>
-                            <AccountIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="profile" />
-                    </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={() => navigation.navigate(`${basename}/data`)}>
                         <ListItemIcon>
                             <DataUsageIcon />
                         </ListItemIcon>
                         <ListItemText primary="Data" />
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={() => navigation.navigate(`${basename}/assistant`)}>
                         <ListItemIcon>
                             <AssistantIcon />
                         </ListItemIcon>
                         <ListItemText primary="Assistant" />
+                    </ListItem>
+                    <ListItem button onClick={() => navigation.navigate(`${basename}/profile`)}>
+                        <ListItemIcon>
+                            <AccountIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="profile" />
                     </ListItem>
                 </List>
             </Hidden>
@@ -56,8 +56,18 @@ export default function Navigator({ basename }) {
                         value="home"
                         icon={<HomeIcon />}
                     />
-                    <BottomNavigationAction label="Data" value="data" icon={<DataUsageIcon />} />
-                    <BottomNavigationAction label="Assistant" value="assistant" icon={<AssistantIcon />} />
+                    <BottomNavigationAction
+                        onClick={() => navigation.navigate(`${basename}/data`)}
+                        label="Data"
+                        value="data"
+                        icon={<DataUsageIcon />}
+                    />
+                    <BottomNavigationAction
+                        onClick={() => navigation.navigate(`${basename}/assistant`)}
+                        label="Assistant"
+                        value="assistant"
+                        icon={<AssistantIcon />}
+                    />
                     <BottomNavigationAction
                         onClick={() => navigation.navigate(`${basename}/profile`)}
                         label="Profile"

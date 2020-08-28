@@ -8,11 +8,12 @@ import Footer from './components/Footer';
 import Navigation from './components/Navigation';
 import ProfilePage from './ProfilePage';
 import MainPage from './MainPage';
+import AssistantPage from './AssistantPage';
+import DataPage from './DataPage';
 
 const useStyles = makeStyles((theme) => ({
     app: {
         display: 'flex',
-        height: 'vmax',
         flexDirection: 'column',
     },
     main: {
@@ -56,6 +57,14 @@ const routes = mount({
     '/': route({
         title: 'main',
         view: <MainPage />,
+    }),
+    '/data': route({
+        title: 'Data',
+        view: <DataPage />,
+    }),
+    '/assistant': route({
+        title: 'Assistant',
+        view: <AssistantPage />,
     }),
     '/profile': route({
         title: 'profile',
