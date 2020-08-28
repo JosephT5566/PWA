@@ -43,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.down('md')]: {
             order: 0,
+            position: 'fixed',
+            bottom: 0,
+            width: '100vw',
             // backgroundColor: 'GOLDENROD',
         },
     },
