@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigation } from 'react-navi';
 import { makeStyles } from '@material-ui/core/styles';
 import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import List from '@material-ui/core/List';
@@ -26,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Navigator() {
+export default function Navigator({ basename }) {
     const classes = useStyles();
-    const history = useHistory();
+    const navigation = useNavigation();
     const [value, setValue] = React.useState('recents');
 
     const handleChange = (event, newValue) => {
@@ -38,13 +38,13 @@ export default function Navigator() {
         <div className={classes.nav}>
             <Hidden mdDown>
                 <List>
-                    <ListItem button onClick={() => history.push('/')}>
+                    <ListItem button onClick={() => navigation.navigate(`${basename}/`)}>
                         <ListItemIcon>
                             <HomeIcon />
                         </ListItemIcon>
                         <ListItemText primary="home" />
                     </ListItem>
-                    <ListItem button onClick={() => history.push('/profile-page')}>
+                    <ListItem button onClick={() => navigation.navigate(`${basename}/profile`)}>
                         <ListItemIcon>
                             <AccountIcon />
                         </ListItemIcon>
@@ -55,13 +55,13 @@ export default function Navigator() {
             <Hidden lgUp>
                 <BottomNavigation value={value} onChange={handleChange}>
                     <BottomNavigationAction
-                        onClick={() => history.push('/')}
+                        onClick={() => navigation.navigate(`${basename}/`)}
                         label="Home"
                         value="home"
                         icon={<HomeIcon />}
                     />
                     <BottomNavigationAction
-                        onClick={() => history.push('/profile-page')}
+                        onClick={() => navigation.navigate(`${basename}/profile`)}
                         label="Profile"
                         value="profile"
                         icon={<AccountIcon />}

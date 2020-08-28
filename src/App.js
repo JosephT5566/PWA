@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import { mount, route } from 'navi';
+import { Router, View } from 'react-navi';
 
 import Navigation from './components/Navigation';
 import ProfilePage from './ProfilePage';
@@ -30,20 +31,28 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const basename = process.env.PUBLIC_URL;
+const routes = mount({
+    '/': route({
+        title: 'main',
+        view: <MainPage />,
+    }),
+    '/profile': route({
+        title: 'profile',
+        view: <ProfilePage />,
+    }),
+});
+
 function App() {
     const classes = useStyles();
     return (
         <div className={classes.app}>
-            <BrowserRouter basename={process.env.PUBLIC_URL}>
+            <Router routes={routes} basename={basename}>
                 <div className={classes.content}>
-                    <Switch>
-                        <Route path="/" exact component={MainPage} />
-                        <Route path="/profile-page" component={ProfilePage} />
-                        <Route component={() => <div>404 Not found </div>} />
-                    </Switch>
+                    <View />
                 </div>
-                <Navigation />
-            </BrowserRouter>
+                <Navigation basename={basename} />
+            </Router>
         </div>
     );
 }
