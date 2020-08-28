@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigation } from 'react-navi';
-import { makeStyles } from '@material-ui/core/styles';
 import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -12,22 +11,7 @@ import DataUsageIcon from '@material-ui/icons/DataUsage';
 import HomeIcon from '@material-ui/icons/Home';
 import AccountIcon from '@material-ui/icons/AccountCircle';
 
-const useStyles = makeStyles((theme) => ({
-    nav: {
-        [theme.breakpoints.up('lg')]: {
-            flex: 1,
-            order: 1,
-            // backgroundColor: 'DARKKHAKI',
-        },
-        [theme.breakpoints.down('md')]: {
-            order: 0,
-            // backgroundColor: 'GOLDENROD',
-        },
-    },
-}));
-
 export default function Navigator({ basename }) {
-    const classes = useStyles();
     const navigation = useNavigation();
     const [value, setValue] = React.useState('recents');
 
@@ -35,7 +19,7 @@ export default function Navigator({ basename }) {
         setValue(newValue);
     };
     return (
-        <div className={classes.nav}>
+        <div>
             <Hidden mdDown>
                 <List>
                     <ListItem button onClick={() => navigation.navigate(`${basename}/`)}>

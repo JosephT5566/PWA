@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { mount, route } from 'navi';
 import { Router, View } from 'react-navi';
 
+import Header from './components/Header';
+import Footer from './components/Footer';
 import Navigation from './components/Navigation';
 import ProfilePage from './ProfilePage';
 import MainPage from './MainPage';
@@ -10,7 +12,11 @@ import MainPage from './MainPage';
 const useStyles = makeStyles((theme) => ({
     app: {
         display: 'flex',
-        height: '100vh',
+        height: 'vmax',
+        flexDirection: 'column',
+    },
+    main: {
+        display: 'flex',
         [theme.breakpoints.up('lg')]: {
             flexDirection: 'row',
         },
@@ -27,6 +33,17 @@ const useStyles = makeStyles((theme) => ({
             minHeight: 'calc(100vh - 56px)',
             maxHeight: 'calc(100vh - 56px)',
             order: 0,
+        },
+    },
+    nav: {
+        [theme.breakpoints.up('lg')]: {
+            flex: 1,
+            order: 1,
+            // backgroundColor: 'DARKKHAKI',
+        },
+        [theme.breakpoints.down('md')]: {
+            order: 0,
+            // backgroundColor: 'GOLDENROD',
         },
     },
 }));
@@ -47,12 +64,18 @@ function App() {
     const classes = useStyles();
     return (
         <div className={classes.app}>
-            <Router routes={routes} basename={basename}>
-                <div className={classes.content}>
-                    <View />
-                </div>
-                <Navigation basename={basename} />
-            </Router>
+            <Header />
+            <div className={classes.main}>
+                <Router routes={routes} basename={basename}>
+                    <div className={classes.content}>
+                        <View />
+                    </div>
+                    <div className={classes.nav}>
+                        <Navigation basename={basename} />
+                    </div>
+                </Router>
+            </div>
+            <Footer />
         </div>
     );
 }
