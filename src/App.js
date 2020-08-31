@@ -16,10 +16,20 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
     },
+    header: {
+        maxHeight: '5vh',
+        minHeight: '5vh',
+    },
+    footer: {
+        maxHeight: '5vh',
+        minHeight: '5vh',
+    },
     main: {
         display: 'flex',
         [theme.breakpoints.up('lg')]: {
             flexDirection: 'row',
+            minHeight: '90vh',
+            maxHeight: '90vh',
         },
         [theme.breakpoints.down('md')]: {
             flexDirection: 'column',
@@ -27,12 +37,14 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
         [theme.breakpoints.up('lg')]: {
+            overflowX: 'hidden',
             flexGrow: 6,
             order: 2,
         },
         [theme.breakpoints.down('md')]: {
-            minHeight: 'calc(100vh - 56px)',
-            maxHeight: 'calc(100vh - 56px)',
+            overflow: 'hidden',
+            // minHeight: 'calc(100vh - 56px)',
+            // maxHeight: 'calc(100vh - 56px)',
             order: 0,
         },
     },
@@ -76,7 +88,7 @@ function App() {
     const classes = useStyles();
     return (
         <div className={classes.app}>
-            <Header />
+            <Header className={classes.header} />
             <div className={classes.main}>
                 <Router routes={routes} basename={basename}>
                     <div className={classes.content}>
@@ -87,7 +99,7 @@ function App() {
                     </div>
                 </Router>
             </div>
-            <Footer />
+            <Footer className={classes.footer} />
         </div>
     );
 }
