@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { mount, route } from 'navi';
 import { Router, View } from 'react-navi';
+import Grid from '@material-ui/core/Grid';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     content: {
+        height: '100%',
         [theme.breakpoints.up('lg')]: {
             overflowX: 'hidden',
             flexGrow: 6,
@@ -43,13 +45,12 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.down('md')]: {
             overflow: 'hidden',
-            // minHeight: 'calc(100vh - 56px)',
-            // maxHeight: 'calc(100vh - 56px)',
             order: 0,
         },
     },
     nav: {
         [theme.breakpoints.up('lg')]: {
+            height: '100%',
             flex: 1,
             order: 1,
             // backgroundColor: 'DARKKHAKI',
@@ -91,12 +92,14 @@ function App() {
             <Header className={classes.header} />
             <div className={classes.main}>
                 <Router routes={routes} basename={basename}>
-                    <div className={classes.content}>
-                        <View />
-                    </div>
-                    <div className={classes.nav}>
-                        <Navigation basename={basename} />
-                    </div>
+                    <Grid container>
+                        <Grid className={classes.nav} item lg={2} xs={12}>
+                            <Navigation basename={basename} />
+                        </Grid>
+                        <Grid className={classes.content} item lg={10} xs={12}>
+                            <View />
+                        </Grid>
+                    </Grid>
                 </Router>
             </div>
             <Footer className={classes.footer} />
