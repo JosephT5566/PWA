@@ -22,25 +22,49 @@ export default function Navigator({ basename }) {
         <div>
             <Hidden mdDown>
                 <List>
-                    <ListItem button onClick={() => navigation.navigate(`${basename}/`)}>
+                    <ListItem
+                        button
+                        onClick={() => {
+                            navigation.navigate(`${basename}/`);
+                            setValue('home');
+                        }}
+                    >
                         <ListItemIcon>
                             <HomeIcon />
                         </ListItemIcon>
                         <ListItemText primary="home" />
                     </ListItem>
-                    <ListItem button onClick={() => navigation.navigate(`${basename}/data`)}>
+                    <ListItem
+                        button
+                        onClick={() => {
+                            navigation.navigate(`${basename}/data`);
+                            setValue('data');
+                        }}
+                    >
                         <ListItemIcon>
                             <DataUsageIcon />
                         </ListItemIcon>
                         <ListItemText primary="Data" />
                     </ListItem>
-                    <ListItem button onClick={() => navigation.navigate(`${basename}/assistant`)}>
+                    <ListItem
+                        button
+                        onClick={() => {
+                            navigation.navigate(`${basename}/assistant`);
+                            setValue('assistant');
+                        }}
+                    >
                         <ListItemIcon>
                             <AssistantIcon />
                         </ListItemIcon>
                         <ListItemText primary="Assistant" />
                     </ListItem>
-                    <ListItem button onClick={() => navigation.navigate(`${basename}/profile`)}>
+                    <ListItem
+                        button
+                        onClick={() => {
+                            navigation.navigate(`${basename}/profile`);
+                            setValue('profile');
+                        }}
+                    >
                         <ListItemIcon>
                             <AccountIcon />
                         </ListItemIcon>
