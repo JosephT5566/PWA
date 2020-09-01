@@ -1,16 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { mount, route } from 'navi';
 import { Router, View } from 'react-navi';
 import Grid from '@material-ui/core/Grid';
 
+import routes from './routes';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Navigation from './components/Navigation';
-import ProfilePage from './ProfilePage';
-import MainPage from './MainPage';
-import AssistantPage from './AssistantPage';
-import DataPage from './DataPage';
 
 const useStyles = makeStyles((theme) => ({
     app: {
@@ -66,24 +63,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const basename = process.env.PUBLIC_URL;
-const routes = mount({
-    '/': route({
-        title: 'main',
-        view: <MainPage />,
-    }),
-    '/data': route({
-        title: 'Data',
-        view: <DataPage />,
-    }),
-    '/assistant': route({
-        title: 'Assistant',
-        view: <AssistantPage />,
-    }),
-    '/profile': route({
-        title: 'profile',
-        view: <ProfilePage />,
-    }),
-});
 
 function App() {
     const classes = useStyles();
@@ -97,7 +76,9 @@ function App() {
                             <Navigation basename={basename} />
                         </Grid>
                         <Grid className={classes.content} item lg={10} xs={12}>
-                            <View />
+                            <Suspense fallback={null}>
+                                <View />
+                            </Suspense>
                         </Grid>
                     </Grid>
                 </Router>
