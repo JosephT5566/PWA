@@ -11,7 +11,13 @@ import Navigation from './components/Navigation';
 const useStyles = makeStyles((theme) => ({
     app: {
         display: 'flex',
+        position: 'relative',
         flexDirection: 'column',
+        [theme.breakpoints.down('md')]: {
+            minHeight: 'calc(100vh - 4em)', // minus nav height
+            marginBottom: '4em', // nav height
+            paddingBottom: '3em', // footer height
+        },
     },
     header: {
         maxHeight: '5vh',
@@ -20,6 +26,12 @@ const useStyles = makeStyles((theme) => ({
     footer: {
         maxHeight: '5vh',
         minHeight: '5vh',
+        [theme.breakpoints.down('md')]: {
+            position: 'absolute',
+            bottom: '0',
+            width: '100vw',
+            zIndex: '-1',
+        },
     },
     main: {
         display: 'flex',
@@ -52,7 +64,6 @@ const useStyles = makeStyles((theme) => ({
             // backgroundColor: 'DARKKHAKI',
         },
         [theme.breakpoints.down('md')]: {
-            order: 0,
             position: 'fixed',
             bottom: 0,
             width: '100vw',
@@ -67,7 +78,9 @@ function App() {
     const classes = useStyles();
     return (
         <div className={classes.app}>
-            <Header className={classes.header} />
+            <div className={classes.header}>
+                <Header />
+            </div>
             <div className={classes.main}>
                 <Router routes={routes} basename={basename}>
                     <Grid container>
@@ -82,7 +95,9 @@ function App() {
                     </Grid>
                 </Router>
             </div>
-            <Footer className={classes.footer} />
+            <div className={classes.footer}>
+                <Footer />
+            </div>
         </div>
     );
 }
