@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { mount, route } from 'navi';
 import { Router, View } from 'react-navi';
 import Grid from '@material-ui/core/Grid';
 
