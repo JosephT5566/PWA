@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 
-function TextInput({ className, label }) {
+function TextInput({ className, label, type }) {
     const [value, setValue] = useState('');
 
     const onValueChanged = (event) => {
@@ -18,6 +18,7 @@ function TextInput({ className, label }) {
             variant="outlined"
             InputLabelProps={labelProps}
             label={label}
+            type={type}
             onChange={onValueChanged}
             value={value}
         />

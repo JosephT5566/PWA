@@ -1,13 +1,14 @@
 import React from 'react';
 import { useNavigation } from 'react-navi';
 
+import TextInput from '../utils/TextInput';
+
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import TextField from '@material-ui/core/TextField';
 
 const useStyle = makeStyles(() => ({
     titleContainer: {
@@ -32,39 +33,20 @@ export default function BasicMessage() {
     const navigation = useNavigation();
     const renderTextFields = () => {
         const labels = [
-            'E-mail',
-            'First name',
-            'Last name',
-            'Address',
-            'Postal',
-            'County',
-            'City',
-            'Country',
-            'Phone',
-            'Birthday',
+            { text: 'E-mail', type: 'text' },
+            { text: 'First name', type: 'text' },
+            { text: 'Last name', type: 'text' },
+            { text: 'Address', type: 'text' },
+            { text: 'Postal', type: 'text' },
+            { text: 'County', type: 'text' },
+            { text: 'City', type: 'text' },
+            { text: 'Country', type: 'text' },
+            { text: 'Phone', type: 'text' },
+            { text: 'Birthday', type: 'date' },
         ];
-        const labelProps = {
-            shrink: true,
-            // variant: 'outlined,
-        };
-        return (
-            <div className={classes.textFieldContainer}>
-                {labels.map((label) => {
-                    let type = '';
-                    if (label === 'Birthday') type = 'date';
-                    return (
-                        <TextField
-                            className={classes.textField}
-                            fullWidth
-                            variant="outlined"
-                            InputLabelProps={labelProps}
-                            type={type}
-                            label={label}
-                        />
-                    );
-                })}
-            </div>
-        );
+        return labels.map((label, index) => (
+            <TextInput className={classes.textField} label={label.text} type={label.type} key={index} />
+        ));
     };
 
     return (
@@ -83,9 +65,10 @@ export default function BasicMessage() {
             <div className={classes.contentContainer}>
                 <Alert variant="outlined" severity="warning">
                     <AlertTitle>Warning</AlertTitle>
-                    Once KYC is certified, you <strong>can not</strong> modify name or address by yourself
+                    Once KYC is certified, you <strong>can not</strong> modify information like name or address by
+                    yourself
                 </Alert>
-                {renderTextFields()}
+                <div className={classes.textFieldContainer}>{renderTextFields()}</div>
                 <Button variant="contained" color="primary">
                     Submit
                 </Button>
