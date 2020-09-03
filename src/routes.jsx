@@ -26,6 +26,7 @@ const routes = mount({
         }),
         '/basic': route({
             title: 'basic message',
+            getView: () => import('./ProfilePage/BasicMessage'),
         }),
         '/upload': route({
             title: 'upload KYC',
