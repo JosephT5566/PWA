@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigation } from 'react-navi';
 
-import TextInput from '../utils/TextInput';
+import TextField from '../utils/TextField';
 
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -45,7 +45,7 @@ export default function BasicMessage() {
             { text: 'Birthday', type: 'date' },
         ];
         return labels.map((label, index) => (
-            <TextInput className={classes.textField} label={label.text} type={label.type} key={index} />
+            <TextField className={classes.textField} label={label.text} type={label.type} key={index} />
         ));
     };
 

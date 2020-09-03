@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from 'react-navi';
 
-import PasswordInput from '../utils/PasswordInput';
-import TextInput from '../utils/TextInput';
+import TextField from '../utils/TextField';
 
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -61,16 +60,9 @@ export default function UploadKYC() {
             { text: 'Security code', type: 'password' },
         ];
 
-        return labels.map((label, index) => {
-            switch (label.type) {
-                case 'text':
-                    return <TextInput className={classes.textField} label={label.text} key={index} />;
-                case 'password':
-                    return <PasswordInput className={classes.textField} label={label.text} key={index} />;
-                default:
-                    return <TextInput className={classes.textField} label={label.text} key={index} />;
-            }
-        });
+        return labels.map((label, index) => (
+            <TextField className={classes.textField} label={label.text} type={label.type} key={index} />
+        ));
     };
 
     return (
@@ -89,7 +81,8 @@ export default function UploadKYC() {
             <div className={classes.contentContainer}>
                 <Alert variant="outlined" severity="warning">
                     <AlertTitle>Warning</AlertTitle>
-                    Once KYC is certified, you <strong>can not</strong> modify information like name or address by yourself
+                    Once KYC is certified, you <strong>can not</strong> modify information like name or address by
+                    yourself
                 </Alert>
                 <div className={classes.subContainer}>
                     <div className={classes.titleContainer}>
