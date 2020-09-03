@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     header: {
-        maxHeight: '5vh',
-        minHeight: '5vh',
+        maxHeight: '7vh',
+        minHeight: '7vh',
     },
     footer: {
-        maxHeight: '5vh',
-        minHeight: '5vh',
+        maxHeight: '7vh',
+        minHeight: '7vh',
         [theme.breakpoints.down('md')]: {
             position: 'absolute',
             bottom: '0',
@@ -37,8 +37,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         [theme.breakpoints.up('lg')]: {
             flexDirection: 'row',
-            minHeight: '90vh',
-            maxHeight: '90vh',
+            minHeight: '86vh',
+            maxHeight: '86vh',
         },
         [theme.breakpoints.down('md')]: {
             flexDirection: 'column',
