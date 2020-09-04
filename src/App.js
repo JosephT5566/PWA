@@ -67,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
             position: 'fixed',
             bottom: 0,
             width: '100vw',
+            zIndex: 100,
             // backgroundColor: 'GOLDENROD',
         },
     },
