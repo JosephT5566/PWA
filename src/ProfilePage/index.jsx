@@ -3,6 +3,7 @@ import { useNavigation } from 'react-navi';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     buttonsContainer: {
@@ -14,6 +15,16 @@ const useStyles = makeStyles((theme) => ({
         padding: '5px 5% 5px 5%',
         justifyItems: 'center',
         justifyContent: 'center',
+    },
+    title: {
+        display: 'flex',
+        flexDirection: 'column',
+        [theme.breakpoints.up('lg')]: {
+            alignItems: 'left',
+        },
+        [theme.breakpoints.down('md')]: {
+            alignItems: 'center',
+        },
     },
 }));
 
@@ -28,7 +39,9 @@ export default function ProfilePage() {
 
     return (
         <div>
-            <h2 className="ui h2">Profile</h2>
+            <div className={classes.title}>
+                <Typography variant="h4">Profile</Typography>
+            </div>
             <Divider />
             <div className={classes.buttonsContainer}>
                 <div className={classes.button}>

@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { useCurrentRoute } from 'react-navi';
+
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,11 +30,23 @@ const useStyles = makeStyles((theme) => ({
     content: {
         padding: '10px 0',
     },
+    title: {
+        display:'flex',
+        flexDirection:'column',
+        [theme.breakpoints.up('lg')]: {
+            alignItems: 'left',
+        },
+        [theme.breakpoints.down('md')]: {
+            alignItems: 'center',
+        },
+    },
 }));
 
 export default function MainPage() {
     const [youtubeItems, setYoutubeItems] = useState(null);
     const classes = useStyles();
+    const theme = useTheme();
+    const islarge = useMediaQuery(theme.breakpoints.up('lg'));
 
     const onGetYoutubes = () => {
         window.gapi.load('client', async () => {
@@ -103,19 +121,25 @@ export default function MainPage() {
         ];
         return froggys.map((froggy, index) => (
             <Grid className={classes.gridItem} item xs={12} key={index}>
-                <iframe
-                    title={froggy.title}
-                    src={`https://www.youtube.com/embed/${froggy.src}`}
-                    frameBorder="0"
-                    allowFullScreen
-                ></iframe>
+                <Card variant="outlined">
+                    <iframe
+                        title={froggy.title}
+                        src={`https://www.youtube.com/embed/${froggy.src}`}
+                        frameBorder="0"
+                        allowFullScreen
+                    ></iframe>
+                </Card>
             </Grid>
         ));
     };
 
     return (
         <div>
-            <h2 className="ui h2">MainPage</h2>
+            <div className={classes.title}>
+                <Typography variant="h4">
+                    Home
+                </Typography>
+            </div>
             <Divider />
             {/* {renderButton()} */}
             <div className={classes.content}>
