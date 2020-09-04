@@ -42,8 +42,8 @@ export default function ProfilePage() {
                     </Button>
                 </div>
                 <div className={classes.button}>
-                    <Button variant="contained" fullWidth value="private" onClick={onNavigate}>
-                        Private doc
+                    <Button variant="contained" fullWidth value="doc" onClick={onNavigate}>
+                        Private and term doc
                     </Button>
                 </div>
                 <div className={classes.button}>

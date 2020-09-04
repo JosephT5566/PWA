@@ -32,11 +32,13 @@ const routes = mount({
             title: 'upload KYC',
             getView: () => import('./ProfilePage/UploadKYC'),
         }),
-        '/private': route({
+        '/doc': route({
             title: 'private doc',
+            getView: () => import('./ProfilePage/Documents'),
         }),
         '/about': route({
             title: 'about us',
+            getView: () => import('./ProfilePage/About'),
         }),
     }),
 });
