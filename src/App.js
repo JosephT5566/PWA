@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Router, View } from 'react-navi';
 import Grid from '@material-ui/core/Grid';
+import HelmetProvider from 'react-navi-helmet-async';
 
 import routes from './routes';
 import Header from './components/Header';
@@ -83,18 +84,20 @@ function App() {
                 <Header />
             </div>
             <div className={classes.main}>
-                <Router routes={routes} basename={basename}>
-                    <Grid container>
-                        <Grid className={classes.nav} item lg={2} xs={12}>
-                            <Navigation basename={basename} />
+                <HelmetProvider>
+                    <Router routes={routes} basename={basename}>
+                        <Grid container>
+                            <Grid className={classes.nav} item lg={2} xs={12}>
+                                <Navigation basename={basename} />
+                            </Grid>
+                            <Grid className={classes.content} item lg={10} xs={12}>
+                                <Suspense fallback={null}>
+                                    <View />
+                                </Suspense>
+                            </Grid>
                         </Grid>
-                        <Grid className={classes.content} item lg={10} xs={12}>
-                            <Suspense fallback={null}>
-                                <View />
-                            </Suspense>
-                        </Grid>
-                    </Grid>
-                </Router>
+                    </Router>
+                </HelmetProvider>
             </div>
             <div className={classes.footer}>
                 <Footer />

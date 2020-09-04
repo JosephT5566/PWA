@@ -6,38 +6,40 @@ import MainPage from './MainPage';
 import AssistantPage from './AssistantPage';
 import DataPage from './DataPage';
 
+const appName = 'PWA';
+
 const routes = mount({
     '/': route({
-        title: 'main',
+        title: `Home - ${appName}`,
         view: <MainPage />,
     }),
     '/data': route({
-        title: 'Data',
+        title: `Data - ${appName}`,
         view: <DataPage />,
     }),
     '/assistant': route({
-        title: 'Assistant',
+        title: `Assistant - ${appName}`,
         view: <AssistantPage />,
     }),
     '/profile': mount({
         '/': route({
-            title: 'profile',
+            title: `Profile - ${appName}`,
             view: <ProfilePage />,
         }),
         '/basic': route({
-            title: 'basic message',
+            title: `Profile/Basic Message - ${appName}`,
             getView: () => import('./ProfilePage/BasicMessage'),
         }),
         '/upload': route({
-            title: 'upload KYC',
+            title: `Profile/Upload KYC - ${appName}`,
             getView: () => import('./ProfilePage/UploadKYC'),
         }),
         '/doc': route({
-            title: 'private doc',
+            title: `Profile/Documents - ${appName}`,
             getView: () => import('./ProfilePage/Documents'),
         }),
         '/about': route({
-            title: 'about us',
+            title: `Profile/About Us - ${appName}`,
             getView: () => import('./ProfilePage/About'),
         }),
     }),
