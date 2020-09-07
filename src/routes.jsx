@@ -28,19 +28,19 @@ const routes = mount({
         }),
         '/basic': route({
             title: `Profile/Basic Message - ${appName}`,
-            getView: () => import('./ProfilePage/BasicMessage'),
+            getView: () => import('./views/ProfilePage/BasicMessage'),
         }),
         '/upload': route({
             title: `Profile/Upload KYC - ${appName}`,
-            getView: () => import('./ProfilePage/UploadKYC'),
+            getView: () => import('./views/ProfilePage/UploadKYC'),
         }),
         '/doc': route({
             title: `Profile/Documents - ${appName}`,
-            getView: () => import('./ProfilePage/Documents'),
+            getView: () => import('./views/ProfilePage/Documents'),
         }),
         '/about': route({
             title: `Profile/About Us - ${appName}`,
-            getView: () => import('./ProfilePage/About'),
+            getView: () => import('./views/ProfilePage/About'),
         }),
     }),
 });

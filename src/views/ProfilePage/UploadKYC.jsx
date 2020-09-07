@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import TextField from '../components/TextField';
-import ArrowBackTitle from '../components/Title/ArrowBackTitle';
+import TextField from '../../components/TextField';
+import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
