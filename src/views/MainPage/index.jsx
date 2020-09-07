@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useCurrentRoute } from 'react-navi';
 
 import Title from '../../components/Title/Title';
+import NewsCard from '../../components/Card/NewsCard';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -144,6 +145,15 @@ export default function MainPage() {
                     {renderFroggy()}
                 </Grid>
             </div>
+            <Divider />
+            <NewsCard
+                title="Kentucky police pull over driver after spotting drawn-on license plate"
+                image="https://source.unsplash.com/FTQdg02Ey4A/1920x1080"
+                avatar="https://i.pravatar.cc/300?img=13"
+                author="Bradford Betz"
+                date="Sep 07 | 2 Min Read"
+                tags={['fashion', 'funny']}
+            />
         </div>
     );
 }
