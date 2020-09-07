@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import TextField from '../utils/TextField';
+import TextField from '../components/TextField';
 import ArrowBackTitle from '../components/Title/ArrowBackTitle';
 
 import { makeStyles } from '@material-ui/core/styles';
