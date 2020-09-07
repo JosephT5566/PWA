@@ -1,28 +1,18 @@
 import React, { useState } from 'react';
-import { useNavigation } from 'react-navi';
 
 import TextField from '../utils/TextField';
+import ArrowBackTitle from '../components/Title/ArrowBackTitle';
 
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import ArrowBack from '@material-ui/icons/ArrowBack';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import HelpIcon from '@material-ui/icons/Help';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const useStyle = makeStyles(() => ({
-    titleContainer: {
-        display: 'inline-flex',
-    },
-    textFieldContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        margin: '1em 0',
-    },
     textField: {
         margin: '0.5em 0',
     },
@@ -37,7 +27,6 @@ const useStyle = makeStyles(() => ({
 export default function UploadKYC() {
     const [open, setOpen] = useState(false);
     const classes = useStyle();
-    const navigation = useNavigation();
 
     const handleTooltipClose = () => {
         setOpen(false);
@@ -67,14 +56,7 @@ export default function UploadKYC() {
 
     return (
         <div>
-            <div className={classes.titleContainer}>
-                <IconButton color="default" onClick={() => navigation.goBack()}>
-                    <ArrowBack />
-                </IconButton>
-                <h2 className="ui h2" style={{ margin: 'auto' }}>
-                    Upload KYC
-                </h2>
-            </div>
+            <ArrowBackTitle title="Upload KYC" />
             <div>
                 <Divider />
             </div>

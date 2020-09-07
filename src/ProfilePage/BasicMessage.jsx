@@ -1,19 +1,14 @@
 import React from 'react';
-import { useNavigation } from 'react-navi';
 
 import TextField from '../utils/TextField';
+import ArrowBackTitle from '../components/Title/ArrowBackTitle';
 
 import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import ArrowBack from '@material-ui/icons/ArrowBack';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
 const useStyle = makeStyles(() => ({
-    titleContainer: {
-        display: 'inline-flex',
-    },
     textFieldContainer: {
         display: 'flex',
         flexDirection: 'column',
@@ -30,7 +25,6 @@ const useStyle = makeStyles(() => ({
 
 export default function BasicMessage() {
     const classes = useStyle();
-    const navigation = useNavigation();
     const renderTextFields = () => {
         const labels = [
             { text: 'E-mail', type: 'text' },
@@ -51,14 +45,7 @@ export default function BasicMessage() {
 
     return (
         <div>
-            <div className={classes.titleContainer}>
-                <IconButton color="default" onClick={() => navigation.goBack()}>
-                    <ArrowBack />
-                </IconButton>
-                <h2 className="ui h2" style={{ margin: 'auto' }}>
-                    Basic Message
-                </h2>
-            </div>
+            <ArrowBackTitle title="Basic Message" />
             <div>
                 <Divider />
             </div>

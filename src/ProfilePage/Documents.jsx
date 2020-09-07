@@ -1,15 +1,12 @@
 import React from 'react';
-import { useNavigation } from 'react-navi';
+
+import ArrowBackTitle from '../components/Title/ArrowBackTitle';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowBack from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles((theme) => ({
-    titleContainer: {
-        display: 'inline-flex',
-    },
     buttonsContainer: {
         display: 'flex',
         flexDirection: 'column',
@@ -24,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TermDoc() {
     const classes = useStyles();
-    const navigation = useNavigation();
 
     const onClickDownload = (e) => {
         console.log(e.target.value);
@@ -32,14 +28,7 @@ export default function TermDoc() {
 
     return (
         <div>
-            <div className={classes.titleContainer}>
-                <IconButton color="default" onClick={() => navigation.goBack()}>
-                    <ArrowBack />
-                </IconButton>
-                <h2 className="ui h2" style={{ margin: 'auto' }}>
-                    Documents
-                </h2>
-            </div>
+            <ArrowBackTitle title="Documents" />
             <Divider />
             <div className={classes.buttonsContainer}>
                 <div className={classes.button}>
