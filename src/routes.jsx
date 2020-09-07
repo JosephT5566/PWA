@@ -1,10 +1,10 @@
 import { mount, route } from 'navi';
 import React from 'react';
 
-import ProfilePage from './ProfilePage';
-import MainPage from './MainPage';
-import AssistantPage from './AssistantPage';
-import DataPage from './DataPage';
+import ProfilePage from './views/ProfilePage';
+import MainPage from './views/MainPage';
+import AssistantPage from './views/AssistantPage';
+import DataPage from './views/DataPage';
 
 const appName = 'PWA';
 

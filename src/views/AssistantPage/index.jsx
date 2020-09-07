@@ -16,7 +16,7 @@ const useStyle = makeStyles((theme) => ({
     },
 }));
 
-export default function ProfilePage() {
+export default function AssistantPage() {
     const classes = useStyle();
     return (
         <div>
