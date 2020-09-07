@@ -1,9 +1,11 @@
 import React from 'react';
+
+import Title from '../../components/Title/Title';
+
 import { useNavigation } from 'react-navi';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     buttonsContainer: {
@@ -39,9 +41,7 @@ export default function ProfilePage() {
 
     return (
         <div>
-            <div className={classes.title}>
-                <Typography variant="h4">Profile</Typography>
-            </div>
+            <Title title="Profile" />
             <Divider />
             <div className={classes.buttonsContainer}>
                 <div className={classes.button}>

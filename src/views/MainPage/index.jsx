@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useCurrentRoute } from 'react-navi';
 
+import Title from '../../components/Title/Title';
+
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Divider from '@material-ui/core/Divider';
@@ -8,7 +10,6 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
         padding: '10px 0',
     },
     title: {
-        display:'flex',
-        flexDirection:'column',
+        display: 'flex',
+        flexDirection: 'column',
         [theme.breakpoints.up('lg')]: {
             alignItems: 'left',
         },
@@ -135,11 +136,7 @@ export default function MainPage() {
 
     return (
         <div>
-            <div className={classes.title}>
-                <Typography variant="h4">
-                    Home
-                </Typography>
-            </div>
+            <Title title="Home" />
             <Divider />
             {/* {renderButton()} */}
             <div className={classes.content}>

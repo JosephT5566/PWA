@@ -1,7 +1,9 @@
 import React from 'react';
+
+import Title from '../../components/Title/Title'
+
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 
 const useStyle = makeStyles((theme) => ({
     title: {
@@ -20,9 +22,7 @@ export default function AssistantPage() {
     const classes = useStyle();
     return (
         <div>
-            <div className={classes.title}>
-                <Typography variant="h4">Assistant</Typography>
-            </div>
+            <Title title="Assistant"/>
             <Divider />
         </div>
     );
