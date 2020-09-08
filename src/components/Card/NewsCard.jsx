@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(() => ({
     card: {
+        width: '100%',
         minWidth: 320,
         position: 'relative',
         boxShadow: '0 8px 24px 0 rgba(0,0,0,0.12)',
@@ -71,7 +72,6 @@ const useStyles = makeStyles(() => ({
     },
     title: {
         fontSize: '2rem',
-        fontWeight: 800,
         color: '#fff',
     },
     author: {
@@ -96,29 +96,27 @@ export default function NewsCard({ title, image, avatar, author, date, tags }) {
     };
 
     return (
-        <div>
-            <Card className={classes.card}>
-                <Box className={classes.main} minHeight={300} position={'relative'}>
-                    <CardMedia className={classes.contentImage} component="img" image={image} />
-                    <div className={classes.content}>
-                        <div className={classes.tags}>{renderTags(tags)}</div>
-                        <Typography variant={'h2'} className={classes.title}>
-                            {title}
-                        </Typography>
-                    </div>
-                </Box>
-                <Box className={classes.author}>
-                    <div>
-                        <Avatar className={classes.avatar} src={avatar} />
-                    </div>
-                    <div>
-                        <Typography variant={'h6'} className={classes.authorName}>
-                            {author}
-                        </Typography>
-                        <Typography variant={'subtitle1'}>{date}</Typography>
-                    </div>
-                </Box>
-            </Card>
-        </div>
+        <Card className={classes.card}>
+            <Box className={classes.main} minHeight={300} position={'relative'}>
+                <CardMedia className={classes.contentImage} component="img" image={image} />
+                <div className={classes.content}>
+                    <div className={classes.tags}>{renderTags(tags)}</div>
+                    <Typography variant={'h2'} className={classes.title}>
+                        {title}
+                    </Typography>
+                </div>
+            </Box>
+            <Box className={classes.author}>
+                <div>
+                    <Avatar className={classes.avatar} src={avatar} />
+                </div>
+                <div>
+                    <Typography variant={'h6'} className={classes.authorName}>
+                        {author}
+                    </Typography>
+                    <Typography variant={'subtitle1'}>{date}</Typography>
+                </div>
+            </Box>
+        </Card>
     );
 }
