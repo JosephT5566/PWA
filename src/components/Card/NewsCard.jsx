@@ -5,34 +5,25 @@ import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(() => ({
     card: {
         width: '100%',
-        minWidth: 320,
         position: 'relative',
         boxShadow: '0 8px 24px 0 rgba(0,0,0,0.12)',
         overflow: 'visible',
         borderRadius: '1.5rem',
-        transition: '0.4s',
-        '&:before': {
-            content: '""',
-            position: 'absolute',
-            zIndex: 0,
-            display: 'block',
-            width: '100%',
-            bottom: -1,
-            height: '100%',
-            borderRadius: '1.5rem',
-            backgroundColor: 'rgba(0,0,0,0.08)',
-        },
+    },
+    actionArea: {
+        height: '100%',
+        borderRadius: '1.5rem',
     },
     main: {
         overflow: 'hidden',
         borderTopLeftRadius: '1.5rem',
         borderTopRightRadius: '1.5rem',
-        zIndex: 1,
         '&:after': {
             content: '""',
             position: 'absolute',
@@ -75,7 +66,6 @@ const useStyles = makeStyles(() => ({
         color: '#fff',
     },
     author: {
-        zIndex: 1,
         position: 'relative',
         display: 'flex',
         padding: '1rem',
@@ -97,26 +87,28 @@ export default function NewsCard({ title, image, avatar, author, date, tags }) {
 
     return (
         <Card className={classes.card}>
-            <Box className={classes.main} minHeight={300} position={'relative'}>
-                <CardMedia className={classes.contentImage} component="img" image={image} />
-                <div className={classes.content}>
-                    <div className={classes.tags}>{renderTags(tags)}</div>
-                    <Typography variant={'h2'} className={classes.title}>
-                        {title}
-                    </Typography>
-                </div>
-            </Box>
-            <Box className={classes.author}>
-                <div>
-                    <Avatar className={classes.avatar} src={avatar} />
-                </div>
-                <div>
-                    <Typography variant={'h6'} className={classes.authorName}>
-                        {author}
-                    </Typography>
-                    <Typography variant={'subtitle1'}>{date}</Typography>
-                </div>
-            </Box>
+            <CardActionArea className={classes.actionArea}>
+                <Box className={classes.main} minHeight={300} position={'relative'}>
+                    <CardMedia className={classes.contentImage} component="img" image={image} />
+                    <div className={classes.content}>
+                        <div className={classes.tags}>{renderTags(tags)}</div>
+                        <Typography variant={'h2'} className={classes.title}>
+                            {title}
+                        </Typography>
+                    </div>
+                </Box>
+                <Box className={classes.author}>
+                    <div>
+                        <Avatar className={classes.avatar} src={avatar} />
+                    </div>
+                    <div>
+                        <Typography variant={'h6'} className={classes.authorName}>
+                            {author}
+                        </Typography>
+                        <Typography variant={'subtitle1'}>{date}</Typography>
+                    </div>
+                </Box>
+            </CardActionArea>
         </Card>
     );
 }
