@@ -10,13 +10,13 @@ const useStyles = makeStyles((theme) => ({
     card: {
         width: '100%',
         height: '100%',
-        maxWidth: 300,
         boxShadow: '0 8px 24px 0 rgba(0,0,0,0.12)',
         borderRadius: '1.5rem',
         overflow: 'visible',
     },
     actionArea: {
         height: '100%',
+        borderRadius: '1.5rem',
     },
     box: {
         height: '100%',
