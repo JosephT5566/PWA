@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { useCurrentRoute } from 'react-navi';
 
 import Title from '../../components/Title/Title';
 import NewsCard from '../../components/Card/NewsCard';
+import InfoCard from '../../components/Card/InfoCard';
+import ImageCard from '../../components/Card/ImageCard';
+import VideoCard from '../../components/Card/VideoCard';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -123,14 +123,12 @@ export default function MainPage() {
         ];
         return froggys.map((froggy, index) => (
             <Grid className={classes.gridItem} item xs={12} key={index}>
-                <Card variant="outlined">
-                    <iframe
-                        title={froggy.title}
-                        src={`https://www.youtube.com/embed/${froggy.src}`}
-                        frameBorder="0"
-                        allowFullScreen
-                    ></iframe>
-                </Card>
+                <iframe
+                    title={froggy.title}
+                    src={`https://www.youtube.com/embed/${froggy.src}`}
+                    frameBorder="0"
+                    allowFullScreen
+                ></iframe>
             </Grid>
         ));
     };
@@ -139,21 +137,74 @@ export default function MainPage() {
         <div>
             <Title title="Home" />
             <Divider />
-            {/* {renderButton()} */}
-            <div className={classes.content}>
-                <Grid container spacing={3}>
-                    {renderFroggy()}
+            <div className="ui container">
+                {/* {renderButton()} */}
+                <Grid className={classes.content} container spacing={3} justify={'center'}>
+                    <Grid className={classes.gridItem} item xs={12}>
+                        <InfoCard
+                            title="Joseph"
+                            subtitle="Welcome back"
+                            image="https://source.unsplash.com/6W4F62sN_yI/1920x2880"
+                        />
+                    </Grid>
+                </Grid>
+                <Grid className={classes.content} container spacing={3} justify={'center'}>
+                    <Grid className={classes.gridItem} item xs={4}>
+                        <ImageCard title="History Contract" image="https://source.unsplash.com/KEY8_zTEckY/1920x2880" />
+                    </Grid>
+                    <Grid className={classes.gridItem} item xs={4}>
+                        <ImageCard
+                            title="Intelligent Contract"
+                            image="https://source.unsplash.com/0QHKz1EV_Gc/1920x2400"
+                        />
+                    </Grid>
+                    <Grid className={classes.gridItem} item xs={4}>
+                        <ImageCard
+                            title="Arbitrage Contract"
+                            image="https://source.unsplash.com/lJShoi-1RhA/1920x3411"
+                        />
+                    </Grid>
+                </Grid>
+                <Divider />
+                <Grid className={classes.content} container spacing={3} justify={'center'}>
+                    {/* {renderFroggy()} */}
+                    <Grid className={classes.gridItem} item lg={6} xs={12}>
+                        <VideoCard src="https://www.youtube.com/embed/asanQH0piQE" />
+                    </Grid>
+                    <Grid className={classes.gridItem} item lg={6} xs={12}>
+                        <VideoCard src="https://www.youtube.com/embed/59EVB4GejGk" />
+                    </Grid>
+                    <Grid className={classes.gridItem} item lg={6} xs={12}>
+                        <VideoCard src="https://www.youtube.com/embed/_wH5lSI5Dgw" />
+                    </Grid>
+                    <Grid className={classes.gridItem} item lg={6} xs={12}>
+                        <VideoCard src="https://www.youtube.com/embed/LUaYe_7cmxQ" />
+                    </Grid>
+                </Grid>
+                <Divider />
+                <Grid className={classes.content} container spacing={3} justify={'center'}>
+                    <Grid className={classes.gridItem} item lg={6}xs={12} >
+                        <NewsCard
+                            title="Kentucky police pull over driver after spotting drawn-on license plate"
+                            image="https://source.unsplash.com/FTQdg02Ey4A/1920x1080"
+                            avatar="https://i.pravatar.cc/300?img=13"
+                            author="Bradford Betz"
+                            date="Sep 07 | 2 Min Read"
+                            tags={['fashion', 'funny']}
+                        />
+                    </Grid>
+                    <Grid className={classes.gridItem} item lg={6}xs={12} >
+                        <NewsCard
+                            title="Kentucky police pull over driver after spotting drawn-on license plate"
+                            image="https://source.unsplash.com/FTQdg02Ey4A/1920x1080"
+                            avatar="https://i.pravatar.cc/300?img=13"
+                            author="Bradford Betz"
+                            date="Sep 07 | 2 Min Read"
+                            tags={['fashion', 'funny']}
+                        />
+                    </Grid>
                 </Grid>
             </div>
-            <Divider />
-            <NewsCard
-                title="Kentucky police pull over driver after spotting drawn-on license plate"
-                image="https://source.unsplash.com/FTQdg02Ey4A/1920x1080"
-                avatar="https://i.pravatar.cc/300?img=13"
-                author="Bradford Betz"
-                date="Sep 07 | 2 Min Read"
-                tags={['fashion', 'funny']}
-            />
         </div>
     );
 }
