@@ -64,7 +64,7 @@ export default function InfoCard({ title, subtitle, image, color = '#203f52' }) 
                     <Typography className={classes.title} variant={'h2'}>
                         {title}
                     </Typography>
-                    <Typography className={classes.subtitle} variant={'subtitle'}>
+                    <Typography className={classes.subtitle} variant={'subtitle1'}>
                         {subtitle}
                     </Typography>
                 </CardContent>

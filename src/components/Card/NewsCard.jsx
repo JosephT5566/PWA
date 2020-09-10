@@ -82,7 +82,11 @@ export default function NewsCard({ title, image, avatar, author, date, tags }) {
     const classes = useStyles();
 
     const renderTags = (tags) => {
-        return tags.map((tag) => <div className={classes.tag}>{tag}</div>);
+        return tags.map((tag, index) => (
+            <div className={classes.tag} key={index}>
+                {tag}
+            </div>
+        ));
     };
 
     return (
