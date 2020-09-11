@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Title from '../../components/Title/Title';
+import Victory from '../../components/Victory';
 
 import Divider from '@material-ui/core/Divider';
 // import { makeStyles } from '@material-ui/core/styles';
@@ -13,6 +14,9 @@ export default function DataPage() {
         <div>
             <Title title="Data" />
             <Divider />
+            <div className="ui container">
+                <Victory />
+            </div>
         </div>
     );
 }
