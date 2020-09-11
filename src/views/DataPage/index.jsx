@@ -3,23 +3,12 @@ import React from 'react';
 import Title from '../../components/Title/Title';
 
 import Divider from '@material-ui/core/Divider';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 
-const useStyle = makeStyles((theme) => ({
-    title: {
-        display: 'flex',
-        flexDirection: 'column',
-        [theme.breakpoints.up('lg')]: {
-            alignItems: 'left',
-        },
-        [theme.breakpoints.down('md')]: {
-            alignItems: 'center',
-        },
-    },
-}));
+// const useStyle = makeStyles((theme) => ({}));
 
 export default function DataPage() {
-    const classes = useStyle();
+    // const classes = useStyle();
     return (
         <div>
             <Title title="Data" />

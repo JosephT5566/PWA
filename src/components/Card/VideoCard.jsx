@@ -21,7 +21,7 @@ export default function ImageCard({ src }) {
     const classes = useStyles();
     return (
         <Card className={classes.card}>
-            <iframe className={classes.image} width="100%" height="100%" src={src} frameBorder="0" allowFullScreen />
+            <iframe className={classes.image} width="100%" height="100%" title=" " src={src} frameBorder="0" allowFullScreen />
         </Card>
     );
 }
