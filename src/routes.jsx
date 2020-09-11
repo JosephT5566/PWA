@@ -1,30 +1,25 @@
 import { mount, route } from 'navi';
-import React from 'react';
-
-import ProfilePage from './views/ProfilePage';
-import MainPage from './views/MainPage';
-import AssistantPage from './views/AssistantPage';
-import DataPage from './views/DataPage';
+// import React from 'react';
 
 const appName = 'PWA';
 
 const routes = mount({
     '/': route({
         title: `Home - ${appName}`,
-        view: <MainPage />,
+        getView: () => import('./views/MainPage'),
     }),
     '/data': route({
         title: `Data - ${appName}`,
-        view: <DataPage />,
+        getView: () => import('./views/DataPage'),
     }),
     '/assistant': route({
         title: `Assistant - ${appName}`,
-        view: <AssistantPage />,
+        getView: () => import('./views/AssistantPage'),
     }),
     '/profile': mount({
         '/': route({
             title: `Profile - ${appName}`,
-            view: <ProfilePage />,
+            getView: () => import('./views/ProfilePage'),
         }),
         '/basic': route({
             title: `Profile/Basic Message - ${appName}`,
