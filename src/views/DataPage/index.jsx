@@ -1,21 +1,48 @@
 import React from 'react';
+import { useNavigation } from 'react-navi';
 
 import Title from '../../components/Title/Title';
-import Victory from '../../components/Victory';
+import ImageCard from '../../components/Card/ImageCard';
 
+import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
-// import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 
-// const useStyle = makeStyles((theme) => ({}));
+const useStyle = makeStyles(() => ({
+    content: {
+        padding: '10px 0',
+    },
+    gridItem: {
+        maxHeight: '10em',
+    },
+}));
 
 export default function DataPage() {
-    // const classes = useStyle();
+    const classes = useStyle();
+    const navigation = useNavigation();
+    const currentURL = navigation.getCurrentValue().url.pathname;
+
     return (
         <div>
             <Title title="Data" />
             <Divider />
             <div className="ui container">
-                <Victory />
+                <Grid container className={classes.content} spacing={3} justify={'center'}>
+                    <Grid item className={classes.gridItem}>
+                        <ImageCard
+                            title="BTC"
+                            image="https://source.unsplash.com/ON1ryil6C8k/640x426"
+                            onClick={() => navigation.navigate(`${currentURL}/BTC`)}
+                        />
+                    </Grid>
+                    <Grid item className={classes.gridItem}>
+                        <ImageCard
+                            title="ETH"
+                            image="https://source.unsplash.com/0bO235Rhqec/640x426"
+                            onClick={() => console.log('123')}
+                        />
+                    </Grid>
+                </Grid>
             </div>
         </div>
     );
