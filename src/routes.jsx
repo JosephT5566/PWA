@@ -1,5 +1,7 @@
 import { mount, route } from 'navi';
-// import React from 'react';
+import React from 'react';
+
+import Plot from './views/DataPage/Plot';
 
 const appName = 'PWA';
 
@@ -8,9 +10,17 @@ const routes = mount({
         title: `Home - ${appName}`,
         getView: () => import('./views/MainPage'),
     }),
-    '/data': route({
-        title: `Data - ${appName}`,
-        getView: () => import('./views/DataPage'),
+    '/data': mount({
+        '/': route({
+            title: `Data - ${appName}`,
+            getView: () => import('./views/DataPage'),
+        }),
+        '/:id': route((req) => {
+            let id = req.params.id;
+            return {
+                view: <Plot id={id} />,
+            };
+        }),
     }),
     '/assistant': route({
         title: `Assistant - ${appName}`,
