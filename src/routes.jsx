@@ -8,12 +8,20 @@ const appName = 'PWA';
 const routes = mount({
     '/': route({
         title: `Home - ${appName}`,
-        getView: () => import('./views/MainPage'),
+        getView: () =>
+            import(
+                /*webpackChunkName: "MainPage"*/
+                './views/MainPage'
+            ),
     }),
     '/data': mount({
         '/': route({
             title: `Data - ${appName}`,
-            getView: () => import('./views/DataPage'),
+            getView: () =>
+                import(
+                    /*webpackChunkName: "DataPage"*/
+                    './views/DataPage'
+                ),
         }),
         '/:id': route((req) => {
             let id = req.params.id;
@@ -24,12 +32,20 @@ const routes = mount({
     }),
     '/assistant': route({
         title: `Assistant - ${appName}`,
-        getView: () => import('./views/AssistantPage'),
+        getView: () =>
+            import(
+                /*webpackChunkName: "AssistantPage"*/
+                './views/AssistantPage'
+            ),
     }),
     '/profile': mount({
         '/': route({
             title: `Profile - ${appName}`,
-            getView: () => import('./views/ProfilePage'),
+            getView: () =>
+                import(
+                    /*webpackChunkName: "ProfilePage"*/
+                    './views/ProfilePage'
+                ),
         }),
         '/basic': route({
             title: `Profile/Basic Message - ${appName}`,
