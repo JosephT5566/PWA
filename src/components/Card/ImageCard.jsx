@@ -54,11 +54,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ImageCard({ title, image }) {
+export default function ImageCard({ title, image, onClick }) {
     const classes = useStyles();
     return (
         <Card className={classes.card}>
-            <CardActionArea className={classes.actionArea}>
+            <CardActionArea className={classes.actionArea} onClick={onClick}>
                 <Box className={classes.box} position={'relative'}>
                     <CardMedia className={classes.media} component="img" image={image} />
                     <div className={classes.content}>
