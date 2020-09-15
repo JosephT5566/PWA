@@ -1,0 +1,8 @@
+{
+    "navigation": {
+        "home": "Home",
+        "data": "Data",
+        "assistant": "Assistant",
+        "profile": "Profile"
+    }
+}
