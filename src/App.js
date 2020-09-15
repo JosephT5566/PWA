@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Router, View } from 'react-navi';
 import Grid from '@material-ui/core/Grid';
 import HelmetProvider from 'react-navi-helmet-async';
+import './i18n';
 
 import routes from './routes';
 import Header from './components/Header';

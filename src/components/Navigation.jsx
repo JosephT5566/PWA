@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigation } from 'react-navi';
+import { useTranslation } from 'react-i18next';
+
 import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -13,7 +15,8 @@ import AccountIcon from '@material-ui/icons/AccountCircle';
 
 export default function Navigator({ basename }) {
     const navigation = useNavigation();
-    const [value, setValue] = React.useState('recents');
+    const { t } = useTranslation();
+    const [value, setValue] = React.useState('home');
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -32,7 +35,7 @@ export default function Navigator({ basename }) {
                         <ListItemIcon>
                             <HomeIcon />
                         </ListItemIcon>
-                        <ListItemText primary="home" />
+                        <ListItemText primary={t('navigation.home')} />
                     </ListItem>
                     <ListItem
                         button
@@ -44,7 +47,7 @@ export default function Navigator({ basename }) {
                         <ListItemIcon>
                             <DataUsageIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Data" />
+                        <ListItemText primary={t('navigation.data')} />
                     </ListItem>
                     <ListItem
                         button
@@ -56,7 +59,7 @@ export default function Navigator({ basename }) {
                         <ListItemIcon>
                             <AssistantIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Assistant" />
+                        <ListItemText primary={t('navigation.assistant')} />
                     </ListItem>
                     <ListItem
                         button
@@ -68,7 +71,7 @@ export default function Navigator({ basename }) {
                         <ListItemIcon>
                             <AccountIcon />
                         </ListItemIcon>
-                        <ListItemText primary="profile" />
+                        <ListItemText primary={t('navigation.profile')} />
                     </ListItem>
                 </List>
             </Hidden>
@@ -76,25 +79,25 @@ export default function Navigator({ basename }) {
                 <BottomNavigation value={value} onChange={handleChange}>
                     <BottomNavigationAction
                         onClick={() => navigation.navigate(`${basename}/`)}
-                        label="Home"
+                        label={t('navigation.home')}
                         value="home"
                         icon={<HomeIcon />}
                     />
                     <BottomNavigationAction
                         onClick={() => navigation.navigate(`${basename}/data`)}
-                        label="Data"
+                        label={t('navigation.data')}
                         value="data"
                         icon={<DataUsageIcon />}
                     />
                     <BottomNavigationAction
                         onClick={() => navigation.navigate(`${basename}/assistant`)}
-                        label="Assistant"
+                        label={t('navigation.assistant')}
                         value="assistant"
                         icon={<AssistantIcon />}
                     />
                     <BottomNavigationAction
                         onClick={() => navigation.navigate(`${basename}/profile`)}
-                        label="Profile"
+                        label={t('navigation.profile')}
                         value="profile"
                         icon={<AccountIcon />}
                     />
