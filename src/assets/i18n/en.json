@@ -4,5 +4,72 @@
         "data": "Data",
         "assistant": "Assistant",
         "profile": "Profile"
+    },
+    "home": {
+        "title": "Home",
+        "welcome": "Welcome Back",
+        "history-contract": "History Contract",
+        "intelligent-contract": "Intelligent Contract",
+        "arbitrage-contract": "Arbitrage Contract"
+    },
+    "data": {
+        "title": "Data"
+    },
+    "assistant": {
+        "title": "Assistant"
+    },
+    "profile": {
+        "title": "Profile",
+        "basic": "Basic Message",
+        "upload-kyc": "Upload KYC",
+        "document": "Private and term doc",
+        "about": "About Us",
+        "language": "Language"
+    },
+    "basic": {
+        "title": "Basic Message",
+        "warning": "Once KYC is certified, you can not modify information like name or address by yourself",
+        "email": "E-mail",
+        "first-name": "First name",
+        "last-name": "Last name",
+        "address": "Address",
+        "postal": "Postal",
+        "county": "Country",
+        "city": "City",
+        "country": "Country",
+        "phone": "Phone",
+        "birthday": "Birthday",
+        "submit": "Submit"
+    },
+    "upload-kyc": {
+        "title": "Upload KYC",
+        "warning": "Once KYC is certified, you can not modify information like name or address by yourself",
+        "upload-title": "Please upload effective credential",
+        "hint": "Passport / ID card / driver's license",
+        "front": "Front",
+        "back": "Back",
+        "upload": "Upload",
+        "warning-credential": "Please make sure the credential is valid of your country, and the photos are clearly and recognizable.",
+        "bank-info-title": "Please enter bank infomation",
+        "bank": "Bank",
+        "branch": "Branch",
+        "account": "Account",
+        "pin": "PIN number",
+        "payment-account": "Payment password",
+        "online-bank-account": "Online-bank account",
+        "online-bank-password": "Online-bank password",
+        "security-code": " Security code",
+        "submit": "Submit"
+    },
+    "documents": {
+        "title": "Documents",
+        "terms": "Terms and conditions",
+        "private-policy": "Private policy",
+        "anti-fraud-policy": "Anti-fraud policy",
+        "income-disclaimer": "Income disclaimer",
+        "consent": "Consent to operate intelligent arbitrage"
+    },
+    "alert": {
+        "warning": "Warning"
     }
 }

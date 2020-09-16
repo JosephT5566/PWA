@@ -1,8 +1,75 @@
 {
     "navigation": {
         "home": "首頁",
-        "data": "資料",
+        "data": "數據",
         "assistant": "助理",
         "profile": "個人資料"
+    },
+    "home": {
+        "title": "首頁",
+        "welcome": "歡迎回來",
+        "history-contract": "歷史合約",
+        "intelligent-contract": "智慧型合約",
+        "arbitrage-contract": "搬磚合約"
+    },
+    "data": {
+        "title": "數據"
+    },
+    "assistant": {
+        "title": "助理"
+    },
+    "profile": {
+        "title": "個人",
+        "basic": "基本資料",
+        "upload-kyc": "上傳 KYC",
+        "document": "隱私與合約文件",
+        "about": "關於我們",
+        "language": "語言"
+    },
+    "basic": {
+        "title": "基本資料",
+        "warning": "當KYC認證通過。將無法自行改變名稱或地址等資料。",
+        "email": "電子郵件",
+        "first-name": "名字",
+        "last-name": "姓氏",
+        "address": "地址",
+        "postal": "郵遞區號",
+        "county": "縣",
+        "city": "鄉鎮",
+        "country": "國家",
+        "phone": "電話",
+        "birthday": "生日",
+        "submit": "提交"
+    },
+    "upload-kyc": {
+        "title": "上傳KYC",
+        "warning": "當KYC認證通過。將無法自行改變名稱或地址等資料。",
+        "upload-title": "請上傳個人有效證件",
+        "hint": "護照或身分證或駕駛證",
+        "front": "正面",
+        "back": "背面",
+        "upload": "上傳",
+        "warning-credential": "請確認上傳的照片符合您當地國家之有效證件，請且確認上傳照片清晰可辨識。",
+        "bank-info-title": "請上傳代操銀行資訊",
+        "bank": "銀行名稱",
+        "branch": "分行名稱",
+        "account": "帳號",
+        "pin": "存提款密碼",
+        "payment-account": "支付密碼",
+        "online-bank-account": "網銀帳號",
+        "online-bank-password": "網銀密碼",
+        "security-code": " 安全碼",
+        "submit": "提交"
+    },
+    "documents": {
+        "title": "文件",
+        "terms": "條款及細則",
+        "private-policy": "隱私政策",
+        "anti-fraud-policy": "反詐欺政策",
+        "income-disclaimer": "收入免責聲明",
+        "consent": "代為操作智慧型搬磚同意書"
+    },
+    "alert": {
+        "warning": "警告"
     }
 }
