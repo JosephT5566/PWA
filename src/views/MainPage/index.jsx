@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Title from '../../components/Title/Title';
 import NewsCard from '../../components/Card/NewsCard';
@@ -44,34 +45,38 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MainPage() {
     const classes = useStyles();
+    const { t } = useTranslation();
 
     return (
         <div>
-            <Title title="Home" />
+            <Title title={t('home.title')} />
             <Divider />
             <div className="ui container">
                 <Grid className={classes.content} container spacing={3} justify={'center'}>
                     <Grid className={classes.gridItem} item xs={12}>
                         <InfoCard
                             title="Joseph"
-                            subtitle="Welcome back"
+                            subtitle={t('home.welcome')}
                             image="https://source.unsplash.com/6W4F62sN_yI/640x960"
                         />
                     </Grid>
                 </Grid>
                 <Grid className={classes.content} container spacing={3} justify={'center'}>
                     <Grid className={classes.gridItem} item xs={4}>
-                        <ImageCard title="History Contract" image="https://source.unsplash.com/KEY8_zTEckY/640x960" />
+                        <ImageCard
+                            title={t('home.history-contract')}
+                            image="https://source.unsplash.com/KEY8_zTEckY/640x960"
+                        />
                     </Grid>
                     <Grid className={classes.gridItem} item xs={4}>
                         <ImageCard
-                            title="Intelligent Contract"
+                            title={t('home.intelligent-contract')}
                             image="https://source.unsplash.com/0QHKz1EV_Gc/640x800"
                         />
                     </Grid>
                     <Grid className={classes.gridItem} item xs={4}>
                         <ImageCard
-                            title="Arbitrage Contract"
+                            title={t('home.arbitrage-contract')}
                             image="https://source.unsplash.com/lJShoi-1RhA/640x1137"
                         />
                     </Grid>

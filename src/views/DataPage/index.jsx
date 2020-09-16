@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigation } from 'react-navi';
+import { useTranslation } from 'react-i18next';
 
 import Title from '../../components/Title/Title';
 import ImageCard from '../../components/Card/ImageCard';
@@ -20,11 +21,12 @@ const useStyle = makeStyles(() => ({
 export default function DataPage() {
     const classes = useStyle();
     const navigation = useNavigation();
+    const { t } = useTranslation();
     const currentURL = navigation.getCurrentValue().url.pathname;
 
     return (
         <div>
-            <Title title="Data" />
+            <Title title={t('data.title')} />
             <Divider />
             <div className="ui container">
                 <Grid container className={classes.content} spacing={3} justify={'center'}>

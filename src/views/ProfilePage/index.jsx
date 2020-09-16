@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigation } from 'react-navi';
+import { useTranslation } from 'react-i18next';
+import i18n from '../../i18n';
 
 import Title from '../../components/Title/Title';
 
-import { useNavigation } from 'react-navi';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
@@ -33,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ProfilePage() {
     const classes = useStyles();
     const navigation = useNavigation();
+    const { t } = useTranslation();
     const currentURL = navigation.getCurrentValue().url.pathname;
 
     const onNavigate = (e) => {
@@ -41,27 +44,32 @@ export default function ProfilePage() {
 
     return (
         <div>
-            <Title title="Profile" />
+            <Title title={t('profile.title')} />
             <Divider />
             <div className={classes.buttonsContainer}>
                 <div className={classes.button}>
                     <Button variant="contained" fullWidth value="basic" onClick={onNavigate}>
-                        Basic message
+                        {t('profile.basic')}
                     </Button>
                 </div>
                 <div className={classes.button}>
                     <Button variant="contained" fullWidth value="upload" onClick={onNavigate}>
-                        Upload KYC
+                        {t('profile.upload-kyc')}
                     </Button>
                 </div>
                 <div className={classes.button}>
                     <Button variant="contained" fullWidth value="doc" onClick={onNavigate}>
-                        Private and term doc
+                        {t('profile.document')}
                     </Button>
                 </div>
                 <div className={classes.button}>
                     <Button variant="contained" fullWidth value="about" onClick={onNavigate}>
-                        About us
+                        {t('profile.about')}
+                    </Button>
+                </div>
+                <div className={classes.button}>
+                    <Button variant="contained" fullWidth value="language" onClick={onNavigate}>
+                        {t('profile.language')}
                     </Button>
                 </div>
             </div>
