@@ -63,6 +63,10 @@ const routes = mount({
             title: `Profile/About Us - ${appName}`,
             getView: () => import('./views/ProfilePage/About'),
         }),
+        '/language': route({
+            title: `Profile/Language - ${appName}`,
+            getView: () => import('./views/ProfilePage/Language'),
+        }),
     }),
 });
 
