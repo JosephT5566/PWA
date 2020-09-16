@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import TextField from '../../components/TextField';
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
@@ -15,9 +16,6 @@ const useStyle = makeStyles(() => ({
         alignItems: 'center',
         margin: '1em 0',
     },
-    textField: {
-        margin: '0.5em 0',
-    },
     contentContainer: {
         margin: '1em',
     },
@@ -25,39 +23,37 @@ const useStyle = makeStyles(() => ({
 
 export default function BasicMessage() {
     const classes = useStyle();
+    const { t } = useTranslation();
     const renderTextFields = () => {
         const labels = [
-            { text: 'E-mail', type: 'text' },
-            { text: 'First name', type: 'text' },
-            { text: 'Last name', type: 'text' },
-            { text: 'Address', type: 'text' },
-            { text: 'Postal', type: 'text' },
-            { text: 'County', type: 'text' },
-            { text: 'City', type: 'text' },
-            { text: 'Country', type: 'text' },
-            { text: 'Phone', type: 'text' },
-            { text: 'Birthday', type: 'date' },
+            { autoComplete: 'email', text: t('basic.email'), type: 'text' },
+            { autoComplete: 'given-name', text: t('basic.first-name'), type: 'text' },
+            { autoComplete: 'family-name', text: t('basic.last-name'), type: 'text' },
+            { autoComplete: 'street-address', text: t('basic.address'), type: 'text' },
+            { autoComplete: 'postal-code', text: t('basic.postal'), type: 'text' },
+            { autoComplete: 'address-level1', text: t('basic.county'), type: 'text' },
+            { autoComplete: 'address-level2', text: t('basic.city'), type: 'text' },
+            { autoComplete: 'country-name', text: t('basic.country'), type: 'text' },
+            { autoComplete: 'tel', text: t('basic.phone'), type: 'text' },
+            { autoComplete: 'bday', text: t('basic.birthday'), type: 'date' },
         ];
         return labels.map((label, index) => (
-            <TextField className={classes.textField} label={label.text} type={label.type} key={index} />
+            <TextField autoComplete={label.autoComplete} label={label.text} type={label.type} key={index} />
         ));
     };
 
     return (
         <div>
-            <ArrowBackTitle title="Basic Message" />
-            <div>
-                <Divider />
-            </div>
-            <div className={classes.contentContainer}>
+            <ArrowBackTitle title={t('basic.title')} />
+            <Divider />
+            <div className="ui container" style={{ padding: '1em 0' }}>
                 <Alert variant="outlined" severity="warning">
-                    <AlertTitle>Warning</AlertTitle>
-                    Once KYC is certified, you <strong>can not</strong> modify information like name or address by
-                    yourself
+                    <AlertTitle>{t('alert.warning')}</AlertTitle>
+                    {t('basic.warning')}
                 </Alert>
                 <div className={classes.textFieldContainer}>{renderTextFields()}</div>
                 <Button variant="contained" color="primary">
-                    Submit
+                    {t('basic.submit')}
                 </Button>
             </div>
         </div>

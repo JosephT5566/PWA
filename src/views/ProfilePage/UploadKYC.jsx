@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import TextField from '../../components/TextField';
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
@@ -10,23 +11,26 @@ import Divider from '@material-ui/core/Divider';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import HelpIcon from '@material-ui/icons/Help';
 import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const useStyle = makeStyles(() => ({
-    textField: {
-        margin: '0.5em 0',
-    },
-    contentContainer: {
-        margin: '1em',
+    header: {
+        padding: '0.5em 0',
+        display: 'flex',
     },
     subContainer: {
         margin: '1em 0',
+    },
+    tooltip: {
+        padding: '0 0.5em',
     },
 }));
 
 export default function UploadKYC() {
     const [open, setOpen] = useState(false);
     const classes = useStyle();
+    const { t } = useTranslation();
 
     const handleTooltipClose = () => {
         setOpen(false);
@@ -38,39 +42,34 @@ export default function UploadKYC() {
 
     const renderInputs = () => {
         const labels = [
-            { text: 'Bank', type: 'text' },
-            { text: 'Branch', type: 'text' },
-            { text: 'Account', type: 'text' },
-            { text: 'PIN number', type: 'password' },
-            { text: 'Payment password', type: 'password' },
-            { text: 'Payment password', type: 'password' },
-            { text: 'Online-bank account', type: 'text' },
-            { text: 'Online-bank password', type: 'password' },
-            { text: 'Security code', type: 'password' },
+            { text: t('upload-kyc.bank'), type: 'text' },
+            { text: t('upload-kyc.branch'), type: 'text' },
+            { text: t('upload-kyc.account'), type: 'text' },
+            { text: t('upload-kyc.pin'), type: 'password' },
+            { text: t('upload-kyc.payment-account'), type: 'password' },
+            { text: t('upload-kyc.online-bank-account'), type: 'text' },
+            { text: t('upload-kyc.online-bank-password'), type: 'password' },
+            { text: t('upload-kyc.security-code'), type: 'password' },
         ];
 
-        return labels.map((label, index) => (
-            <TextField className={classes.textField} label={label.text} type={label.type} key={index} />
-        ));
+        return labels.map((label, index) => <TextField label={label.text} type={label.type} key={index} />);
     };
 
     return (
         <div>
-            <ArrowBackTitle title="Upload KYC" />
-            <div>
-                <Divider />
-            </div>
-            <div className={classes.contentContainer}>
+            <ArrowBackTitle title={t('upload-kyc.title')} />
+            <Divider />
+            <div className="ui container" style={{ padding: '1em 0' }}>
                 <Alert variant="outlined" severity="warning">
-                    <AlertTitle>Warning</AlertTitle>
-                    Once KYC is certified, you <strong>can not</strong> modify information like name or address by
-                    yourself
+                    <AlertTitle>{t('alert.warning')}</AlertTitle>
+                    {t('upload-kyc.warning')}
                 </Alert>
                 <div className={classes.subContainer}>
-                    <div className={classes.titleContainer}>
-                        <h3 style={{ margin: 'auto' }}>Please upload effective credential</h3>
+                    <div className={classes.header} style={{ display: 'flex' }}>
+                        <Typography variant={'h5'}>{t('upload-kyc.upload-title')}</Typography>
                         <ClickAwayListener onClickAway={handleTooltipClose}>
                             <Tooltip
+                                className={classes.tooltip}
                                 PopperProps={{
                                     disablePortal: true,
                                     popperOptions: {
@@ -87,7 +86,7 @@ export default function UploadKYC() {
                                 disableFocusListener
                                 disableHoverListener
                                 disableTouchListener
-                                title="Passport / ID card / driver's license"
+                                title={t('upload-kyc.hint')}
                             >
                                 <IconButton onClick={handleTooltipOpen}>
                                     <HelpIcon />
@@ -95,28 +94,27 @@ export default function UploadKYC() {
                             </Tooltip>
                         </ClickAwayListener>
                     </div>
-                    <h3 style={{ margin: 'auto' }}>Front</h3>
+                    <Typography variant={'h6'}>{t('upload-kyc.front')}</Typography>
                     <Button variant="contained" color="primary">
-                        Upload
+                        {t('upload-kyc.upload')}
                     </Button>
-                    <h3 style={{ margin: 'auto' }}>Back</h3>
+                    <Typography variant={'h6'}>{t('upload-kyc.back')}</Typography>
                     <Button variant="contained" color="primary">
-                        Upload
+                        {t('upload-kyc.upload')}
                     </Button>
                     <div style={{ marginTop: '1em' }}>
-                        <Alert severity="info">
-                            Please make sure the credential is valid of your country, and the photos are clearly and
-                            recognizable.
-                        </Alert>
+                        <Alert severity="info">{t('upload-kyc.warning-credential')}</Alert>
                     </div>
                 </div>
                 <Divider />
                 <div className={classes.subContainer}>
-                    <h3 style={{ margin: 'auto' }}>Please enter bank infomation</h3>
+                    <div className={classes.header}>
+                        <Typography variant={'h5'}>{t('upload-kyc.bank-info-title')}</Typography>
+                    </div>
                     {renderInputs()}
                 </div>
                 <Button variant="contained" color="primary">
-                    Submit
+                    {t('upload-kyc.submit')}
                 </Button>
             </div>
         </div>

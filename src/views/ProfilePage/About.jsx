@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 
@@ -19,12 +20,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TermDoc() {
     const classes = useStyles();
+    const { t } = useTranslation();
 
     return (
         <div>
-            <ArrowBackTitle title="About Us" />
+            <ArrowBackTitle title={t('profile.about')} />
             <Divider />
-            <div className={classes.CardsContainer}>
+            <div className="ui container" style={{ padding: '1em 0' }}>
                 <Card variant="outlined">
                     <CardHeader title="sunt aut facere repellat provident occaecati excepturi" />
                     <CardContent>

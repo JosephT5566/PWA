@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TermDoc() {
     const classes = useStyles();
+    const { t } = useTranslation();
 
     const onClickDownload = (e) => {
         console.log(e.target.value);
@@ -28,32 +30,32 @@ export default function TermDoc() {
 
     return (
         <div>
-            <ArrowBackTitle title="Documents" />
+            <ArrowBackTitle title={t('documents.title')} />
             <Divider />
             <div className={classes.buttonsContainer}>
                 <div className={classes.button}>
                     <Button variant="contained" fullWidth value="basic" onClick={onClickDownload}>
-                        Terms and conditions
+                        {t('documents.terms')}
                     </Button>
                 </div>
                 <div className={classes.button}>
                     <Button variant="contained" fullWidth value="upload" onClick={onClickDownload}>
-                        Private policy
+                        {t('documents.private-policy')}
                     </Button>
                 </div>
                 <div className={classes.button}>
                     <Button variant="contained" fullWidth value="doc" onClick={onClickDownload}>
-                        Anti-fraud policy
+                    {t('documents.anti-fraud-policy')}
                     </Button>
                 </div>
                 <div className={classes.button}>
                     <Button variant="contained" fullWidth value="about" onClick={onClickDownload}>
-                        Income disclaimer
+                    {t('documents.income-disclaimer')}
                     </Button>
                 </div>
                 <div className={classes.button}>
                     <Button variant="contained" fullWidth value="about" onClick={onClickDownload}>
-                        consent
+                    {t('documents.consent')}
                     </Button>
                 </div>
             </div>
