@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigation } from 'react-navi';
 import { useTranslation } from 'react-i18next';
-import i18n from '../../i18n';
 
 import Title from '../../components/Title/Title';
 
@@ -10,15 +9,8 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
-    buttonsContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-    },
     button: {
-        display: 'flex',
-        padding: '5px 5% 5px 5%',
-        justifyItems: 'center',
-        justifyContent: 'center',
+        margin: '0.5em 0',
     },
     title: {
         display: 'flex',
@@ -46,32 +38,22 @@ export default function ProfilePage() {
         <div>
             <Title title={t('profile.title')} />
             <Divider />
-            <div className={classes.buttonsContainer}>
-                <div className={classes.button}>
-                    <Button variant="contained" fullWidth value="basic" onClick={onNavigate}>
-                        {t('profile.basic')}
-                    </Button>
-                </div>
-                <div className={classes.button}>
-                    <Button variant="contained" fullWidth value="upload" onClick={onNavigate}>
-                        {t('profile.upload-kyc')}
-                    </Button>
-                </div>
-                <div className={classes.button}>
-                    <Button variant="contained" fullWidth value="doc" onClick={onNavigate}>
-                        {t('profile.document')}
-                    </Button>
-                </div>
-                <div className={classes.button}>
-                    <Button variant="contained" fullWidth value="about" onClick={onNavigate}>
-                        {t('profile.about')}
-                    </Button>
-                </div>
-                <div className={classes.button}>
-                    <Button variant="contained" fullWidth value="language" onClick={onNavigate}>
-                        {t('profile.language')}
-                    </Button>
-                </div>
+            <div className="ui container" style={{ padding: '1em 0' }}>
+                <Button className={classes.button} variant="contained" fullWidth value="basic" onClick={onNavigate}>
+                    {t('profile.basic')}
+                </Button>
+                <Button className={classes.button} variant="contained" fullWidth value="upload" onClick={onNavigate}>
+                    {t('profile.upload-kyc')}
+                </Button>
+                <Button className={classes.button} variant="contained" fullWidth value="doc" onClick={onNavigate}>
+                    {t('profile.document')}
+                </Button>
+                <Button className={classes.button} variant="contained" fullWidth value="about" onClick={onNavigate}>
+                    {t('profile.about')}
+                </Button>
+                <Button className={classes.button} variant="contained" fullWidth value="language" onClick={onNavigate}>
+                    {t('profile.language')}
+                </Button>
             </div>
         </div>
     );
