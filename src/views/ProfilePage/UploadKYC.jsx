@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import TextField from '../../components/TextField';
+import CustomInput from '../../components/CustomInput';
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -52,7 +52,7 @@ export default function UploadKYC() {
             { text: t('upload-kyc.security-code'), type: 'password' },
         ];
 
-        return labels.map((label, index) => <TextField label={label.text} type={label.type} key={index} />);
+        return labels.map((label, index) => <CustomInput label={label.text} type={label.type} key={index} />);
     };
 
     return (
