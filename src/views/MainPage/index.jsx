@@ -11,18 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 
+import '../styles.scss'
+
 const useStyles = makeStyles((theme) => ({
-    root: {
-        [theme.breakpoints.down('sm')]: {
-            backgroundColor: 'ORANGERED',
-        },
-        [theme.breakpoints.up('md')]: {
-            backgroundColor: 'DARKTURQUOISE',
-        },
-        [theme.breakpoints.up('lg')]: {
-            backgroundColor: 'OLIVEDRAB',
-        },
-    },
     gridItem: {
         display: 'flex',
         justifyContent: 'center',

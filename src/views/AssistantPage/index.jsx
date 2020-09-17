@@ -6,6 +6,8 @@ import Title from '../../components/Title/Title';
 import Divider from '@material-ui/core/Divider';
 // import { makeStyles } from '@material-ui/core/styles';
 
+import '../styles.scss';
+
 // const useStyle = makeStyles((theme) => ({}));
 
 export default function AssistantPage() {
@@ -15,6 +17,7 @@ export default function AssistantPage() {
         <div>
             <Title title={t('assistant.title')} />
             <Divider />
+            <div className="ui container"></div>
         </div>
     );
 }

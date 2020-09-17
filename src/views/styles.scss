@@ -1,0 +1,10 @@
+@import '../../styles/styles';
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    
+    .button {
+        margin-bottom: 1em !important;
+    }
+}

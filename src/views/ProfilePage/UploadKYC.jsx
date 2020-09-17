@@ -14,6 +14,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
+import '../styles.scss'
+
 const useStyle = makeStyles(() => ({
     header: {
         padding: '0.5em 0',
@@ -59,7 +61,7 @@ export default function UploadKYC() {
         <div>
             <ArrowBackTitle title={t('upload-kyc.title')} />
             <Divider />
-            <div className="ui container" style={{ padding: '1em 0' }}>
+            <div className="ui container">
                 <Alert variant="outlined" severity="warning">
                     <AlertTitle>{t('alert.warning')}</AlertTitle>
                     {t('upload-kyc.warning')}

@@ -9,6 +9,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 
+import '../styles.scss'
+
 const useStyle = makeStyles(() => ({
     content: {
         padding: '10px 0',

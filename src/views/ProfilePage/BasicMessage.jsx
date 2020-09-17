@@ -4,25 +4,13 @@ import { useTranslation } from 'react-i18next';
 import CustomInput from '../../components/CustomInput';
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
-const useStyle = makeStyles(() => ({
-    textFieldContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        margin: '1em 0',
-    },
-    contentContainer: {
-        margin: '1em',
-    },
-}));
+import '../styles.scss';
 
 export default function BasicMessage() {
-    const classes = useStyle();
     const { t } = useTranslation();
     const renderTextFields = () => {
         const labels = [
@@ -46,12 +34,12 @@ export default function BasicMessage() {
         <div>
             <ArrowBackTitle title={t('basic.title')} />
             <Divider />
-            <div className="ui container" style={{ padding: '1em 0' }}>
+            <div className="ui container">
                 <Alert variant="outlined" severity="warning">
                     <AlertTitle>{t('alert.warning')}</AlertTitle>
                     {t('basic.warning')}
                 </Alert>
-                <div className={classes.textFieldContainer}>{renderTextFields()}</div>
+                {renderTextFields()}
                 <Button variant="contained" color="primary">
                     {t('basic.submit')}
                 </Button>
