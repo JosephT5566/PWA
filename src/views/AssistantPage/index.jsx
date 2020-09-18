@@ -6,7 +6,7 @@ import Title from '../../components/Title/Title';
 import Divider from '@material-ui/core/Divider';
 // import { makeStyles } from '@material-ui/core/styles';
 
-import '../styles.scss';
+import './styles.scss';
 
 // const useStyle = makeStyles((theme) => ({}));
 

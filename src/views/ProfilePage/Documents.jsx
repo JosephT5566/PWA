@@ -6,7 +6,7 @@ import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 
-import '../styles.scss';
+import './styles.scss';
 
 export default function TermDoc() {
     const { t } = useTranslation();

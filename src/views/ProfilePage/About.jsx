@@ -9,7 +9,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-import '../styles.scss'
+import './styles.scss'
 
 export default function TermDoc() {
     const { t } = useTranslation();

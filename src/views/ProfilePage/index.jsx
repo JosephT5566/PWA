@@ -7,7 +7,7 @@ import Title from '../../components/Title/Title';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 
-import '../styles.scss';
+import './styles.scss';
 
 export default function ProfilePage() {
     const navigation = useNavigation();

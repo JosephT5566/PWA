@@ -1,5 +1,5 @@
 @import './mixins';
 
 .ui.container {
-    @include container-2nd;
+    @include container;
 }

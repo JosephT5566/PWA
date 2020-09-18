@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
-import '../styles.scss';
+import './styles.scss';
 
 export default function BasicMessage() {
     const { t } = useTranslation();
@@ -35,14 +35,18 @@ export default function BasicMessage() {
             <ArrowBackTitle title={t('basic.title')} />
             <Divider />
             <div className="ui container">
-                <Alert variant="outlined" severity="warning">
-                    <AlertTitle>{t('alert.warning')}</AlertTitle>
-                    {t('basic.warning')}
-                </Alert>
-                {renderTextFields()}
-                <Button variant="contained" color="primary">
-                    {t('basic.submit')}
-                </Button>
+                <div className="alert">
+                    <Alert variant="outlined" severity="warning">
+                        <AlertTitle>{t('alert.warning')}</AlertTitle>
+                        {t('basic.warning')}
+                    </Alert>
+                </div>
+                <div className="container-2rd">
+                    {renderTextFields()}
+                    <Button variant="contained" color="primary">
+                        {t('basic.submit')}
+                    </Button>
+                </div>
             </div>
         </div>
     );

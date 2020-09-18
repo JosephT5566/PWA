@@ -1,0 +1,26 @@
+@import '../../../styles/styles';
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+
+    .button {
+        margin-bottom: 1em !important;
+    }
+}
+
+.container-2rd {
+    @include container;
+    .alert {
+        margin-bottom: 0.5em;
+    }
+
+    .header {
+        margin-bottom: 0.5em;
+        display: flex;
+    }
+
+    .tooltip {
+        padding: 0 0.5em !important;
+    }
+}

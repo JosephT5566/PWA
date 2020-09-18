@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import CustomInput from '../../components/CustomInput';
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 
-import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
@@ -14,24 +13,10 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
-import '../styles.scss'
-
-const useStyle = makeStyles(() => ({
-    header: {
-        padding: '0.5em 0',
-        display: 'flex',
-    },
-    subContainer: {
-        margin: '1em 0',
-    },
-    tooltip: {
-        padding: '0 0.5em',
-    },
-}));
+import './styles.scss';
 
 export default function UploadKYC() {
     const [open, setOpen] = useState(false);
-    const classes = useStyle();
     const { t } = useTranslation();
 
     const handleTooltipClose = () => {
@@ -62,16 +47,18 @@ export default function UploadKYC() {
             <ArrowBackTitle title={t('upload-kyc.title')} />
             <Divider />
             <div className="ui container">
-                <Alert variant="outlined" severity="warning">
-                    <AlertTitle>{t('alert.warning')}</AlertTitle>
-                    {t('upload-kyc.warning')}
-                </Alert>
-                <div className={classes.subContainer}>
-                    <div className={classes.header} style={{ display: 'flex' }}>
+                <div className="alert">
+                    <Alert variant="outlined" severity="warning">
+                        <AlertTitle>{t('alert.warning')}</AlertTitle>
+                        {t('upload-kyc.warning')}
+                    </Alert>
+                </div>
+                <div className="container-2rd">
+                    <div className="header">
                         <Typography variant={'h5'}>{t('upload-kyc.upload-title')}</Typography>
                         <ClickAwayListener onClickAway={handleTooltipClose}>
                             <Tooltip
-                                className={classes.tooltip}
+                                className="tooltip"
                                 PopperProps={{
                                     disablePortal: true,
                                     popperOptions: {
@@ -104,20 +91,20 @@ export default function UploadKYC() {
                     <Button variant="contained" color="primary">
                         {t('upload-kyc.upload')}
                     </Button>
-                    <div style={{ marginTop: '1em' }}>
+                    <div className="alert">
                         <Alert severity="info">{t('upload-kyc.warning-credential')}</Alert>
                     </div>
                 </div>
                 <Divider />
-                <div className={classes.subContainer}>
-                    <div className={classes.header}>
+                <div className="container-2rd">
+                    <div className="header">
                         <Typography variant={'h5'}>{t('upload-kyc.bank-info-title')}</Typography>
                     </div>
                     {renderInputs()}
+                    <Button variant="contained" color="primary">
+                        {t('upload-kyc.submit')}
+                    </Button>
                 </div>
-                <Button variant="contained" color="primary">
-                    {t('upload-kyc.submit')}
-                </Button>
             </div>
         </div>
     );

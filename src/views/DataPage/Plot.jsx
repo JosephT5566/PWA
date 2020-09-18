@@ -6,7 +6,7 @@ import Victory from '../../components/Victory';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 
-import '../styles.scss'
+import './styles.scss'
 
 const useStyle = makeStyles(() => ({
     content: {

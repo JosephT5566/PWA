@@ -1,7 +1,7 @@
 import React from 'react';
 import PasswordInput from './PasswordInput';
 import TextInput from './TextInput';
-import './textField.scss';
+import './styles.scss';
 
 export default function CustomInput({ autoComplete, label, type }) {
     const renderInput = () => {
