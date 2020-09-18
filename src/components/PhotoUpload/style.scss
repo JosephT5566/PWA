@@ -1,0 +1,29 @@
+.card-outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5em;
+
+    .card-inner {
+        // width: 50%;
+        margin: 1.5em;
+        border-radius: 0.5em;
+
+        .cardAction {
+            padding-top: 56.25%;
+            border-radius: 0.5em;
+            position: relative;
+
+            .content {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}

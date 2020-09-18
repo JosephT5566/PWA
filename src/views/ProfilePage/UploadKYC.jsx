@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import CustomInput from '../../components/CustomInput';
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
+import PhotoUpload from '../../components/PhotoUpload';
 
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
@@ -84,13 +85,13 @@ export default function UploadKYC() {
                         </ClickAwayListener>
                     </div>
                     <Typography variant={'h6'}>{t('upload-kyc.front')}</Typography>
-                    <Button variant="contained" color="primary">
-                        {t('upload-kyc.upload')}
-                    </Button>
+                    <div>
+                        <PhotoUpload />
+                    </div>
                     <Typography variant={'h6'}>{t('upload-kyc.back')}</Typography>
-                    <Button variant="contained" color="primary">
-                        {t('upload-kyc.upload')}
-                    </Button>
+                    <div>
+                        <PhotoUpload />
+                    </div>
                     <div className="alert">
                         <Alert severity="info">{t('upload-kyc.warning-credential')}</Alert>
                     </div>
