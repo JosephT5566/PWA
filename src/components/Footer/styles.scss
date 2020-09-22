@@ -1,0 +1,12 @@
+@import '../../../styles/styles';
+
+.footer {
+    background-color: CORNSILK;
+    min-height: $footer-height;
+    @include breakpoint('<=large') {
+        position: absolute;
+        bottom: 0;
+        width: 100vw;
+        z-index: -1;
+    }
+}

@@ -1,0 +1,52 @@
+@import '../styles/styles';
+
+.app {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+
+    @include breakpoint('<=large') {
+        min-height: calc(100vh - #{$nav-height}); // minus nav height
+        margin-bottom: $nav-height; // nav height
+        padding-bottom: $footer-height; // footer height
+    }
+
+    .main {
+        display: flex;
+        @include breakpoint('>large') {
+            flex-direction: row;
+            min-height: calc(100vh - #{$footer-height} - #{$header-height});
+            max-height: calc(100vh - #{$footer-height} - #{$header-height});
+        }
+        @include breakpoint('<=large') {
+            flex-direction: column;
+        }
+
+        .content {
+            height: 100%;
+            @include breakpoint('>large') {
+                overflow-x: hidden;
+                flex-grow: 6;
+                order: 2;
+            }
+            @include breakpoint('<=large') {
+                overflow: hidden;
+                order: 0;
+            }
+        }
+
+        .nav {
+            @include breakpoint('>large') {
+                height: 100%;
+                flex: 1;
+                order: 1;
+            }
+            @include breakpoint('<=large') {
+                position: fixed;
+                bottom: 0;
+                width: 100vw;
+                z-index: 100;
+            }
+        }
+    }
+}
