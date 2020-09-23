@@ -1,0 +1,40 @@
+@import '../../../styles/styles';
+
+.main {
+    display: flex;
+    @include breakpoint('>large') {
+        flex-direction: row;
+        min-height: calc(100vh - #{_size(footer-height)} - #{_size(header-height)});
+        max-height: calc(100vh - #{_size(footer-height)} - #{_size(header-height)});
+    }
+    @include breakpoint('<=large') {
+        flex-direction: column;
+    }
+
+    .content {
+        height: 100%;
+        @include breakpoint('>large') {
+            overflow-x: hidden;
+            flex-grow: 6;
+            order: 2;
+        }
+        @include breakpoint('<=large') {
+            overflow: hidden;
+            order: 0;
+        }
+    }
+
+    .nav {
+        @include breakpoint('>large') {
+            height: 100%;
+            flex: 1;
+            order: 1;
+        }
+        @include breakpoint('<=large') {
+            position: fixed;
+            bottom: 0;
+            width: 100vw;
+            z-index: 100;
+        }
+    }
+}
