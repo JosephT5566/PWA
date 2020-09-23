@@ -1,0 +1,67 @@
+// Size.
+$size: (
+    nav-height: 4em,
+    footer-height: 3em,
+	header-height: 3em,
+	
+    border-radius: 0.375em,
+    element-height: 2.75em,
+    element-margin: 2em,
+    sidebar-width: 26em,
+    sidebar-width-alt: 24em,
+    gutter: 3em,
+);
+
+/// Gets a size value.
+/// @param {string} $keys Key(s).
+/// @return {string} Value.
+@function _size($keys...) {
+    @return map-get($size, $keys...);
+}
+
+// Font.
+$font: (
+    family: (
+        'Open Sans',
+        sans-serif,
+    ),
+    family-heading: (
+        'Roboto Slab',
+        serif,
+    ),
+    family-fixed: (
+        'Courier New',
+        monospace,
+    ),
+    weight: 400,
+    weight-bold: 600,
+    weight-heading: 700,
+    weight-heading-alt: 400,
+    kerning-heading: 0.075em,
+);
+
+/// Gets a font value.
+/// @param {string} $keys Key(s).
+/// @return {string} Value.
+@function _font($keys...) {
+    @return map-get($font, $keys...);
+}
+
+// Palette.
+$palette: (
+    bg: #ffffff,
+    bg-alt: #f5f6f7,
+    fg: #7f888f,
+    fg-bold: #3d4449,
+    fg-light: #9fa3a6,
+    border: rgba(210, 215, 217, 0.75),
+    border-bg: transparentize(#e6ebed, 0.75),
+    accent: #f56a6a,
+);
+
+/// Gets a palette value.
+/// @param {string} $keys Key(s).
+/// @return {string} Value.
+@function _palette($keys...) {
+    @return map-get($palette, $keys...);
+}

@@ -1,6 +1,6 @@
 @import '../../../styles/styles';
 
 .header {
-    background-color: CORNSILK;
-    min-height: $header-height;
+    background-color: _palette(bg-alt);
+    min-height: _size(header-height);
 }

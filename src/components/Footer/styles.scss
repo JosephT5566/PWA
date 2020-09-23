@@ -1,8 +1,8 @@
 @import '../../../styles/styles';
 
 .footer {
-    background-color: CORNSILK;
-    min-height: $footer-height;
+    background-color: _palette(bg-alt);
+    min-height: _size(footer-height);
     @include breakpoint('<=large') {
         position: absolute;
         bottom: 0;
