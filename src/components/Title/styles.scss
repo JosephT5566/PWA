@@ -1,0 +1,26 @@
+@import '../../../styles/styles';
+
+.title {
+    display: flex;
+    border-bottom: solid 4px _palette(accent);
+    padding: 1em 0 1em 0;
+    position: relative;
+
+    @include breakpoint('>large') {
+        justify-content: start;
+    }
+    @include breakpoint('<=large') {
+        justify-content: center;
+    }
+
+    .label {
+        color: _palette(fg-bold);
+    }
+
+    .button {
+        @include breakpoint('<=large') {
+            position: absolute;
+            left: 0;
+        }
+    }
+}
