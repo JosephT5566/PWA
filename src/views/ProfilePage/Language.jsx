@@ -20,7 +20,7 @@ export default function TermDoc() {
         {
             label: '簡体中文',
             onClick: () => {
-                // i18n.changeLanguage('zh-TW');
+                i18n.changeLanguage('zh-CN');
             },
         },
         {
