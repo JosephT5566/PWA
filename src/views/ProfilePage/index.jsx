@@ -3,9 +3,7 @@ import { useNavigation } from 'react-navi';
 import { useTranslation } from 'react-i18next';
 
 import Title from '../../components/Title/Title';
-
-import Divider from '@material-ui/core/Divider';
-import Button from '@material-ui/core/Button';
+import Menu from '../../components/Menu';
 
 import './styles.scss';
 
@@ -14,33 +12,43 @@ export default function ProfilePage() {
     const { t } = useTranslation();
     const currentURL = navigation.getCurrentValue().url.pathname;
 
-    const onNavigate = (e) => {
-        navigation.navigate(`${currentURL}/${e.currentTarget.value}`);
-    };
+    const menuItems = [
+        {
+            label: t('profile.basic'),
+            onClick: () => {
+                navigation.navigate(`${currentURL}/basic`);
+            },
+        },
+        {
+            label: t('profile.upload-kyc'),
+            onClick: () => {
+                navigation.navigate(`${currentURL}/upload`);
+            },
+        },
+        {
+            label: t('profile.document'),
+            onClick: () => {
+                navigation.navigate(`${currentURL}/doc`);
+            },
+        },
+        {
+            label: t('profile.about'),
+            onClick: () => {
+                navigation.navigate(`${currentURL}/about`);
+            },
+        },
+        {
+            label: t('profile.language'),
+            onClick: () => {
+                navigation.navigate(`${currentURL}/language`);
+            },
+        },
+    ];
 
     return (
-        <div>
+        <div className="ui container">
             <Title title={t('profile.title')} />
-            <Divider />
-            <div className="ui container">
-                <div className="buttonContainer">
-                    <Button className="button" variant="contained" value="basic" onClick={onNavigate}>
-                        {t('profile.basic')}
-                    </Button>
-                    <Button className="button" variant="contained" value="upload" onClick={onNavigate}>
-                        {t('profile.upload-kyc')}
-                    </Button>
-                    <Button className="button" variant="contained" value="doc" onClick={onNavigate}>
-                        {t('profile.document')}
-                    </Button>
-                    <Button className="button" variant="contained" value="about" onClick={onNavigate}>
-                        {t('profile.about')}
-                    </Button>
-                    <Button className="button" variant="contained" value="language" onClick={onNavigate}>
-                        {t('profile.language')}
-                    </Button>
-                </div>
-            </div>
+            <Menu items={menuItems} />
         </div>
     );
 }
