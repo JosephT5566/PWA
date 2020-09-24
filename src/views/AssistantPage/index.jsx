@@ -14,10 +14,8 @@ export default function AssistantPage() {
     // const classes = useStyle();
     const { t } = useTranslation();
     return (
-        <div>
+        <div className="ui container">
             <Title title={t('assistant.title')} />
-            <Divider />
-            <div className="ui container"></div>
         </div>
     );
 }

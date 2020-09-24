@@ -31,22 +31,19 @@ export default function BasicMessage() {
     };
 
     return (
-        <div>
+        <div className="ui container">
             <ArrowBackTitle title={t('basic.title')} />
-            <Divider />
-            <div className="ui container">
-                <div className="alert">
-                    <Alert variant="outlined" severity="warning">
-                        <AlertTitle>{t('alert.warning')}</AlertTitle>
-                        {t('basic.warning')}
-                    </Alert>
-                </div>
-                <div className="container-2rd">
-                    {renderTextFields()}
-                    <Button variant="contained" color="primary">
-                        {t('basic.submit')}
-                    </Button>
-                </div>
+            <div className="alert">
+                <Alert variant="outlined" severity="warning">
+                    <AlertTitle>{t('alert.warning')}</AlertTitle>
+                    {t('basic.warning')}
+                </Alert>
+            </div>
+            <div className="container-2rd">
+                {renderTextFields()}
+                <Button variant="contained" color="primary">
+                    {t('basic.submit')}
+                </Button>
             </div>
         </div>
     );

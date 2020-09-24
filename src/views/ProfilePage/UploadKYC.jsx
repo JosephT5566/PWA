@@ -44,68 +44,65 @@ export default function UploadKYC() {
     };
 
     return (
-        <div>
+        <div className="ui container">
             <ArrowBackTitle title={t('upload-kyc.title')} />
-            <Divider />
-            <div className="ui container">
-                <div className="alert">
-                    <Alert variant="outlined" severity="warning">
-                        <AlertTitle>{t('alert.warning')}</AlertTitle>
-                        {t('upload-kyc.warning')}
-                    </Alert>
-                </div>
-                <div className="container-2rd">
-                    <div className="header">
-                        <Typography variant={'h5'}>{t('upload-kyc.upload-title')}</Typography>
-                        <ClickAwayListener onClickAway={handleTooltipClose}>
-                            <Tooltip
-                                className="tooltip"
-                                PopperProps={{
-                                    disablePortal: true,
-                                    popperOptions: {
-                                        modifiers: {
-                                            offset: {
-                                                enabled: true,
-                                                offset: '0, -25em',
-                                            },
+            <div className="alert">
+                <Alert variant="outlined" severity="warning">
+                    <AlertTitle>{t('alert.warning')}</AlertTitle>
+                    {t('upload-kyc.warning')}
+                </Alert>
+            </div>
+            <div className="container-2rd">
+                <div className="header">
+                    <Typography variant={'h5'}>{t('upload-kyc.upload-title')}</Typography>
+                    <ClickAwayListener onClickAway={handleTooltipClose}>
+                        <Tooltip
+                            className="tooltip"
+                            PopperProps={{
+                                disablePortal: true,
+                                popperOptions: {
+                                    modifiers: {
+                                        offset: {
+                                            enabled: true,
+                                            offset: '0, -25em',
                                         },
                                     },
-                                }}
-                                onClose={handleTooltipClose}
-                                open={open}
-                                disableFocusListener
-                                disableHoverListener
-                                disableTouchListener
-                                title={t('upload-kyc.hint')}
-                            >
-                                <IconButton onClick={handleTooltipOpen}>
-                                    <HelpIcon />
-                                </IconButton>
-                            </Tooltip>
-                        </ClickAwayListener>
-                    </div>
-                    <Typography variant={'h6'}>{t('upload-kyc.front')}</Typography>
-                    <div>
-                        <PhotoUpload />
-                    </div>
-                    <Typography variant={'h6'}>{t('upload-kyc.back')}</Typography>
-                    <div>
-                        <PhotoUpload />
-                    </div>
-                    <div className="alert">
-                        <Alert severity="info">{t('upload-kyc.warning-credential')}</Alert>
-                    </div>
+                                },
+                            }}
+                            onClose={handleTooltipClose}
+                            open={open}
+                            disableFocusListener
+                            disableHoverListener
+                            disableTouchListener
+                            title={t('upload-kyc.hint')}
+                        >
+                            <IconButton onClick={handleTooltipOpen}>
+                                <HelpIcon />
+                            </IconButton>
+                        </Tooltip>
+                    </ClickAwayListener>
                 </div>
-                <Divider />
-                <div className="container-2rd">
-                    <div className="header">
-                        <Typography variant={'h5'}>{t('upload-kyc.bank-info-title')}</Typography>
-                    </div>
-                    {renderInputs()}
-                    <Button variant="contained" color="primary">
-                        {t('upload-kyc.submit')}
-                    </Button>
+                <Typography variant={'h6'}>{t('upload-kyc.front')}</Typography>
+                <div>
+                    <PhotoUpload />
                 </div>
+                <Typography variant={'h6'}>{t('upload-kyc.back')}</Typography>
+                <div>
+                    <PhotoUpload />
+                </div>
+                <div className="alert">
+                    <Alert severity="info">{t('upload-kyc.warning-credential')}</Alert>
+                </div>
+            </div>
+            <Divider />
+            <div className="container-2rd">
+                <div className="header">
+                    <Typography variant={'h5'}>{t('upload-kyc.bank-info-title')}</Typography>
+                </div>
+                {renderInputs()}
+                <Button variant="contained" color="primary">
+                    {t('upload-kyc.submit')}
+                </Button>
             </div>
         </div>
     );

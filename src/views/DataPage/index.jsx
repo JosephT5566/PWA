@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 
-import './styles.scss'
+import './styles.scss';
 
 const useStyle = makeStyles(() => ({
     content: {
@@ -27,27 +27,24 @@ export default function DataPage() {
     const currentURL = navigation.getCurrentValue().url.pathname;
 
     return (
-        <div>
+        <div className="ui container">
             <Title title={t('data.title')} />
-            <Divider />
-            <div className="ui container">
-                <Grid container className={classes.content} spacing={3} justify={'center'}>
-                    <Grid item className={classes.gridItem}>
-                        <ImageCard
-                            title="BTC"
-                            image="https://source.unsplash.com/ON1ryil6C8k/640x426"
-                            onClick={() => navigation.navigate(`${currentURL}/BTC`)}
-                        />
-                    </Grid>
-                    <Grid item className={classes.gridItem}>
-                        <ImageCard
-                            title="ETH"
-                            image="https://source.unsplash.com/0bO235Rhqec/640x426"
-                            onClick={() => console.log('123')}
-                        />
-                    </Grid>
+            <Grid container className={classes.content} spacing={3} justify={'center'}>
+                <Grid item className={classes.gridItem}>
+                    <ImageCard
+                        title="BTC"
+                        image="https://source.unsplash.com/ON1ryil6C8k/640x426"
+                        onClick={() => navigation.navigate(`${currentURL}/BTC`)}
+                    />
                 </Grid>
-            </div>
+                <Grid item className={classes.gridItem}>
+                    <ImageCard
+                        title="ETH"
+                        image="https://source.unsplash.com/0bO235Rhqec/640x426"
+                        onClick={() => console.log('123')}
+                    />
+                </Grid>
+            </Grid>
         </div>
     );
 }

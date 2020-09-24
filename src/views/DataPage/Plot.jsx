@@ -6,7 +6,7 @@ import Victory from '../../components/Victory';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 
-import './styles.scss'
+import './styles.scss';
 
 const useStyle = makeStyles(() => ({
     content: {
@@ -17,13 +17,10 @@ const useStyle = makeStyles(() => ({
 export default function Plot({ id }) {
     const classes = useStyle();
     return (
-        <div>
+        <div className="ui container">
             <ArrowBackTitle title={id} />
-            <Divider />
-            <div className="ui container">
-                <div className={classes.content}>
-                    <Victory />
-                </div>
+            <div className={classes.content}>
+                <Victory />
             </div>
         </div>
     );
