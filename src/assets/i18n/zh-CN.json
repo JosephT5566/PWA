@@ -1,0 +1,75 @@
+{
+    "navigation": {
+        "home": "首页",
+        "data": "数据",
+        "assistant": "助理",
+        "profile": "个人资料"
+    },
+    "home": {
+        "title": "首页",
+        "welcome": "欢迎回来",
+        "history-contract": "历史合约",
+        "intelligent-contract": "智能合约",
+        "arbitrage-contract": "搬砖合约"
+    },
+    "data": {
+        "title": "数据"
+    },
+    "assistant": {
+        "title": "助理"
+    },
+    "profile": {
+        "title": "个人资料",
+        "basic": "基本资料",
+        "upload-kyc": "实名认证",
+        "document": "隐私与合约文件",
+        "about": "关于我们",
+        "language": "语言"
+    },
+    "basic": {
+        "title": "基本资料",
+        "warning": "当实名认证通过，将无法自行改变名称或地址等资料。",
+        "email": "邮箱",
+        "first-name": "名字",
+        "last-name": "姓氏",
+        "address": "地址",
+        "postal": "邮递区号",
+        "county": "县",
+        "city": "乡镇",
+        "country": "国家",
+        "phone": "电话",
+        "birthday": "生日",
+        "submit": "提交"
+    },
+    "upload-kyc": {
+        "title": "上传实名认证",
+        "warning": "当实名认证通过，将无法自行改变名称或地址等资料。",
+        "upload-title": "请上传个人有效证件",
+        "hint": "身分证或驾驶证或护照",
+        "front": "正面",
+        "back": "背面",
+        "upload": "上传",
+        "warning-credential": "请确认上传的照片符合您当地国家之有效证件，并且确认上传照片清晰可辨识。",
+        "bank-info-title": "请上传代操作银行资讯",
+        "bank": "银行名称",
+        "branch": "分行名称",
+        "account": "帐号",
+        "pin": "存提款密码",
+        "payment-account": "支付密码",
+        "online-bank-account": "网银帐号",
+        "online-bank-password": "网银密码",
+        "security-code": " 安全码",
+        "submit": "提交"
+    },
+    "documents": {
+        "title": "文件",
+        "terms": "条款及细则",
+        "private-policy": "隐私政策",
+        "anti-fraud-policy": "反诈欺政策",
+        "income-disclaimer": "收入免责声明",
+        "consent": "代为操作智能搬砖同意书"
+    },
+    "alert": {
+        "warning": "警告"
+    }
+}

@@ -2,13 +2,18 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './assets/i18n/en.json';
 import tw from './assets/i18n/zh-TW.json';
+import cn from './assets/i18n/zh-CN.json';
 
+// ISO-639 - ISO-3166
 const resources = {
     'en': {
         translation: en,
     },
     'zh-TW': {
         translation: tw,
+    },
+    'zh-CN': {
+        translation: cn,
     },
 };
 
