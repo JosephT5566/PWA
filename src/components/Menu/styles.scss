@@ -1,5 +1,16 @@
 @import 'assets/styles/styles.scss';
 
+@mixin l-item {
+    color: inherit;
+    cursor: pointer;
+    display: block;
+    font-size: 0.9em;
+    padding: 0.625em 0;
+    &:hover {
+        color: _palette(accent);
+    }
+}
+
 #menu {
     ul {
         color: _palette(fg-bold);
@@ -13,16 +24,19 @@
 
         a,
         span {
+            @include l-item();
             border-bottom: 0;
-            color: inherit;
-            cursor: pointer;
-            display: block;
             text-align: center;
-            font-size: 0.9em;
-            padding: 0.625em 0;
-            
-            &:hover {
-                color: _palette(accent);
+        }
+
+        button {
+            @include l-item();
+            border: none;
+            width: 100%;
+            background: none !important;
+            font-weight: _font(weight-bold);
+            &:focus {
+                outline: 0;
             }
         }
     }
