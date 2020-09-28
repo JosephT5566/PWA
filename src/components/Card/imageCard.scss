@@ -1,0 +1,58 @@
+@import 'assets/styles/styles';
+
+#imageCard {
+    appearance: none;
+    // transition: 'background-color #{_duration(transition)} ease-in-out', 'color #{_duration(transition)} ease-in-out';
+    background-color: transparent;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: _size(border-radius);
+    border: 0;
+    color: _palette(bg) !important;
+    cursor: pointer;
+    display: inline-block;
+    font-family: _font(family-heading);
+    font-size: 0.8em;
+    font-weight: _font(weight-heading);
+    letter-spacing: _font(kerning-heading);
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    // &:hover {
+    //     background-color: transparentize(_palette(fg-bold), 0.95);
+    // }
+
+    // &:active {
+    //     background-color: transparentize(_palette(fg-bold), 0.85);
+    // }
+
+    &:focus {
+        outline: 0;
+    }
+
+    div {
+        width: inherit;
+        height: inherit;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-position: center;
+        background-size: cover;
+        z-index: -1;
+        border-radius: _size(border-radius);
+
+        &::after {
+            content: '';
+            position: absolute;
+            border-radius: _size(border-radius);
+            bottom: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+    }
+}
