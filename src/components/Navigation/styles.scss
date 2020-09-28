@@ -1,0 +1,73 @@
+@import 'assets/styles/styles.scss';
+
+#navigation {
+    @include breakpoint('>large') {
+        height: 100%;
+        flex: 1;
+        order: 1;
+    }
+    @include breakpoint('<=large') {
+        height: _size(nav-height);
+        position: fixed;
+        bottom: 0;
+        width: 100vw;
+        z-index: 100;
+    }
+
+    .itemsContainer {
+        display: flex;
+        background-color: _palette(bg);
+        @include breakpoint('>large') {
+            flex-direction: column;
+            padding: 0 1.5em;
+        }
+        @include breakpoint('<=large') {
+            height: 100%;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        button {
+            font-family: _font(family-heading);
+            font-weight: _font(weight-heading);
+            font-size: 0.9em;
+            color: _palette(fg-bold);
+            display: flex;
+            align-items: center;
+
+            appearance: none;
+            background-color: _palette(bg);
+            border: 0;
+            cursor: pointer;
+            letter-spacing: _font(kerning-heading);
+            &:hover {
+                background-color: transparentize(_palette(accent), 0.95);
+            }
+            &:focus {
+                outline: 0;
+            }
+            @include breakpoint('>large') {
+                height: 4.5em;
+                justify-content: left;
+                border-bottom: solid 2px _palette(border);
+            }
+            @include breakpoint('<=large') {
+                height: 100%;
+                flex-direction: column;
+                flex: 1 1 0px;
+                justify-content: center;
+            }
+            &.active {
+                color: _palette(accent);
+                border-bottom: solid 2px transparentize(_palette(accent), 0.5);
+            }
+
+            .icon {
+                @include breakpoint('>large') {
+                    margin-right: 2em;
+                }
+            }
+        }
+    }
+}

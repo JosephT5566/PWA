@@ -23,18 +23,4 @@
             order: 0;
         }
     }
-
-    .nav {
-        @include breakpoint('>large') {
-            height: 100%;
-            flex: 1;
-            order: 1;
-        }
-        @include breakpoint('<=large') {
-            position: fixed;
-            bottom: 0;
-            width: 100vw;
-            z-index: 100;
-        }
-    }
 }
