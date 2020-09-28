@@ -21,7 +21,7 @@
     "profile": {
         "title": "Profile",
         "basic": "Basic Message",
-        "upload-kyc": "Upload KYC",
+        "bank": "Bank Information",
         "document": "Private and term doc",
         "about": "About Us",
         "language": "Language"
@@ -39,12 +39,17 @@
         "country": "Country",
         "phone": "Phone",
         "birthday": "Birthday",
+        "upload-header": "Please upload effective credential",
+        "hint": "Passport / ID card / driver's license",
+        "front": "Front",
+        "back": "Back",
+        "upload": "Upload",
         "submit": "Submit"
     },
-    "upload-kyc": {
-        "title": "Upload KYC",
+    "bank": {
+        "title": "Bank Infomation",
         "warning": "Once KYC is certified, you can not modify information like name or address by yourself",
-        "upload-title": "Please upload effective credential",
+        "upload-header": "Please upload your bank card",
         "hint": "Passport / ID card / driver's license",
         "front": "Front",
         "back": "Back",

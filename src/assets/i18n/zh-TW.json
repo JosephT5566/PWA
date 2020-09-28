@@ -21,7 +21,7 @@
     "profile": {
         "title": "個人",
         "basic": "基本資料",
-        "upload-kyc": "上傳 KYC",
+        "bank": "銀行資料",
         "document": "隱私與合約文件",
         "about": "關於我們",
         "language": "語言"
@@ -39,12 +39,17 @@
         "country": "國家",
         "phone": "電話",
         "birthday": "生日",
+        "upload-header": "請上傳個人有效證件",
+        "hint": "護照或身分證或駕駛證",
+        "front": "正面",
+        "back": "背面",
+        "upload": "上傳",
         "submit": "提交"
     },
-    "upload-kyc": {
-        "title": "上傳KYC",
+    "bank": {
+        "title": "銀行資訊",
         "warning": "當KYC認證通過。將無法自行改變名稱或地址等資料。",
-        "upload-title": "請上傳個人有效證件",
+        "upload-header": "請上傳個人銀行卡",
         "hint": "護照或身分證或駕駛證",
         "front": "正面",
         "back": "背面",

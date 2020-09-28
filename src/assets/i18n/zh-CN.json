@@ -21,7 +21,7 @@
     "profile": {
         "title": "个人资料",
         "basic": "基本资料",
-        "upload-kyc": "实名认证",
+        "bank": "银行资料",
         "document": "隐私与合约文件",
         "about": "关于我们",
         "language": "语言"
@@ -39,12 +39,17 @@
         "country": "国家",
         "phone": "电话",
         "birthday": "生日",
+        "upload-header": "请上传个人有效证件",
+        "hint": "身分证或驾驶证或护照",
+        "front": "正面",
+        "back": "背面",
+        "upload": "上传",
         "submit": "提交"
     },
-    "upload-kyc": {
-        "title": "上传实名认证",
+    "bank": {
+        "title": "银行资料",
         "warning": "当实名认证通过，将无法自行改变名称或地址等资料。",
-        "upload-title": "请上传个人有效证件",
+        "upload-header": "请上传個人银行卡",
         "hint": "身分证或驾驶证或护照",
         "front": "正面",
         "back": "背面",
