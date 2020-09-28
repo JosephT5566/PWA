@@ -3,9 +3,10 @@ import { useTranslation } from 'react-i18next';
 
 import CustomInput from '../../components/CustomInput';
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
+import PhotoUpload from '../../components/PhotoUpload';
+import Tooltip from '../../components/Tooltip';
+import Button from '../../components/Button';
 
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
 import './styles.scss';
@@ -33,17 +34,20 @@ export default function BasicMessage() {
     return (
         <div className="ui container">
             <ArrowBackTitle title={t('basic.title')} />
-            <div className="alert">
-                <Alert variant="outlined" severity="warning">
-                    <AlertTitle>{t('alert.warning')}</AlertTitle>
-                    {t('basic.warning')}
-                </Alert>
-            </div>
-            <div className="container-2rd">
+            <div className="container lv2">
+                <div className="alert">
+                    <Alert variant="outlined" severity="warning">
+                        <AlertTitle>{t('alert.warning')}</AlertTitle>
+                        {t('basic.warning')}
+                    </Alert>
+                </div>
                 {renderTextFields()}
-                <Button variant="contained" color="primary">
-                    {t('basic.submit')}
-                </Button>
+                <div className="title">
+                    <h2>{t('basic.upload-header')}</h2>
+                    <Tooltip label={t('basic.hint')} />
+                </div>
+                <PhotoUpload />
+                <Button label={t('basic.submit')} />
             </div>
         </div>
     );

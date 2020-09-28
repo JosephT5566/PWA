@@ -17,15 +17,17 @@ export default function TermDoc() {
     return (
         <div className="ui container">
             <ArrowBackTitle title={t('profile.about')} />
-            <Card variant="outlined">
-                <CardHeader title="sunt aut facere repellat provident occaecati excepturi" />
-                <CardContent>
-                    <Typography>
-                        quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut
-                        ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto
-                    </Typography>
-                </CardContent>
-            </Card>
+            <div className="container lv2">
+                <Card variant="outlined">
+                    <CardHeader title="sunt aut facere repellat provident occaecati excepturi" />
+                    <CardContent>
+                        <Typography>
+                            quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae
+                            ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto
+                        </Typography>
+                    </CardContent>
+                </Card>
+            </div>
         </div>
     );
 }
