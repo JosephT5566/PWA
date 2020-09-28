@@ -4,7 +4,7 @@ import './styles.scss';
 
 export default function Title({ title }) {
     return (
-        <div className="title">
+        <div id="title">
             <h1 className="label">{title}</h1>
         </div>
     );

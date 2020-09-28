@@ -20,7 +20,7 @@ export default function ProfilePage() {
             },
         },
         {
-            label: t('profile.upload-kyc'),
+            label: t('profile.bank'),
             onClick: () => {
                 navigation.navigate(`${currentURL}/upload`);
             },

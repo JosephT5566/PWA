@@ -10,7 +10,7 @@ export default function ArrowBackTitle(props) {
     const navigation = useNavigation();
 
     return (
-        <div className="title">
+        <div id="title">
             <Button className="button" onClick={() => navigation.goBack()}>
                 <ArrowBack />
             </Button>

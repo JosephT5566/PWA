@@ -22,7 +22,7 @@ export default function Navigator({ basename }) {
         setValue(newValue);
     };
     return (
-        <div>
+        <nav>
             <Hidden mdDown>
                 <List>
                     <ListItem
@@ -103,6 +103,6 @@ export default function Navigator({ basename }) {
                     />
                 </BottomNavigation>
             </Hidden>
-        </div>
+        </nav>
     );
 }

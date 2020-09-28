@@ -1,7 +1,10 @@
 @import './mixins';
 @import './breakpoints';
 @import './vars';
+@import './typography';
 
 .ui.container {
-    @include container;
+    .lv2{
+        @include container;
+    }
 }
