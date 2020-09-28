@@ -10,7 +10,7 @@ export default function ImageCard({ label, image = null, onClick }) {
     };
     return (
         <button id="imageCard" onClick={onClick}>
-            {label}
+            <h2>{label}</h2>
             {renderImage()}
         </button>
     );
