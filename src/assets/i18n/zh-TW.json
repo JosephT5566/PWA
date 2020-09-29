@@ -76,5 +76,6 @@
     },
     "alert": {
         "warning": "警告"
-    }
+    },
+    "upload-pic":"上傳照片"
 }
