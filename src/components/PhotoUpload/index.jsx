@@ -1,50 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import Typography from '@material-ui/core/Typography';
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
-import { makeStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
 
-import './style.scss';
-
-const useStyle = makeStyles((theme) => ({
-    setWidth: {
-        [theme.breakpoints.up('md')]: {
-            width: '50%',
-        },
-        [theme.breakpoints.only('sm')]: {
-            width: '60%',
-        },
-        [theme.breakpoints.down('xs')]: {
-            width: '80%',
-        },
-    },
-}));
+import './styles.scss';
 
 export default function PhotoUpload() {
-    const [picture, setPicture] = useState([]);
-    const classes = useStyle();
+    const [picture, setPicture] = useState(null);
+    const [active, setActive] = useState('');
     const { t } = useTranslation();
+    const inputRef = useRef(null);
+    const imageRef = useRef(null);
+
+    // the FileList of <input/> is readonly
+    const onFilesChange = () => {
+        const files = inputRef.current.files;
+        if (files && files[0]) {
+            setPicture(files[0]);
+            setActive('active');
+
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                imageRef.current.src = e.target.result;
+            };
+            reader.readAsDataURL(files[0]);
+            inputRef.current.value = ''; // remove value
+        }
+    };
+
+    const onDeleteImage = () => {
+        setActive('');
+        setPicture(null);
+    };
 
     return (
-        <div>
-            <Card className="card-outer" variant="outlined">
-                <Card className={`card-inner ${classes.setWidth}`} variant="outlined">
+        <Card className="card-outer" variant="outlined">
+            <Card className="card-inner" variant="outlined">
+                <div className="content">
                     <CardActionArea
-                        className="cardAction"
+                        className={`update-action ${active}`}
                         onClick={() => {
-                            console.log('oh~');
+                            inputRef.current.click();
                         }}
                     >
-                        <div className="content">
-                            <AddCircleOutline />
-                            <Typography>{t('upload-pic')}</Typography>
+                        <input ref={inputRef} type="file" accept=".png,.jpg,.bmp,.gif" onChange={onFilesChange} />
+                        <div className="label">
+                            <AddCircleOutline className="icon" />
+                            <h5>{t('upload-pic')}</h5>
                         </div>
                     </CardActionArea>
-                </Card>
+                    <div className={`ready-action ${active}`}>
+                        <img src="" ref={imageRef} />
+                        <IconButton className="delete-icon" onClick={onDeleteImage}>
+                            <DeleteIcon />
+                        </IconButton>
+                    </div>
+                </div>
             </Card>
-        </div>
+        </Card>
     );
 }
