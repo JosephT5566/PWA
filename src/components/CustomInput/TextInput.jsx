@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 
-function TextInput({ className, autoComplete = 'off', label, type = 'text' }) {
+function TextInput({ autoComplete = 'off', label, type = 'text', required = false, getValue, ...props }) {
     const [value, setValue] = useState('');
+
+    useEffect(() => {
+        if (getValue) getValue(value);
+    }, [value, getValue]);
 
     const onValueChanged = (event) => {
         setValue(event.target.value);
@@ -11,9 +15,12 @@ function TextInput({ className, autoComplete = 'off', label, type = 'text' }) {
     const labelProps = {
         shrink: true,
     };
+
     return (
         <TextField
-            className={className}
+            required={required}
+            error={props.error}
+            className="input text"
             fullWidth
             variant="outlined"
             InputLabelProps={labelProps}

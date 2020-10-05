@@ -16,7 +16,22 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 import './styles.scss';
 
+const init_data = {
+    bank: '',
+    branch: '',
+    account: '',
+    pin: '',
+    paymentAccount: '',
+    onlineAccount: '',
+    onlinePassword: '',
+    securityCode: '',
+    frontPhoto: null,
+    backPhoto: null,
+};
+
 export default function UploadKYC() {
+    const [data, setData] = useState(init_data);
+    const [isSubmit, setIsSubmit] = useState(false);
     const [open, setOpen] = useState(false);
     const { t } = useTranslation();
 
@@ -30,17 +45,80 @@ export default function UploadKYC() {
 
     const renderInputs = () => {
         const labels = [
-            { text: t('bank.bank'), type: 'text' },
-            { text: t('bank.branch'), type: 'text' },
-            { text: t('bank.account'), type: 'text' },
-            { text: t('bank.pin'), type: 'password' },
-            { text: t('bank.payment-account'), type: 'password' },
-            { text: t('bank.online-bank-account'), type: 'text' },
-            { text: t('bank.online-bank-password'), type: 'password' },
-            { text: t('bank.security-code'), type: 'password' },
+            {
+                text: t('bank.bank'),
+                type: 'text',
+                getValue: (value) => setData({ ...data, bank: value }),
+                required: true,
+                isSubmit: isSubmit,
+            },
+            {
+                text: t('bank.branch'),
+                type: 'text',
+                getValue: (value) => setData({ ...data, branch: value }),
+                required: true,
+                isSubmit: isSubmit,
+            },
+            {
+                text: t('bank.account'),
+                type: 'text',
+                getValue: (value) => setData({ ...data, account: value }),
+                required: true,
+                isSubmit: isSubmit,
+            },
+            {
+                text: t('bank.pin'),
+                type: 'password',
+                getValue: (value) => setData({ ...data, pin: value }),
+                required: true,
+                isSubmit: isSubmit,
+            },
+            {
+                text: t('bank.payment-account'),
+                type: 'password',
+                getValue: (value) => setData({ ...data, paymentAccount: value }),
+                required: true,
+                isSubmit: isSubmit,
+            },
+            {
+                text: t('bank.online-bank-account'),
+                type: 'text',
+                getValue: (value) => setData({ ...data, onlineAccount: value }),
+                required: true,
+                isSubmit: isSubmit,
+            },
+            {
+                text: t('bank.online-bank-password'),
+                type: 'password',
+                getValue: (value) => setData({ ...data, onlinePassword: value }),
+                required: true,
+                isSubmit: isSubmit,
+            },
+            {
+                text: t('bank.security-code'),
+                type: 'password',
+                getValue: (value) => setData({ ...data, securityCode: value }),
+                required: true,
+                isSubmit: isSubmit,
+            },
         ];
 
-        return labels.map((label, index) => <CustomInput label={label.text} type={label.type} key={index} />);
+        return labels.map((label, index) => (
+            <CustomInput
+                label={label.text}
+                type={label.type}
+                required={label.required}
+                isSubmit={isSubmit}
+                key={index}
+            />
+        ));
+    };
+
+    const onSubmit = () => {
+        setIsSubmit(true);
+        setTimeout(() => {
+            setIsSubmit(false);
+        }, 50);
     };
 
     return (
@@ -100,7 +178,7 @@ export default function UploadKYC() {
                     <h2 variant={'h5'}>{t('bank.bank-info-title')}</h2>
                 </div>
                 {renderInputs()}
-                <Button label={t('bank.submit')}></Button>
+                <Button label={t('bank.submit')} onClick={onSubmit}></Button>
             </div>
         </div>
     );
