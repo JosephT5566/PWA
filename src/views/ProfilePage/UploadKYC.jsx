@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import CustomInput from '../../components/CustomInput';
+import PasswordInput from '../../components/CustomInput/PasswordInput';
+import TextInput from '../../components/CustomInput/TextInput';
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 import PhotoUpload from '../../components/PhotoUpload';
 import Button from '../../components/Button';
@@ -21,7 +22,7 @@ const init_data = {
     branch: '',
     account: '',
     pin: '',
-    paymentAccount: '',
+    paymentPassword: '',
     onlineAccount: '',
     onlinePassword: '',
     securityCode: '',
@@ -44,78 +45,76 @@ export default function UploadKYC() {
     };
 
     const renderInputs = () => {
-        const labels = [
-            {
-                text: t('bank.bank'),
-                type: 'text',
-                getValue: (value) => setData({ ...data, bank: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                text: t('bank.branch'),
-                type: 'text',
-                getValue: (value) => setData({ ...data, branch: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                text: t('bank.account'),
-                type: 'text',
-                getValue: (value) => setData({ ...data, account: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                text: t('bank.pin'),
-                type: 'password',
-                getValue: (value) => setData({ ...data, pin: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                text: t('bank.payment-account'),
-                type: 'password',
-                getValue: (value) => setData({ ...data, paymentAccount: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                text: t('bank.online-bank-account'),
-                type: 'text',
-                getValue: (value) => setData({ ...data, onlineAccount: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                text: t('bank.online-bank-password'),
-                type: 'password',
-                getValue: (value) => setData({ ...data, onlinePassword: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                text: t('bank.security-code'),
-                type: 'password',
-                getValue: (value) => setData({ ...data, securityCode: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-        ];
+        return (
+            <>
+                <TextInput
+                    label={t('bank.bank')}
+                    type={'text'}
+                    required={true}
+                    retriveValue={(value) => setData({ ...data, bank: value })}
+                    isSubmit={isSubmit}
+                />
+                <TextInput
+                    label={t('bank.branch')}
+                    type={'text'}
+                    required={true}
+                    retriveValue={(value) => setData({ ...data, branch: value })}
+                    isSubmit={isSubmit}
+                />
+                <TextInput
+                    label={t('bank.account')}
+                    type={'text'}
+                    required={true}
+                    retriveValue={(value) => setData({ ...data, account: value })}
+                    isSubmit={isSubmit}
+                />
+                <PasswordInput
+                    label={t('bank.pin')}
+                    required={true}
+                    retriveValue={(value) => setData({ ...data, pin: value })}
+                    isSubmit={isSubmit}
+                />
+                <PasswordInput
+                    label={t('bank.payment-password')}
+                    required={true}
+                    retriveValue={(value) => setData({ ...data, paymentPassword: value })}
+                    isSubmit={isSubmit}
+                />
+                <TextInput
+                    label={t('bank.online-bank-account')}
+                    type={'text'}
+                    required={true}
+                    retriveValue={(value) => setData({ ...data, onlineAccount: value })}
+                    isSubmit={isSubmit}
+                />
+                <PasswordInput
+                    label={t('bank.online-bank-password')}
+                    required={true}
+                    retriveValue={(value) => setData({ ...data, onlinePassword: value })}
+                    isSubmit={isSubmit}
+                />
+                <PasswordInput
+                    label={t('bank.security-code')}
+                    required={true}
+                    retriveValue={(value) => setData({ ...data, securityCode: value })}
+                    isSubmit={isSubmit}
+                />
+            </>
+        );
+    };
 
-        return labels.map((label, index) => (
-            <CustomInput
-                label={label.text}
-                type={label.type}
-                required={label.required}
-                isSubmit={isSubmit}
-                key={index}
-            />
-        ));
+    const isAllRequiredDataFilled = () => {
+        for (let item in data) {
+            if (data[item] === '' || data[item] === null) return false;
+        }
+        return true;
     };
 
     const onSubmit = () => {
         setIsSubmit(true);
+        if (isAllRequiredDataFilled()) {
+            // do something
+        }
         setTimeout(() => {
             setIsSubmit(false);
         }, 50);

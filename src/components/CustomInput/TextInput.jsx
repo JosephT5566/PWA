@@ -1,35 +1,55 @@
 import React, { useEffect, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 
-function TextInput({ autoComplete = 'off', label, type = 'text', required = false, getValue, ...props }) {
-    const [value, setValue] = useState('');
+import './styles.scss';
 
-    useEffect(() => {
-        if (getValue) getValue(value);
-    }, [value, getValue]);
+function TextInput({
+    label,
+    type = 'text',
+    required = false,
+    retriveValue = null,
+    isSubmit,
+    autoComplete = 'off',
+    ...props
+}) {
+    const [value, setValue] = useState('');
+    const [error, setError] = useState(false);
 
     const onValueChanged = (event) => {
         setValue(event.target.value);
+        if (retriveValue) retriveValue(event.target.value);
     };
 
     const labelProps = {
         shrink: true,
     };
 
+    useEffect(() => {
+        if (isSubmit) {
+            if (required && value === '') {
+                setError(true);
+            } else {
+                setError(false);
+            }
+        }
+    }, [isSubmit, required, value, setError]);
+
     return (
-        <TextField
-            required={required}
-            error={props.error}
-            className="input text"
-            fullWidth
-            variant="outlined"
-            InputLabelProps={labelProps}
-            autoComplete={autoComplete}
-            label={label}
-            type={type}
-            onChange={onValueChanged}
-            value={value}
-        />
+        <div className="textField">
+            <TextField
+                className="input text"
+                label={label}
+                type={type}
+                required={required}
+                error={error}
+                fullWidth
+                variant="outlined"
+                InputLabelProps={labelProps}
+                autoComplete={autoComplete}
+                onChange={onValueChanged}
+                value={value}
+            />
+        </div>
     );
 }
 

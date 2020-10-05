@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import CustomInput from '../../components/CustomInput';
+import TextInput from '../../components/CustomInput/TextInput';
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 import PhotoUpload from '../../components/PhotoUpload';
 import Tooltip from '../../components/Tooltip';
@@ -31,104 +31,94 @@ export default function BasicMessage() {
     const [isSubmit, setIsSubmit] = useState(false);
     const { t } = useTranslation();
 
-    const renderTextFields = () => {
-        const labels = [
-            {
-                autoComplete: 'email',
-                text: t('basic.email'),
-                type: 'text',
-                getValue: (value) => setData({ ...data, email: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                autoComplete: 'given-name',
-                text: t('basic.first-name'),
-                type: 'text',
-                getValue: (value) => setData({ ...data, firstName: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                autoComplete: 'family-name',
-                text: t('basic.last-name'),
-                type: 'text',
-                getValue: (value) => setData({ ...data, lastName: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                autoComplete: 'street-address',
-                text: t('basic.address'),
-                type: 'text',
-                getValue: (value) => setData({ ...data, address: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                autoComplete: 'postal-code',
-                text: t('basic.postal'),
-                type: 'text',
-                getValue: (value) => setData({ ...data, postal: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                autoComplete: 'address-level1',
-                text: t('basic.county'),
-                type: 'text',
-                getValue: (value) => setData({ ...data, county: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                autoComplete: 'address-level2',
-                text: t('basic.city'),
-                type: 'text',
-                getValue: (value) => setData({ ...data, city: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                autoComplete: 'country-name',
-                text: t('basic.country'),
-                type: 'text',
-                getValue: (value) => setData({ ...data, country: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                autoComplete: 'tel',
-                text: t('basic.phone'),
-                type: 'text',
-                getValue: (value) => setData({ ...data, phone: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-            {
-                autoComplete: 'bday',
-                text: t('basic.birthday'),
-                type: 'date',
-                getValue: (value) => setData({ ...data, birthday: value }),
-                required: true,
-                isSubmit: isSubmit,
-            },
-        ];
-
-        return labels.map((label, index) => (
-            <CustomInput
-                autoComplete={label.autoComplete}
-                label={label.text}
-                type={label.type}
-                getValue={label.getValue}
-                required={label.required}
-                isSubmit={isSubmit}
-                key={index}
-            />
-        ));
+    const renderInputs = () => {
+        return (
+            <>
+                <TextInput
+                    autoComplete={'email'}
+                    label={t('basic.email')}
+                    type={'text'}
+                    retriveValue={(value) => setData({ ...data, email: value })}
+                    required={true}
+                    isSubmit={isSubmit}
+                />
+                <TextInput
+                    autoComplete={'given-name'}
+                    label={t('basic.first-name')}
+                    type={'text'}
+                    retriveValue={(value) => setData({ ...data, firstName: value })}
+                    required={true}
+                    isSubmit={isSubmit}
+                />
+                <TextInput
+                    autoComplete={'family-name'}
+                    label={t('basic.last-name')}
+                    type={'text'}
+                    retriveValue={(value) => setData({ ...data, lastName: value })}
+                    required={true}
+                    isSubmit={isSubmit}
+                />
+                <TextInput
+                    autoComplete={'street-address'}
+                    label={t('basic.address')}
+                    type={'text'}
+                    retriveValue={(value) => setData({ ...data, address: value })}
+                    required={true}
+                    isSubmit={isSubmit}
+                />
+                <TextInput
+                    autoComplete={'postal-code'}
+                    label={t('basic.postal')}
+                    type={'text'}
+                    retriveValue={(value) => setData({ ...data, postal: value })}
+                    required={true}
+                    isSubmit={isSubmit}
+                />
+                <TextInput
+                    autoComplete={'address-level1'}
+                    label={t('basic.county')}
+                    type={'text'}
+                    retriveValue={(value) => setData({ ...data, county: value })}
+                    required={true}
+                    isSubmit={isSubmit}
+                />
+                <TextInput
+                    autoComplete={'address-level2'}
+                    label={t('basic.city')}
+                    type={'text'}
+                    retriveValue={(value) => setData({ ...data, city: value })}
+                    required={true}
+                    isSubmit={isSubmit}
+                />
+                <TextInput
+                    autoComplete={'country-name'}
+                    label={t('basic.country')}
+                    type={'text'}
+                    retriveValue={(value) => setData({ ...data, country: value })}
+                    required={true}
+                    isSubmit={isSubmit}
+                />
+                <TextInput
+                    autoComplete={'tel'}
+                    label={t('basic.phone')}
+                    type={'text'}
+                    retriveValue={(value) => setData({ ...data, phone: value })}
+                    required={true}
+                    isSubmit={isSubmit}
+                />
+                <TextInput
+                    autoComplete={'bday'}
+                    label={t('basic.birthday')}
+                    type={'date'}
+                    retriveValue={(value) => setData({ ...data, birthday: value })}
+                    required={true}
+                    isSubmit={isSubmit}
+                />
+            </>
+        );
     };
 
-    const isDataAllFilled = () => {
+    const isAllRequiredDataFilled = () => {
         for (let item in data) {
             if (data[item] === '' || data[item] === null) return false;
         }
@@ -136,7 +126,11 @@ export default function BasicMessage() {
     };
 
     const onSubmit = () => {
+        console.log(data);
         setIsSubmit(true);
+        if (isAllRequiredDataFilled()) {
+            // do something
+        }
         setTimeout(() => {
             setIsSubmit(false);
         }, 50);
@@ -152,7 +146,7 @@ export default function BasicMessage() {
                         {t('basic.warning')}
                     </Alert>
                 </div>
-                {renderTextFields()}
+                {renderInputs()}
                 <div className="title">
                     <h2>{t('basic.upload-header')}</h2>
                     <Tooltip label={t('basic.hint')} />
