@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigation } from 'react-navi';
 import { useTranslation } from 'react-i18next';
 import { CurrentIndexStore } from './Context';
@@ -14,7 +14,6 @@ import './styles.scss';
 export default function Navigator({ basename }) {
     const navigation = useNavigation();
     const { t } = useTranslation();
-    const [value, setValue] = useState('home');
 
     return (
         <nav id="navigation">

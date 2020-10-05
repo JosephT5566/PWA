@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 
 import Title from '../../components/Title/Title';
 import ImageCard from '../../components/Card/ImageCard';
+import Button from '../../components/Button';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 
 import './styles.scss';
@@ -16,7 +16,7 @@ const useStyle = makeStyles(() => ({
         padding: '10px 0',
     },
     gridItem: {
-        maxHeight: '10em',
+        minHeight: '10em',
     },
 }));
 
@@ -30,18 +30,18 @@ export default function DataPage() {
         <div className="ui container">
             <Title title={t('data.title')} />
             <Grid container className={classes.content} spacing={3} justify={'center'}>
-                <Grid item className={classes.gridItem}>
+                <Grid item className={classes.gridItem} xs="12">
                     <ImageCard
-                        title="BTC"
+                        label="BTC"
                         image="https://source.unsplash.com/ON1ryil6C8k/640x426"
                         onClick={() => navigation.navigate(`${currentURL}/BTC`)}
                     />
                 </Grid>
-                <Grid item className={classes.gridItem}>
+                <Grid item className={classes.gridItem} xs="12">
                     <ImageCard
-                        title="ETH"
+                        label="ETH"
                         image="https://source.unsplash.com/0bO235Rhqec/640x426"
-                        onClick={() => console.log('123')}
+                        onClick={() => navigation.navigate(`${currentURL}/BTC`)}
                     />
                 </Grid>
             </Grid>

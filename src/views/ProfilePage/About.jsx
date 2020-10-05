@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 
-import Divider from '@material-ui/core/Divider';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
