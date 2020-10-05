@@ -60,7 +60,7 @@
         "branch": "分行名稱",
         "account": "帳號",
         "pin": "存提款密碼",
-        "payment-account": "支付密碼",
+        "payment-password": "支付密碼",
         "online-bank-account": "網銀帳號",
         "online-bank-password": "網銀密碼",
         "security-code": " 安全碼",

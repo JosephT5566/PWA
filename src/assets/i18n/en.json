@@ -60,7 +60,7 @@
         "branch": "Branch",
         "account": "Account",
         "pin": "PIN number",
-        "payment-account": "Payment password",
+        "payment-password": "Payment password",
         "online-bank-account": "Online-bank account",
         "online-bank-password": "Online-bank password",
         "security-code": " Security code",
