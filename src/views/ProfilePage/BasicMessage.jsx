@@ -113,6 +113,7 @@ export default function BasicMessage() {
                     retriveValue={(value) => setData({ ...data, birthday: value })}
                     required={true}
                     isSubmit={isSubmit}
+                    placeholder={'yyyy-mm-dd'}
                 />
             </>
         );
