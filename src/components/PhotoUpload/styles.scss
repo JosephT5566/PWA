@@ -5,6 +5,26 @@
     justify-content: center;
     align-items: center;
     border-radius: 0.5em;
+    position: relative;
+    overflow: initial;
+    margin: 0.6em 0;
+
+    &.error {
+        border-color: _palette(accent);
+        > .title {
+            color: _palette(accent);
+        }
+    }
+
+    > .title {
+        background-color: inherit;
+        position: absolute;
+        left: 0.5em;
+        top: -0.6em;
+        padding: 0 0.7em;
+        font-family: _font(family);
+        font-weight: _font(weight);
+    }
 
     .card-inner {
         border-radius: 0.5em;
@@ -31,6 +51,10 @@
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
+                    h5 {
+                        font-family: _font(family);
+                        font-weight: _font(weight);
+                    }
                 }
                 input {
                     display: none;
@@ -43,12 +67,12 @@
                 top: 0;
                 width: 100%;
                 height: 100%;
-                &.active{
+                &.active {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                 }
-                .delete-icon{
+                .delete-icon {
                     background-color: transparentize(_palette(bg), 0.4);
                     position: absolute;
                     bottom: 0.2em;

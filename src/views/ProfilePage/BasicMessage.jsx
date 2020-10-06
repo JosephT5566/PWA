@@ -151,10 +151,18 @@ export default function BasicMessage() {
                     <h2>{t('basic.upload-header')}</h2>
                     <Tooltip label={t('basic.hint')} />
                 </div>
-                <h3>{t('basic.front')}</h3>
-                <PhotoUpload />
-                <h3>{t('basic.back')}</h3>
-                <PhotoUpload />
+                <PhotoUpload
+                    title={t('basic.front')}
+                    required={true}
+                    retriveValue={(picture) => setData({ ...data, frontPhoto: picture })}
+                    isSubmit={isSubmit}
+                    />
+                <PhotoUpload
+                    title={t('basic.back')}
+                    required={true}
+                    retriveValue={(picture) => setData({ ...data, backPhoto: picture })}
+                    isSubmit={isSubmit}
+                />
                 <Button label={t('basic.submit')} onClick={onSubmit} />
             </div>
         </div>

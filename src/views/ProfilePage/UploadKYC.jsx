@@ -159,14 +159,18 @@ export default function UploadKYC() {
                         </Tooltip>
                     </ClickAwayListener>
                 </div>
-                <h3 variant={'h6'}>{t('bank.front')}</h3>
-                <div>
-                    <PhotoUpload />
-                </div>
-                <h3 variant={'h6'}>{t('bank.back')}</h3>
-                <div>
-                    <PhotoUpload />
-                </div>
+                <PhotoUpload
+                    title={t('bank.front')}
+                    required={true}
+                    retriveValue={(picture) => setData({ ...data, frontPhoto: picture })}
+                    isSubmit={isSubmit}
+                />
+                <PhotoUpload
+                    title={t('bank.back')}
+                    required={true}
+                    retriveValue={(picture) => setData({ ...data, backPhoto: picture })}
+                    isSubmit={isSubmit}
+                />
                 <div className="alert">
                     <Alert severity="info">{t('bank.warning-credential')}</Alert>
                 </div>
