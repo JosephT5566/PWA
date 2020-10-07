@@ -39,7 +39,7 @@
         "country": "国家",
         "phone": "电话",
         "birthday": "生日",
-        "upload-header": "请上传个人有效证件",
+        "upload-id-card": "请上传个人有效证件",
         "hint": "身分证或驾驶证或护照",
         "front": "正面",
         "back": "背面",
@@ -49,7 +49,7 @@
     "bank": {
         "title": "银行资料",
         "warning": "当实名认证通过，将无法自行改变名称或地址等资料。",
-        "upload-header": "请上传個人银行卡",
+        "upload-bank-card": "请上传個人银行卡",
         "hint": "身分证或驾驶证或护照",
         "front": "正面",
         "back": "背面",

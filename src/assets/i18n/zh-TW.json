@@ -39,7 +39,7 @@
         "country": "國家",
         "phone": "電話",
         "birthday": "生日",
-        "upload-header": "請上傳個人有效證件",
+        "upload-id-card": "請上傳個人有效證件",
         "hint": "護照或身分證或駕駛證",
         "front": "正面",
         "back": "背面",
@@ -49,7 +49,7 @@
     "bank": {
         "title": "銀行資訊",
         "warning": "當KYC認證通過。將無法自行改變名稱或地址等資料。",
-        "upload-header": "請上傳個人銀行卡",
+        "upload-bank-card": "請上傳個人銀行卡",
         "hint": "護照或身分證或駕駛證",
         "front": "正面",
         "back": "背面",

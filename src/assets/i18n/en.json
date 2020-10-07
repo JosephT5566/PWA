@@ -39,7 +39,7 @@
         "country": "Country",
         "phone": "Phone",
         "birthday": "Birthday",
-        "upload-header": "Please upload effective credential",
+        "upload-id-card": "Please upload effective credential",
         "hint": "Passport / ID card / driver's license",
         "front": "Front",
         "back": "Back",
@@ -49,7 +49,7 @@
     "bank": {
         "title": "Bank Infomation",
         "warning": "Once KYC is certified, you can not modify information like name or address by yourself",
-        "upload-header": "Please upload your bank card",
+        "upload-bank-card": "Please upload your bank card",
         "hint": "Passport / ID card / driver's license",
         "front": "Front",
         "back": "Back",

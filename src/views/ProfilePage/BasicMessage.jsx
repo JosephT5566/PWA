@@ -149,7 +149,7 @@ export default function BasicMessage() {
                 </div>
                 {renderInputs()}
                 <div className="title">
-                    <h2>{t('basic.upload-header')}</h2>
+                    <h2>{t('basic.upload-id-card')}</h2>
                     <Tooltip label={t('basic.hint')} />
                 </div>
                 <PhotoUpload
