@@ -153,12 +153,14 @@ export default function BasicMessage() {
                     <Tooltip label={t('basic.hint')} />
                 </div>
                 <PhotoUpload
+                    className="photoupload"
                     title={t('basic.front')}
                     required={true}
                     retriveValue={(picture) => setData({ ...data, frontPhoto: picture })}
                     isSubmit={isSubmit}
-                    />
+                />
                 <PhotoUpload
+                    className="photoupload"
                     title={t('basic.back')}
                     required={true}
                     retriveValue={(picture) => setData({ ...data, backPhoto: picture })}

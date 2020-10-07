@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import _ from 'lodash';
 
 import PasswordInput from '../../components/CustomInput/PasswordInput';
 import TextInput from '../../components/CustomInput/TextInput';
@@ -14,6 +15,8 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import HelpIcon from '@material-ui/icons/Help';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import AddCircle from '@material-ui/icons/AddCircle';
+import RemoveCircle from '@material-ui/icons/RemoveCircle';
 
 import './styles.scss';
 
@@ -26,11 +29,13 @@ const init_data = {
     onlineAccount: '',
     onlinePassword: '',
     securityCode: '',
-    frontPhoto: null,
-    backPhoto: null,
+    bankcards: null,
 };
 
+const init_bankcard = { frontPhoto: null, backPhoto: null };
+
 export default function UploadKYC() {
+    const [bankcards, setBankcards] = useState([_.cloneDeep(init_bankcard)]);
     const [data, setData] = useState(init_data);
     const [isSubmit, setIsSubmit] = useState(false);
     const [open, setOpen] = useState(false);
@@ -110,7 +115,42 @@ export default function UploadKYC() {
         return true;
     };
 
+    const renderPhotoUploads = () => {
+        return (
+            <>
+                {bankcards.map((bankcard, index) => (
+                    <div key={index}>
+                        <h3>{`Card ${index}`}</h3>
+                        <PhotoUpload
+                            className="photoupload"
+                            title={t('bank.front')}
+                            required={true}
+                            retrivePicture={(picture) => {
+                                let newArray = [...bankcards];
+                                newArray[index].frontPhoto = picture;
+                                setBankcards(newArray);
+                            }}
+                            isSubmit={isSubmit}
+                        />
+                        <PhotoUpload
+                            className="photoupload"
+                            title={t('bank.back')}
+                            required={true}
+                            retrivePicture={(picture) => {
+                                let newArray = [...bankcards];
+                                newArray[index].backPhoto = picture;
+                                setBankcards(newArray);
+                            }}
+                            isSubmit={isSubmit}
+                        />
+                    </div>
+                ))}
+            </>
+        );
+    };
+
     const onSubmit = () => {
+        console.log(data);
         setIsSubmit(true);
         if (isAllRequiredDataFilled()) {
             // do something
@@ -119,6 +159,15 @@ export default function UploadKYC() {
             setIsSubmit(false);
         }, 50);
     };
+
+    const onClickAddCards = () => {
+        setBankcards([...bankcards, _.cloneDeep(init_bankcard)]);
+    };
+
+    useEffect(() => {
+        // console.log(bankcards);
+        setData({ ...data, bankcards });
+    }, [bankcards, setData]);
 
     return (
         <div className="ui container">
@@ -159,18 +208,13 @@ export default function UploadKYC() {
                         </Tooltip>
                     </ClickAwayListener>
                 </div>
-                <PhotoUpload
-                    title={t('bank.front')}
-                    required={true}
-                    retriveValue={(picture) => setData({ ...data, frontPhoto: picture })}
-                    isSubmit={isSubmit}
-                />
-                <PhotoUpload
-                    title={t('bank.back')}
-                    required={true}
-                    retriveValue={(picture) => setData({ ...data, backPhoto: picture })}
-                    isSubmit={isSubmit}
-                />
+                <div className="photouploads-container">
+                    {renderPhotoUploads()}
+                    <IconButton className="add-icon" onClick={onClickAddCards}>
+                        <AddCircle fontSize="large" />
+                    </IconButton>
+                </div>
+
                 <div className="alert">
                     <Alert severity="info">{t('bank.warning-credential')}</Alert>
                 </div>
