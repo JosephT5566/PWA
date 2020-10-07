@@ -39,6 +39,7 @@ export default function UploadKYC() {
     const [data, setData] = useState(init_data);
     const [isSubmit, setIsSubmit] = useState(false);
     const [open, setOpen] = useState(false);
+    const [active, setActive] = useState('');
     const { t } = useTranslation();
 
     const handleTooltipClose = () => {
@@ -163,10 +164,18 @@ export default function UploadKYC() {
     const onClickAddCards = () => {
         setBankcards([...bankcards, _.cloneDeep(init_bankcard)]);
     };
+    const onClickRemoveCards = () => {
+        setBankcards(_.dropRight(bankcards));
+    };
 
     useEffect(() => {
         // console.log(bankcards);
         setData({ ...data, bankcards });
+        if (bankcards.length > 1) {
+            setActive('active');
+        } else {
+            setActive('');
+        }
     }, [bankcards, setData]);
 
     return (
@@ -210,9 +219,14 @@ export default function UploadKYC() {
                 </div>
                 <div className="photouploads-container">
                     {renderPhotoUploads()}
-                    <IconButton className="add-icon" onClick={onClickAddCards}>
-                        <AddCircle fontSize="large" />
-                    </IconButton>
+                    <div className="icons-container">
+                        <IconButton className={`icon remove ${active}`} onClick={onClickRemoveCards}>
+                            <RemoveCircle fontSize="large" />
+                        </IconButton>
+                        <IconButton className="icon add active" onClick={onClickAddCards}>
+                            <AddCircle fontSize="large" />
+                        </IconButton>
+                    </div>
                 </div>
 
                 <div className="alert">

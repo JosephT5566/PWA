@@ -30,12 +30,20 @@
         position: relative;
         padding: 1em;
         margin-bottom: 1em;
-        .add-icon {
+        .icons-container {
             position: absolute;
+            display: flex;
             right: 0.5em;
             bottom: 0.5em;
+        }
+        .icon {
             color: _palette(accent);
             background-color: _palette(bg-alt);
+            margin-left: 0.5em;
+            display: none;
+            &.active {
+                display: block;
+            }
         }
     }
 }
