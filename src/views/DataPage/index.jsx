@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 
 import Title from '../../components/Title/Title';
 import ImageCard from '../../components/Card/ImageCard';
-import Button from '../../components/Button';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';

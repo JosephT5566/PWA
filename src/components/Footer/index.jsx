@@ -6,8 +6,7 @@ export default function Footer() {
     return (
         <footer className="footer">
             <p className="copyright">
-                &copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design:
-                Joseph.
+                &copy; Aethera. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>.
             </p>
         </footer>
     );
