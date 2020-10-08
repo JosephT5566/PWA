@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 
@@ -168,15 +168,21 @@ export default function UploadKYC() {
         setBankcards(_.dropRight(bankcards));
     };
 
-    useEffect(() => {
-        // console.log(bankcards);
-        setData({ ...data, bankcards });
+    const onBankcardsChanged = useCallback(() => {
+        setData((prevData) => {
+            return { ...prevData, bankcards };
+        });
         if (bankcards.length > 1) {
             setActive('active');
         } else {
             setActive('');
         }
-    }, [bankcards, setData]);
+    }, [bankcards]);
+
+    useEffect(() => {
+        // console.log(bankcards);
+        onBankcardsChanged();
+    }, [onBankcardsChanged]);
 
     return (
         <div className="ui container">
@@ -189,7 +195,7 @@ export default function UploadKYC() {
                     </Alert>
                 </div>
                 <div className="title">
-                    <h2>{t('bank.upload-header')}</h2>
+                    <h2>{t('bank.upload-bank-card')}</h2>
                     <ClickAwayListener onClickAway={handleTooltipClose}>
                         <Tooltip
                             className="tooltip"

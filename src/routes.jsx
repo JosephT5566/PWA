@@ -2,6 +2,7 @@ import { mount, route } from 'navi';
 import React from 'react';
 
 import Plot from './views/DataPage/Plot';
+import BankCard from './views/ProfilePage/BankCard';
 
 const appName = 'PWA';
 
@@ -51,9 +52,22 @@ const routes = mount({
             title: `Profile/Basic Message - ${appName}`,
             getView: () => import('./views/ProfilePage/BasicMessage'),
         }),
-        '/upload': route({
-            title: `Profile/Bank Info - ${appName}`,
-            getView: () => import('./views/ProfilePage/BankInfo'),
+        '/bank': mount({
+            '/': route({
+                title: `Profile/Bank Info - ${appName}`,
+                getView: () =>
+                    import(
+                        /*webpackChunkName: "BankInfo"*/
+                        './views/ProfilePage/BankInfo'
+                    ),
+                title: `Data - ${appName}`,
+            }),
+            '/:id': route((req) => {
+                let id = req.params.id;
+                return {
+                    view: <BankCard id={id} />,
+                };
+            }),
         }),
         '/doc': route({
             title: `Profile/Documents - ${appName}`,
