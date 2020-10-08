@@ -52,8 +52,8 @@ const routes = mount({
             getView: () => import('./views/ProfilePage/BasicMessage'),
         }),
         '/upload': route({
-            title: `Profile/Upload KYC - ${appName}`,
-            getView: () => import('./views/ProfilePage/UploadKYC'),
+            title: `Profile/Bank Info - ${appName}`,
+            getView: () => import('./views/ProfilePage/BankInfo'),
         }),
         '/doc': route({
             title: `Profile/Documents - ${appName}`,
