@@ -22,7 +22,7 @@ export default function ProfilePage() {
         {
             label: t('profile.bank'),
             onClick: () => {
-                navigation.navigate(`${currentURL}/upload`);
+                navigation.navigate(`${currentURL}/bank`);
             },
         },
         {
