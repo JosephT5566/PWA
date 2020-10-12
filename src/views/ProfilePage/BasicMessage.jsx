@@ -22,8 +22,8 @@ const init_data = {
     country: '',
     phone: '',
     birthday: '',
-    frontPhoto: null,
-    backPhoto: null,
+    frontPhoto: '',
+    backPhoto: '',
 };
 
 export default function BasicMessage() {
@@ -38,7 +38,8 @@ export default function BasicMessage() {
                     autoComplete={'email'}
                     label={t('basic.email')}
                     type={'text'}
-                    retriveValue={(value) => setData({ ...data, email: value })}
+                    value={data.email}
+                    handleChange={(value) => setData({ ...data, email: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -46,7 +47,8 @@ export default function BasicMessage() {
                     autoComplete={'given-name'}
                     label={t('basic.first-name')}
                     type={'text'}
-                    retriveValue={(value) => setData({ ...data, firstName: value })}
+                    value={data.firstName}
+                    handleChange={(value) => setData({ ...data, firstName: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -54,7 +56,8 @@ export default function BasicMessage() {
                     autoComplete={'family-name'}
                     label={t('basic.last-name')}
                     type={'text'}
-                    retriveValue={(value) => setData({ ...data, lastName: value })}
+                    value={data.lastName}
+                    handleChange={(value) => setData({ ...data, lastName: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -62,7 +65,8 @@ export default function BasicMessage() {
                     autoComplete={'street-address'}
                     label={t('basic.address')}
                     type={'text'}
-                    retriveValue={(value) => setData({ ...data, address: value })}
+                    value={data.address}
+                    handleChange={(value) => setData({ ...data, address: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -70,7 +74,8 @@ export default function BasicMessage() {
                     autoComplete={'postal-code'}
                     label={t('basic.postal')}
                     type={'text'}
-                    retriveValue={(value) => setData({ ...data, postal: value })}
+                    value={data.postal}
+                    handleChange={(value) => setData({ ...data, postal: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -78,7 +83,8 @@ export default function BasicMessage() {
                     autoComplete={'address-level1'}
                     label={t('basic.county')}
                     type={'text'}
-                    retriveValue={(value) => setData({ ...data, county: value })}
+                    value={data.county}
+                    handleChange={(value) => setData({ ...data, county: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -86,7 +92,8 @@ export default function BasicMessage() {
                     autoComplete={'address-level2'}
                     label={t('basic.city')}
                     type={'text'}
-                    retriveValue={(value) => setData({ ...data, city: value })}
+                    value={data.city}
+                    handleChange={(value) => setData({ ...data, city: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -94,7 +101,8 @@ export default function BasicMessage() {
                     autoComplete={'country-name'}
                     label={t('basic.country')}
                     type={'text'}
-                    retriveValue={(value) => setData({ ...data, country: value })}
+                    value={data.country}
+                    handleChange={(value) => setData({ ...data, country: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -102,7 +110,8 @@ export default function BasicMessage() {
                     autoComplete={'tel'}
                     label={t('basic.phone')}
                     type={'text'}
-                    retriveValue={(value) => setData({ ...data, phone: value })}
+                    value={data.phone}
+                    handleChange={(value) => setData({ ...data, phone: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -110,7 +119,8 @@ export default function BasicMessage() {
                     autoComplete={'bday'}
                     label={t('basic.birthday')}
                     type={'date'}
-                    retriveValue={(value) => setData({ ...data, birthday: value })}
+                    value={data.birthday}
+                    handleChange={(value) => setData({ ...data, birthday: value })}
                     required={true}
                     isSubmit={isSubmit}
                     placeholder={'yyyy-mm-dd'}
@@ -156,14 +166,16 @@ export default function BasicMessage() {
                     className="photoupload"
                     title={t('basic.front')}
                     required={true}
-                    retriveValue={(picture) => setData({ ...data, frontPhoto: picture })}
+                    value={data.frontPhoto}
+                    handleChange={(picture) => setData({ ...data, frontPhoto: picture })}
                     isSubmit={isSubmit}
                 />
                 <PhotoUpload
                     className="photoupload"
                     title={t('basic.back')}
                     required={true}
-                    retriveValue={(picture) => setData({ ...data, backPhoto: picture })}
+                    value={data.backPhoto}
+                    handleChange={(picture) => setData({ ...data, backPhoto: picture })}
                     isSubmit={isSubmit}
                 />
                 <Button label={t('basic.submit')} onClick={onSubmit} />
