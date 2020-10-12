@@ -7,17 +7,16 @@ function TextInput({
     label,
     type = 'text',
     required = false,
-    retriveValue = null,
+    value = '',
+    handleChange,
     isSubmit,
     autoComplete = 'off',
     ...props
 }) {
-    const [value, setValue] = useState('');
     const [error, setError] = useState(false);
 
     const onValueChanged = (event) => {
-        setValue(event.target.value);
-        if (retriveValue) retriveValue(event.target.value);
+        if (handleChange) handleChange(event.target.value);
     };
 
     const labelProps = {

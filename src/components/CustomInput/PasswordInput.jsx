@@ -7,8 +7,7 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 import './styles.scss';
 
-function PasswordInput({ label, required = false, retriveValue = null, isSubmit, ...props }) {
-    const [password, setPassword] = useState('');
+function PasswordInput({ label, required = false, value = '', handleChange = null, isSubmit, ...props }) {
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState(false);
 
@@ -17,8 +16,7 @@ function PasswordInput({ label, required = false, retriveValue = null, isSubmit,
     };
 
     const onValueChanged = (event) => {
-        setPassword(event.target.value);
-        if (retriveValue) retriveValue(event.target.value);
+        if (handleChange) handleChange(event.target.value);
     };
 
     const labelProps = {
@@ -37,13 +35,13 @@ function PasswordInput({ label, required = false, retriveValue = null, isSubmit,
 
     useEffect(() => {
         if (isSubmit) {
-            if (required && password === '') {
+            if (required && value === '') {
                 setError(true);
             } else {
                 setError(false);
             }
         }
-    }, [isSubmit, required, password, setError]);
+    }, [isSubmit, required, value, setError]);
 
     return (
         <div className="textField">
@@ -58,7 +56,7 @@ function PasswordInput({ label, required = false, retriveValue = null, isSubmit,
                 InputLabelProps={labelProps}
                 type={showPassword ? 'text' : 'password'}
                 onChange={onValueChanged}
-                value={password}
+                value={value}
             />
         </div>
     );

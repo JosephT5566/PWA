@@ -1,22 +1,9 @@
 @import 'assets/styles/styles.scss';
 
-.card-outer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.5em;
+#photo-upload {
     position: relative;
-    overflow: initial;
-
-    &.error {
-        border-color: _palette(accent);
-        > .title {
-            color: _palette(accent);
-        }
-    }
-
-    > .title {
-        background-color: inherit;
+    .title {
+        background-color: _palette(bg);
         position: absolute;
         left: 0.5em;
         top: -1em;
@@ -24,62 +11,77 @@
         border-radius: 0.5em;
         font-family: _font(family);
         font-weight: _font(weight);
+        &.error {
+            color: _palette(accent);
+        }
     }
 
-    .card-inner {
+    .card-outer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 0.5em;
-        width: 70%;
-        margin: 0.7em;
+        overflow: initial;
 
-        .content {
-            padding-top: 56.25%;
+        &.error {
+            border-color: _palette(accent);
+        }
+
+        .card-inner {
             border-radius: 0.5em;
-            position: relative;
+            width: 70%;
+            margin: 0.7em;
 
-            .update-action {
-                position: absolute;
-                top: 0;
-                width: 100%;
-                height: 100%;
+            .content {
+                padding-top: 56.25%;
+                border-radius: 0.5em;
+                position: relative;
 
-                &.active {
-                    display: none;
-                }
+                .update-action {
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
 
-                .label {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    h5 {
-                        font-family: _font(family);
-                        font-weight: _font(weight);
+                    &.active {
+                        display: none;
+                    }
+
+                    .label {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        h5 {
+                            font-family: _font(family);
+                            font-weight: _font(weight);
+                        }
+                    }
+                    input {
+                        display: none;
                     }
                 }
-                input {
-                    display: none;
-                }
-            }
 
-            .ready-action {
-                display: none;
-                position: absolute;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                &.active {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-                .delete-icon {
-                    background-color: transparentize(_palette(bg), 0.4);
+                .ready-action {
+                    display: none;
                     position: absolute;
-                    bottom: 0.2em;
-                    right: 0.2em;
-                }
-                img {
-                    max-width: 100%;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    &.active {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    .delete-icon {
+                        background-color: transparentize(_palette(bg), 0.4);
+                        position: absolute;
+                        bottom: 0.2em;
+                        right: 0.2em;
+                    }
+                    img {
+                        max-width: 100%;
+                    }
                 }
             }
         }

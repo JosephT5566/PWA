@@ -9,9 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 
 import './styles.scss';
 
-export default function PhotoUpload({ className, title, required = false, retrivePicture = null, isSubmit }) {
-    const [picture, setPicture] = useState(null);
-    const [active, setActive] = useState('');
+export default function PhotoUpload({ className, title, required = false, value = '', handleChange = null, isSubmit }) {
+    const [active, setActive] = useState(value === '' ? '' : 'active');
     const [error, setError] = useState('');
     const { t } = useTranslation();
     const inputRef = useRef(null);
@@ -22,13 +21,9 @@ export default function PhotoUpload({ className, title, required = false, retriv
     const onFilesChange = () => {
         const files = inputRef.current.files;
         if (files && files[0]) {
-            setPicture(files[0]);
-            setActive('active');
-            if (retrivePicture) retrivePicture(files[0]);
-
             let reader = new FileReader();
             reader.onload = (e) => {
-                imageRef.current.src = e.target.result;
+                if (handleChange) handleChange(e.target.result);
             };
             reader.readAsDataURL(files[0]);
             inputRef.current.value = ''; // remove value
@@ -36,25 +31,32 @@ export default function PhotoUpload({ className, title, required = false, retriv
     };
 
     const onDeleteImage = () => {
-        setPicture(null);
-        setActive('');
-        if (retrivePicture) retrivePicture(null);
+        if (handleChange) handleChange('');
     };
 
     useEffect(() => {
+        if (value !== '') {
+            imageRef.current.src = value;
+            setActive('active');
+        } else {
+            setActive('');
+        }
+    }, [value]);
+
+    useEffect(() => {
         if (isSubmit) {
-            if (required && !picture) {
+            if (required && !value) {
                 setError('error');
             } else {
                 setError('');
             }
         }
-    }, [isSubmit, required, picture, setError]);
+    }, [isSubmit, required, value, setError]);
 
     return (
-        <div className={className}>
+        <div id="photo-upload" className={className}>
+            <h4 className={`title ${error}`}>{`${title} ${requiredMark}`}</h4>
             <Card className={`card-outer ${error}`} variant="outlined">
-                <h4 className="title">{`${title} ${requiredMark}`}</h4>
                 <Card className="card-inner" variant="outlined">
                     <div className="content">
                         <CardActionArea
