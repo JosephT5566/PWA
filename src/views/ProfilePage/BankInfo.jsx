@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from 'react-navi';
 
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 import ImageCard from '../../components/Card/ImageCard';
@@ -14,20 +15,20 @@ import './styles.scss';
 
 export default function BankInfo() {
     const [bankList, setBankList] = useState([]);
+    const navigation = useNavigation();
     const { t } = useTranslation();
+    const currentURL = navigation.getCurrentValue().url.pathname;
 
     useEffect(() => {
         async function getBankList() {
             const _bankList = await mockService.fetchBankList();
-            // console.log(_bankList);
             setBankList([..._bankList]);
         }
         getBankList();
     }, []);
 
     useEffect(() => {
-        // console.log('bankList: ');
-        console.log(bankList);
+        console.log('bankList: ', bankList);
     }, [bankList]);
 
     const onClickAddCards = async () => {
@@ -52,6 +53,9 @@ export default function BankInfo() {
                             className="bank-card"
                             label={bankcard.cardName !== '' ? bankcard.cardName : `Card ${index}`}
                             image={bankcard.front !== '' ? bankcard.front : defaultImage}
+                            onClick={() => {
+                                navigation.navigate(`${currentURL}/${index}`);
+                            }}
                         />
                         <IconButton
                             className="icon remove active"

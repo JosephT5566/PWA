@@ -60,7 +60,6 @@ const routes = mount({
                         /*webpackChunkName: "BankInfo"*/
                         './views/ProfilePage/BankInfo'
                     ),
-                title: `Data - ${appName}`,
             }),
             '/:id': route((req) => {
                 let id = req.params.id;
