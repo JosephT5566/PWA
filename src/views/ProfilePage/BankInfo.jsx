@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from 'react-navi';
+import LoginContext from '../../contexts/LoginContext';
 
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 import ImageCard from '../../components/Card/ImageCard';
@@ -17,29 +18,30 @@ export default function BankInfo() {
     const [bankList, setBankList] = useState([]);
     const navigation = useNavigation();
     const { t } = useTranslation();
+    const { username } = useContext(LoginContext);
     const currentURL = navigation.getCurrentValue().url.pathname;
 
     useEffect(() => {
         async function getBankList() {
-            const _bankList = await mockService.fetchBankList();
+            const _bankList = await mockService.fetchBankItems(username);
             setBankList([..._bankList]);
         }
         getBankList();
-    }, []);
+    }, [username]);
 
     useEffect(() => {
         console.log('bankList: ', bankList);
     }, [bankList]);
 
     const onClickAddCards = async () => {
-        await mockService.appendBankItem();
-        const _bankList = await mockService.fetchBankList();
+        await mockService.appendBankItem(username);
+        const _bankList = await mockService.fetchBankItems(username);
         setBankList([..._bankList]);
     };
 
     const onClickRemoveCards = async (index) => {
-        await mockService.removeBankItem(index);
-        const _bankList = await mockService.fetchBankList();
+        await mockService.removeBankItem(username, index);
+        const _bankList = await mockService.fetchBankItems(username);
         setBankList([..._bankList]);
     };
 

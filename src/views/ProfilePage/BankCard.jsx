@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import LoginContext from '../../contexts/LoginContext';
 
 import PasswordInput from '../../components/CustomInput/PasswordInput';
 import TextInput from '../../components/CustomInput/TextInput';
@@ -37,15 +38,16 @@ export default function BankCard({ id }) {
     const [cardInfo, setCardInfo] = useState(INIT_CARD_INFO);
     const [isSubmit, setIsSubmit] = useState(false);
     const [open, setOpen] = useState(false);
+    const { username } = useContext(LoginContext);
     const { t } = useTranslation();
 
     useEffect(() => {
         async function getCardInfo() {
-            const _cardInfo = await mockService.fetchBankItem(id);
+            const _cardInfo = await mockService.fetchBankItem(username, id);
             setCardInfo({ ..._cardInfo });
         }
         getCardInfo();
-    }, [id]);
+    }, [username, id]);
 
     useEffect(() => {
         console.log('cardInfo', cardInfo);
