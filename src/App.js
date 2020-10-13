@@ -1,5 +1,6 @@
 import React from 'react';
 import './i18n';
+import { LoginStore } from './contexts/LoginContext';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -10,9 +11,11 @@ import './App.scss';
 function App() {
     return (
         <div className="app">
-            <Header />
-            <Main />
-            <Footer />
+            <LoginStore>
+                <Header />
+                <Main />
+                <Footer />
+            </LoginStore>
         </div>
     );
 }
