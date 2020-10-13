@@ -60,6 +60,9 @@ export default function Login() {
                     value={username}
                     handleChange={(value) => setUsername(value)}
                     isSubmit={isSubmit}
+                    onKeyPress={({ key }) => {
+                        if (key === 'Enter') onClickLogin();
+                    }}
                 />
                 <PasswordInput
                     label="密碼"
@@ -67,6 +70,9 @@ export default function Login() {
                     value={password}
                     handleChange={(value) => setPassword(value)}
                     isSubmit={isSubmit}
+                    onKeyPress={({ key }) => {
+                        if (key === 'Enter') onClickLogin();
+                    }}
                 />
                 <Button onClick={onClickLogin} label="登入"></Button>
                 <Snackbar

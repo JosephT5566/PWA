@@ -48,6 +48,7 @@ function TextInput({
                 onChange={onValueChanged}
                 value={value}
                 placeholder={props.placeholder}
+                onKeyPress={props.onKeyPress}
             />
         </div>
     );

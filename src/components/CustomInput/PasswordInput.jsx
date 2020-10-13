@@ -57,6 +57,7 @@ function PasswordInput({ label, required = false, value = '', handleChange = nul
                 type={showPassword ? 'text' : 'password'}
                 onChange={onValueChanged}
                 value={value}
+                onKeyPress={props.onKeyPress}
             />
         </div>
     );
