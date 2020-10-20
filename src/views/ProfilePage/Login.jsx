@@ -16,10 +16,10 @@ import './styles.scss';
 
 export default function Login() {
     const [username, setUsername] = useState('joseph');
-    const [password, setPassword] = useState('123456789');
+    const [password, setPassword] = useState('123456');
     const [open, setOpen] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false);
-    const { onUsernameChange } = useContext(LoginContext);
+    const { onUserIDChange } = useContext(LoginContext);
     const navigation = useNavigation();
     const { t } = useTranslation();
 
@@ -31,18 +31,40 @@ export default function Login() {
         setOpen(false);
     };
 
+    const postData = async (url, data) => {
+        const response = await fetch(url, {
+            body: JSON.stringify(data),
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: new Headers({
+                // 'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+            }),
+            method: 'POST',
+            mode: 'cors',
+        });
+        return response;
+    };
+
     const onClickLogin = async () => {
+        let isLoggedin = false;
+        let userID = '';
         setIsSubmit(true);
         setTimeout(() => {
             setIsSubmit(false);
         }, 10);
         if (username === '' || password === '') return;
-        let isLoggedin = false;
-        isLoggedin = await mockService.login(username, password);
 
-        console.log('isLoggedin: ', isLoggedin);
+        // isLoggedin = await mockService.login(username, password);
+        let response = await postData('http://localhost:9527/login', { username: username, password: password });
+
+        if (response.status === 200) {
+            isLoggedin = true;
+            userID = await response.json();
+        }
+
         if (isLoggedin) {
-            onUsernameChange(username);
+            onUserIDChange(userID);
             navigation.goBack();
         } else {
             handleShowSnackbar();

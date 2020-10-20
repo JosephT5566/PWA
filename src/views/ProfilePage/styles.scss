@@ -70,3 +70,12 @@
         }
     }
 }
+
+.snackbar {
+    > div {
+        background-color: _palette(accent);
+        font-family: _font(family-heading);
+        font-size: 1em;
+        font-weight: _font(weight-heading);
+    }
+}
