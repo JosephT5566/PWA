@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, {
+    // useEffect,
+    useState,
+} from 'react';
 const Context = React.createContext(''); // default value
 
 export function LoginStore(props) {
-    const [username, setUsername] = useState('');
-    const onUsernameChange = (username) => setUsername(username);
-    const isLoggedin = username === '' ? false : true;
+    const [userID, setUserID] = useState('');
+    const onUserIDChange = (userID) => setUserID(userID);
+    const isLoggedin = userID === '' ? false : true;
 
-    return <Context.Provider value={{ username, isLoggedin, onUsernameChange }}>{props.children}</Context.Provider>;
+    // useEffect(() => {
+    //     console.log('isLoggedin: ', isLoggedin);
+    //     console.log('userID: ', userID);
+    // }, [userID]);
+
+    return <Context.Provider value={{ userID, isLoggedin, onUserIDChange }}>{props.children}</Context.Provider>;
 }
 
 export default Context;
