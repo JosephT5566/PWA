@@ -17,41 +17,32 @@ import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 import { mockService } from '../../apis/mock';
+import { BACKEND_URL, CARD_TYPE } from '../../assets/types';
 
 import './styles.scss';
 
-const INIT_CARD_INFO = {
-    cardName: '',
-    front: '',
-    back: '',
-    bank: '',
-    branch: '',
-    account: '',
-    pin: '',
-    paymentPassword: '',
-    onlineAccount: '',
-    onlinePassword: '',
-    securityCode: '',
-};
-
 export default function BankCard({ id }) {
-    const [cardInfo, setCardInfo] = useState(INIT_CARD_INFO);
+    const [card, setCard] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const [open, setOpen] = useState(false);
-    const { username } = useContext(LoginContext);
+    const { userID } = useContext(LoginContext);
     const { t } = useTranslation();
 
     useEffect(() => {
         async function getCardInfo() {
-            const _cardInfo = await mockService.fetchBankItem(username, id);
-            setCardInfo({ ..._cardInfo });
+            // const _cardInfo = await mockService.fetchBankItem(userID, id);
+            const response = await fetch(`${BACKEND_URL}/card/${id}`, { method: 'GET' });
+            if (response.status === 200) {
+                const _card = await response.json();
+                setCard({ ..._card });
+            }
         }
         getCardInfo();
-    }, [username, id]);
+    }, [userID, id]);
 
     useEffect(() => {
-        console.log('cardInfo', cardInfo);
-    }, [cardInfo]);
+        console.log('cardInfo: ', card);
+    }, [card]);
 
     const handleTooltipClose = () => {
         setOpen(false);
@@ -68,78 +59,116 @@ export default function BankCard({ id }) {
                     label={t('bank.bank')}
                     type={'text'}
                     required={true}
-                    value={cardInfo.bank}
-                    handleChange={(value) => setCardInfo({ ...cardInfo, bank: value })}
+                    value={card[CARD_TYPE.bank]}
+                    handleChange={(value) => setCard({ ...card, bank: value })}
                     isSubmit={isSubmit}
                 />
                 <TextInput
                     label={t('bank.branch')}
                     type={'text'}
                     required={true}
-                    value={cardInfo.branch}
-                    handleChange={(value) => setCardInfo({ ...cardInfo, branch: value })}
+                    value={card[CARD_TYPE.branch]}
+                    handleChange={(value) => setCard({ ...card, branch: value })}
                     isSubmit={isSubmit}
                 />
                 <TextInput
                     label={t('bank.account')}
                     type={'text'}
                     required={true}
-                    value={cardInfo.account}
-                    handleChange={(value) => setCardInfo({ ...cardInfo, account: value })}
+                    value={card[CARD_TYPE.account]}
+                    handleChange={(value) => setCard({ ...card, account: value })}
                     isSubmit={isSubmit}
                 />
                 <PasswordInput
                     label={t('bank.pin')}
                     required={true}
-                    value={cardInfo.pin}
-                    handleChange={(value) => setCardInfo({ ...cardInfo, pin: value })}
+                    value={card[CARD_TYPE.pin]}
+                    handleChange={(value) => setCard({ ...card, pin: value })}
                     isSubmit={isSubmit}
                 />
                 <PasswordInput
                     label={t('bank.payment-password')}
                     required={true}
-                    value={cardInfo.paymentPassword}
-                    handleChange={(value) => setCardInfo({ ...cardInfo, paymentPassword: value })}
+                    value={card[CARD_TYPE.paymentPsd]}
+                    handleChange={(value) => setCard({ ...card, paymentPassword: value })}
                     isSubmit={isSubmit}
                 />
                 <TextInput
                     label={t('bank.online-bank-account')}
                     type={'text'}
                     required={true}
-                    value={cardInfo.onlineAccount}
-                    handleChange={(value) => setCardInfo({ ...cardInfo, onlineAccount: value })}
+                    value={card[CARD_TYPE.onlineAccount]}
+                    handleChange={(value) => setCard({ ...card, onlineAccount: value })}
                     isSubmit={isSubmit}
                 />
                 <PasswordInput
                     label={t('bank.online-bank-password')}
                     required={true}
-                    value={cardInfo.onlinePassword}
-                    handleChange={(value) => setCardInfo({ ...cardInfo, onlinePassword: value })}
+                    value={card[CARD_TYPE.onlinePsd]}
+                    handleChange={(value) => setCard({ ...card, onlinePassword: value })}
                     isSubmit={isSubmit}
                 />
                 <PasswordInput
                     label={t('bank.security-code')}
                     required={true}
-                    value={cardInfo.securityCode}
-                    handleChange={(value) => setCardInfo({ ...cardInfo, securityCode: value })}
+                    value={card[CARD_TYPE.securityCode]}
+                    handleChange={(value) => setCard({ ...card, securityCode: value })}
                     isSubmit={isSubmit}
                 />
             </>
         );
     };
 
+    const isItemRequired = (item) => {
+        switch (item) {
+            case 'cardFrontImg':
+                return true;
+            case 'back':
+                return true;
+            case 'bank':
+                return true;
+            case 'branch':
+                return true;
+            case 'account':
+                return true;
+            case 'pin':
+                return true;
+            case 'paymentPassword':
+                return true;
+            case 'onlineAccount':
+                return true;
+            case 'onlinePassword':
+                return true;
+            case 'securityCode':
+                return true;
+            default:
+                return false;
+        }
+    };
+
     const isAllRequiredDataFilled = () => {
-        for (let item in cardInfo) {
-            if (cardInfo[item] === '' || cardInfo[item] === null) return false;
+        for (const item in card) {
+            if (isItemRequired(item)) {
+                if (card[item] === '') return false;
+            }
         }
         return true;
     };
 
-    const onSubmit = () => {
-        console.log(cardInfo);
+    const onSubmit = async () => {
+        console.log(card);
         setIsSubmit(true);
         if (isAllRequiredDataFilled()) {
-            // do something
+            console.log('do update');
+            // await mockService.updateBankItem(userID, id, card);
+            await fetch(`${BACKEND_URL}/card`, {
+                method: 'PUT',
+                body: JSON.stringify(card),
+                mode: 'cors',
+                headers: { 'Content-Type': 'application/json' },
+            });
+        } else {
+            console.log('do NOT update');
         }
         setTimeout(() => {
             setIsSubmit(false);
@@ -148,7 +177,7 @@ export default function BankCard({ id }) {
 
     return (
         <div className="ui container">
-            <ArrowBackTitle title={cardInfo.cardName === '' ? `Card ${id}` : cardInfo.cardName} />
+            <ArrowBackTitle title={card[CARD_TYPE.cardName] === '' ? `Card ${id}` : card[CARD_TYPE.cardName]} />
             <div className="container lv2">
                 <div className="alert">
                     <Alert variant="outlined" severity="warning">
@@ -189,9 +218,9 @@ export default function BankCard({ id }) {
                     className="photoupload"
                     title={t('bank.front')}
                     required={true}
-                    value={cardInfo.front}
+                    value={card[CARD_TYPE.cardFrontImg]}
                     handleChange={(picture) => {
-                        setCardInfo({ ...cardInfo, front: picture });
+                        setCard({ ...card, [CARD_TYPE.cardFrontImg]: picture });
                     }}
                     isSubmit={isSubmit}
                 />
@@ -199,9 +228,9 @@ export default function BankCard({ id }) {
                     className="photoupload"
                     title={t('bank.back')}
                     required={true}
-                    value={cardInfo.back}
+                    value={card[CARD_TYPE.cardBackImg]}
                     handleChange={(picture) => {
-                        setCardInfo({ ...cardInfo, back: picture });
+                        setCard({ ...card, [CARD_TYPE.cardBackImg]: picture });
                     }}
                     isSubmit={isSubmit}
                 />
