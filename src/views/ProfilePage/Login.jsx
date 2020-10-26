@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { NIL as UUID_NIL } from 'uuid';
 import LoginContext from '../../contexts/LoginContext';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from 'react-navi';
@@ -34,10 +35,7 @@ export default function Login() {
     const postData = async (url, data) => {
         const response = await fetch(url, {
             body: JSON.stringify(data),
-            cache: 'no-cache',
-            credentials: 'same-origin',
             headers: new Headers({
-                // 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
             }),
             method: 'POST',
@@ -59,8 +57,10 @@ export default function Login() {
         let response = await postData('http://localhost:9527/login', { username: username, password: password });
 
         if (response.status === 200) {
-            isLoggedin = true;
             userID = await response.json();
+            if (userID !== UUID_NIL) {
+                isLoggedin = true;
+            }
         }
 
         if (isLoggedin) {
