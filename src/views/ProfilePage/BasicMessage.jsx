@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import LoginContext from '../../contexts/LoginContext';
 
 import TextInput from '../../components/CustomInput/TextInput';
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
@@ -9,27 +10,29 @@ import Button from '../../components/Button';
 
 import { Alert, AlertTitle } from '@material-ui/lab';
 
+import { BACKEND_URL, USER_TYPE } from '../../assets/types';
 import './styles.scss';
 
-const init_data = {
-    email: '',
-    firstName: '',
-    lastName: '',
-    address: '',
-    postal: '',
-    county: '',
-    city: '',
-    country: '',
-    phone: '',
-    birthday: '',
-    frontPhoto: '',
-    backPhoto: '',
-};
-
 export default function BasicMessage() {
-    const [data, setData] = useState(init_data);
+    const [user, setUser] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
+    const { userID } = useContext(LoginContext);
     const { t } = useTranslation();
+
+    useEffect(() => {
+        const getUser = async () => {
+            const response = await fetch(`${BACKEND_URL}/users/${userID}`);
+            if (response.status === 200) {
+                const _user = await response.json();
+                setUser(_user);
+            }
+        };
+        getUser();
+    }, [userID]);
+
+    useEffect(() => {
+        console.log(user);
+    }, [user]);
 
     const renderInputs = () => {
         return (
@@ -38,8 +41,8 @@ export default function BasicMessage() {
                     autoComplete={'email'}
                     label={t('basic.email')}
                     type={'text'}
-                    value={data.email}
-                    handleChange={(value) => setData({ ...data, email: value })}
+                    value={user[USER_TYPE.email]}
+                    handleChange={(value) => setUser({ ...user, [USER_TYPE.email]: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -47,8 +50,8 @@ export default function BasicMessage() {
                     autoComplete={'given-name'}
                     label={t('basic.first-name')}
                     type={'text'}
-                    value={data.firstName}
-                    handleChange={(value) => setData({ ...data, firstName: value })}
+                    value={user[USER_TYPE.firstname]}
+                    handleChange={(value) => setUser({ ...user, [USER_TYPE.firstname]: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -56,8 +59,8 @@ export default function BasicMessage() {
                     autoComplete={'family-name'}
                     label={t('basic.last-name')}
                     type={'text'}
-                    value={data.lastName}
-                    handleChange={(value) => setData({ ...data, lastName: value })}
+                    value={user[USER_TYPE.lastname]}
+                    handleChange={(value) => setUser({ ...user, [USER_TYPE.lastname]: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -65,8 +68,8 @@ export default function BasicMessage() {
                     autoComplete={'street-address'}
                     label={t('basic.address')}
                     type={'text'}
-                    value={data.address}
-                    handleChange={(value) => setData({ ...data, address: value })}
+                    value={user[USER_TYPE.address]}
+                    handleChange={(value) => setUser({ ...user, [USER_TYPE.address]: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -74,8 +77,8 @@ export default function BasicMessage() {
                     autoComplete={'postal-code'}
                     label={t('basic.postal')}
                     type={'text'}
-                    value={data.postal}
-                    handleChange={(value) => setData({ ...data, postal: value })}
+                    value={user[USER_TYPE.postal]}
+                    handleChange={(value) => setUser({ ...user, [USER_TYPE.postal]: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -83,8 +86,8 @@ export default function BasicMessage() {
                     autoComplete={'address-level1'}
                     label={t('basic.county')}
                     type={'text'}
-                    value={data.county}
-                    handleChange={(value) => setData({ ...data, county: value })}
+                    value={user[USER_TYPE.county]}
+                    handleChange={(value) => setUser({ ...user, [USER_TYPE.county]: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -92,8 +95,8 @@ export default function BasicMessage() {
                     autoComplete={'address-level2'}
                     label={t('basic.city')}
                     type={'text'}
-                    value={data.city}
-                    handleChange={(value) => setData({ ...data, city: value })}
+                    value={user[USER_TYPE.city]}
+                    handleChange={(value) => setUser({ ...user, [USER_TYPE.city]: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -101,8 +104,8 @@ export default function BasicMessage() {
                     autoComplete={'country-name'}
                     label={t('basic.country')}
                     type={'text'}
-                    value={data.country}
-                    handleChange={(value) => setData({ ...data, country: value })}
+                    value={user[USER_TYPE.country]}
+                    handleChange={(value) => setUser({ ...user, [USER_TYPE.country]: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -110,8 +113,8 @@ export default function BasicMessage() {
                     autoComplete={'tel'}
                     label={t('basic.phone')}
                     type={'text'}
-                    value={data.phone}
-                    handleChange={(value) => setData({ ...data, phone: value })}
+                    value={user[USER_TYPE.phone]}
+                    handleChange={(value) => setUser({ ...user, [USER_TYPE.phone]: value })}
                     required={true}
                     isSubmit={isSubmit}
                 />
@@ -119,8 +122,8 @@ export default function BasicMessage() {
                     autoComplete={'bday'}
                     label={t('basic.birthday')}
                     type={'date'}
-                    value={data.birthday}
-                    handleChange={(value) => setData({ ...data, birthday: value })}
+                    value={user[USER_TYPE.birth]}
+                    handleChange={(value) => setUser({ ...user, [USER_TYPE.birth]: value })}
                     required={true}
                     isSubmit={isSubmit}
                     placeholder={'yyyy-mm-dd'}
@@ -130,17 +133,22 @@ export default function BasicMessage() {
     };
 
     const isAllRequiredDataFilled = () => {
-        for (let item in data) {
-            if (data[item] === '' || data[item] === null) return false;
+        for (let item in user) {
+            if (user[item] === '') return false;
         }
         return true;
     };
 
-    const onSubmit = () => {
-        console.log(data);
+    const onSubmit = async () => {
+        console.log(user);
         setIsSubmit(true);
         if (isAllRequiredDataFilled()) {
-            // do something
+            await fetch(`${BACKEND_URL}/users/${userID}`, {
+                method: 'PUT',
+                body: JSON.stringify(user),
+                mode: 'cors',
+                headers: { 'Content-Type': 'application/json' },
+            });
         }
         setTimeout(() => {
             setIsSubmit(false);
@@ -166,16 +174,16 @@ export default function BasicMessage() {
                     className="photoupload"
                     title={t('basic.front')}
                     required={true}
-                    value={data.frontPhoto}
-                    handleChange={(picture) => setData({ ...data, frontPhoto: picture })}
+                    value={user[USER_TYPE.govIDFrontImg]}
+                    handleChange={(picture) => setUser({ ...user, [USER_TYPE.govIDFrontImg]: picture })}
                     isSubmit={isSubmit}
                 />
                 <PhotoUpload
                     className="photoupload"
                     title={t('basic.back')}
                     required={true}
-                    value={data.backPhoto}
-                    handleChange={(picture) => setData({ ...data, backPhoto: picture })}
+                    value={user[USER_TYPE.govIDBackImg]}
+                    handleChange={(picture) => setUser({ ...user, [USER_TYPE.govIDBackImg]: picture })}
                     isSubmit={isSubmit}
                 />
                 <Button label={t('basic.submit')} onClick={onSubmit} />
