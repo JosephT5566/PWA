@@ -159,7 +159,6 @@ export default function BankCard({ id }) {
         console.log(card);
         setIsSubmit(true);
         if (isAllRequiredDataFilled()) {
-            console.log('do update');
             // await mockService.updateBankItem(userID, id, card);
             await fetch(`${BACKEND_URL}/card`, {
                 method: 'PUT',
@@ -167,8 +166,6 @@ export default function BankCard({ id }) {
                 mode: 'cors',
                 headers: { 'Content-Type': 'application/json' },
             });
-        } else {
-            console.log('do NOT update');
         }
         setTimeout(() => {
             setIsSubmit(false);

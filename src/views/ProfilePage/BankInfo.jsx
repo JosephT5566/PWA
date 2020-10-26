@@ -11,57 +11,72 @@ import AddCircle from '@material-ui/icons/AddCircle';
 import RemoveCircle from '@material-ui/icons/RemoveCircle';
 
 import { mockService } from '../../apis/mock';
+import { BACKEND_URL, CARD_TYPE } from '../../assets/types';
 
 import './styles.scss';
 
 export default function BankInfo() {
-    const [bankList, setBankList] = useState([]);
+    const [cards, setCards] = useState([]);
     const navigation = useNavigation();
     const { t } = useTranslation();
-    const { username } = useContext(LoginContext);
+    const { userID } = useContext(LoginContext);
     const currentURL = navigation.getCurrentValue().url.pathname;
 
     useEffect(() => {
-        async function getBankList() {
-            const _bankList = await mockService.fetchBankItems(username);
-            setBankList([..._bankList]);
+        async function getCards() {
+            // const _cards = await mockService.fetchBankItems(userID);
+            const response = await fetch(`${BACKEND_URL}/cards/${userID}`, { method: 'GET' });
+            if (response.status !== 200) return;
+            const _cards = await response.json();
+            setCards([..._cards]);
         }
-        getBankList();
-    }, [username]);
-
-    useEffect(() => {
-        console.log('bankList: ', bankList);
-    }, [bankList]);
+        getCards();
+    }, [userID]);
 
     const onClickAddCards = async () => {
-        await mockService.appendBankItem(username);
-        const _bankList = await mockService.fetchBankItems(username);
-        setBankList([..._bankList]);
+        // await mockService.appendBankItem(userID);
+        const responseAdd = await fetch(`${BACKEND_URL}/cards/${userID}`, { method: 'POST' });
+        if (responseAdd.status !== 200) return;
+
+        // const _cards = await mockService.fetchBankItems(userID);
+        console.log('still fetch data')
+        const responseGet = await fetch(`${BACKEND_URL}/cards/${userID}`, { method: 'GET' });
+        if (responseGet.status === 200) {
+            const _cards = await responseGet.json();
+            setCards([..._cards]);
+        }
     };
 
-    const onClickRemoveCards = async (index) => {
-        await mockService.removeBankItem(username, index);
-        const _bankList = await mockService.fetchBankItems(username);
-        setBankList([..._bankList]);
+    const onClickRemoveCards = async (cardID) => {
+        // await mockService.removeBankItem(userID, cardID);
+        const responseDel = await fetch(`${BACKEND_URL}/card/${cardID}`, { method: 'DELETE' });
+        if (responseDel.status !== 200) return;
+
+        // const _cards = await mockService.fetchBankItems(userID);
+        const responseGet = await fetch(`${BACKEND_URL}/cards/${userID}`, { method: 'GET' });
+        if (responseGet.status === 200) {
+            const _cards = await responseGet.json();
+            setCards([..._cards]);
+        }
     };
 
     const renderBankList = () => {
         const defaultImage = 'https://i.imgur.com/n24MrdT.gif';
         return (
             <>
-                {bankList.map((bankcard, index) => (
+                {cards.map((card, index) => (
                     <div key={index} className="bank-card-container">
                         <ImageCard
                             className="bank-card"
-                            label={bankcard.cardName !== '' ? bankcard.cardName : `Card ${index}`}
-                            image={bankcard.front !== '' ? bankcard.front : defaultImage}
+                            label={card[CARD_TYPE.cardName] !== '' ? card[CARD_TYPE.cardName] : `Card ${index}`}
+                            image={card[CARD_TYPE.cardFrontImg] !== '' ? card[CARD_TYPE.cardFrontImg] : defaultImage}
                             onClick={() => {
-                                navigation.navigate(`${currentURL}/${index}`);
+                                navigation.navigate(`${currentURL}/${card[CARD_TYPE.id]}`);
                             }}
                         />
                         <IconButton
                             className="icon remove active"
-                            onClick={async () => await onClickRemoveCards(index)}
+                            onClick={async () => await onClickRemoveCards(card[CARD_TYPE.id])}
                         >
                             <RemoveCircle />
                         </IconButton>
