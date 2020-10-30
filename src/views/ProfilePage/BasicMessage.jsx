@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import LoginContext from '../../contexts/LoginContext';
 
 import TextInput from '../../components/CustomInput/TextInput';
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
@@ -16,19 +15,18 @@ import './styles.scss';
 export default function BasicMessage() {
     const [user, setUser] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-    const { userID } = useContext(LoginContext);
     const { t } = useTranslation();
 
     useEffect(() => {
         const getUser = async () => {
-            const response = await fetch(`${BACKEND_URL}/users/${userID}`);
+            const response = await fetch(`${BACKEND_URL}/user/`, { credentials: 'include' });
             if (response.status === 200) {
                 const _user = await response.json();
                 setUser(_user);
             }
         };
         getUser();
-    }, [userID]);
+    }, []);
 
     useEffect(() => {
         console.log(user);
@@ -143,9 +141,10 @@ export default function BasicMessage() {
         console.log(user);
         setIsSubmit(true);
         if (isAllRequiredDataFilled()) {
-            await fetch(`${BACKEND_URL}/users/${userID}`, {
+            await fetch(`${BACKEND_URL}/user/`, {
                 method: 'PUT',
                 body: JSON.stringify(user),
+                credentials: 'include',
                 mode: 'cors',
                 headers: { 'Content-Type': 'application/json' },
             });

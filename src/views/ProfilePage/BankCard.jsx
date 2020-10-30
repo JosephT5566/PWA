@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import LoginContext from '../../contexts/LoginContext';
 
 import PasswordInput from '../../components/CustomInput/PasswordInput';
 import TextInput from '../../components/CustomInput/TextInput';
@@ -25,20 +24,19 @@ export default function BankCard({ id }) {
     const [card, setCard] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const [open, setOpen] = useState(false);
-    const { userID } = useContext(LoginContext);
     const { t } = useTranslation();
 
     useEffect(() => {
         async function getCardInfo() {
             // const _cardInfo = await mockService.fetchBankItem(userID, id);
-            const response = await fetch(`${BACKEND_URL}/card/${id}`, { method: 'GET' });
+            const response = await fetch(`${BACKEND_URL}/card/${id}`, { credentials: 'include', method: 'GET' });
             if (response.status === 200) {
                 const _card = await response.json();
                 setCard({ ..._card });
             }
         }
         getCardInfo();
-    }, [userID, id]);
+    }, [id]);
 
     useEffect(() => {
         console.log('cardInfo: ', card);
@@ -160,9 +158,10 @@ export default function BankCard({ id }) {
         setIsSubmit(true);
         if (isAllRequiredDataFilled()) {
             // await mockService.updateBankItem(userID, id, card);
-            await fetch(`${BACKEND_URL}/card`, {
+            await fetch(`${BACKEND_URL}/card/${id}`, {
                 method: 'PUT',
                 body: JSON.stringify(card),
+                credentials: 'include',
                 mode: 'cors',
                 headers: { 'Content-Type': 'application/json' },
             });
@@ -174,7 +173,7 @@ export default function BankCard({ id }) {
 
     return (
         <div className="ui container">
-            <ArrowBackTitle title={card[CARD_TYPE.cardName] === '' ? `Card ${id}` : card[CARD_TYPE.cardName]} />
+            <ArrowBackTitle title={card[CARD_TYPE.cardName] === '' ? `Card` : card[CARD_TYPE.cardName]} />
             <div className="container lv2">
                 <div className="alert">
                     <Alert variant="outlined" severity="warning">

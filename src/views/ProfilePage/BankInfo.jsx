@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from 'react-navi';
-import LoginContext from '../../contexts/LoginContext';
 
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 import ImageCard from '../../components/Card/ImageCard';
@@ -19,28 +18,27 @@ export default function BankInfo() {
     const [cards, setCards] = useState([]);
     const navigation = useNavigation();
     const { t } = useTranslation();
-    const { userID } = useContext(LoginContext);
     const currentURL = navigation.getCurrentValue().url.pathname;
 
     useEffect(() => {
         async function getCards() {
             // const _cards = await mockService.fetchBankItems(userID);
-            const response = await fetch(`${BACKEND_URL}/cards/${userID}`, { method: 'GET' });
+            const response = await fetch(`${BACKEND_URL}/cards/user`, { method: 'GET', credentials: 'include' });
             if (response.status !== 200) return;
             const _cards = await response.json();
             setCards([..._cards]);
         }
         getCards();
-    }, [userID]);
+    }, []);
 
     const onClickAddCards = async () => {
         // await mockService.appendBankItem(userID);
-        const responseAdd = await fetch(`${BACKEND_URL}/cards/${userID}`, { method: 'POST' });
+        const responseAdd = await fetch(`${BACKEND_URL}/card`, { method: 'POST', credentials: 'include' });
         if (responseAdd.status !== 200) return;
 
         // const _cards = await mockService.fetchBankItems(userID);
-        console.log('still fetch data')
-        const responseGet = await fetch(`${BACKEND_URL}/cards/${userID}`, { method: 'GET' });
+        console.log('still fetch data');
+        const responseGet = await fetch(`${BACKEND_URL}/cards/user`, { method: 'GET', credentials: 'include' });
         if (responseGet.status === 200) {
             const _cards = await responseGet.json();
             setCards([..._cards]);
@@ -49,11 +47,11 @@ export default function BankInfo() {
 
     const onClickRemoveCards = async (cardID) => {
         // await mockService.removeBankItem(userID, cardID);
-        const responseDel = await fetch(`${BACKEND_URL}/card/${cardID}`, { method: 'DELETE' });
+        const responseDel = await fetch(`${BACKEND_URL}/card/${cardID}`, { method: 'DELETE', credentials: 'include' });
         if (responseDel.status !== 200) return;
 
         // const _cards = await mockService.fetchBankItems(userID);
-        const responseGet = await fetch(`${BACKEND_URL}/cards/${userID}`, { method: 'GET' });
+        const responseGet = await fetch(`${BACKEND_URL}/cards/user`, { method: 'GET', credentials: 'include' });
         if (responseGet.status === 200) {
             const _cards = await responseGet.json();
             setCards([..._cards]);

@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { NIL as UUID_NIL } from 'uuid';
 import LoginContext from '../../contexts/LoginContext';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from 'react-navi';
@@ -20,7 +19,7 @@ export default function Login() {
     const [password, setPassword] = useState('123456');
     const [open, setOpen] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false);
-    const { onUserIDChange } = useContext(LoginContext);
+    const { onJWTChange } = useContext(LoginContext);
     const navigation = useNavigation();
     const { t } = useTranslation();
 
@@ -35,6 +34,7 @@ export default function Login() {
     const postData = async (url, data) => {
         const response = await fetch(url, {
             body: JSON.stringify(data),
+            credentials: 'include',
             headers: new Headers({
                 'Content-Type': 'application/json',
             }),
@@ -46,7 +46,7 @@ export default function Login() {
 
     const onClickLogin = async () => {
         let isLoggedin = false;
-        let userID = '';
+        let jwt = null;
         setIsSubmit(true);
         setTimeout(() => {
             setIsSubmit(false);
@@ -57,14 +57,12 @@ export default function Login() {
         let response = await postData('http://localhost:9527/login', { username: username, password: password });
 
         if (response.status === 200) {
-            userID = await response.json();
-            if (userID !== UUID_NIL) {
-                isLoggedin = true;
-            }
+            jwt = await response.json();
+            isLoggedin = true;
         }
 
         if (isLoggedin) {
-            onUserIDChange(userID);
+            onJWTChange(jwt);
             navigation.goBack();
         } else {
             handleShowSnackbar();

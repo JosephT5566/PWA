@@ -10,7 +10,7 @@ import Menu from '../../components/Menu';
 import './styles.scss';
 
 export default function ProfilePage() {
-    const { isLoggedin, onUsernameChange } = useContext(LoginContext);
+    const { isLoggedin, onJWTChange } = useContext(LoginContext);
     const navigation = useNavigation();
     const { t } = useTranslation();
     const currentURL = navigation.getCurrentValue().url.pathname;
@@ -62,8 +62,10 @@ export default function ProfilePage() {
 
     const logoutItems = [
         {
-            label: 'log out',
-            onClick: () => onUsernameChange(''),
+            label: '登出',
+            onClick: () => {
+                onJWTChange('');
+            },
         },
     ];
 
