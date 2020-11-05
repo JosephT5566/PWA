@@ -1,7 +1,7 @@
 @import 'assets/styles/styles';
 
 .footer {
-    background-color: _palette(bg-alt);
+    background-color: _palette(border);
     min-height: _size(footer-height);
     @include breakpoint('<=large') {
         position: absolute;
