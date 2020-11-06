@@ -7,10 +7,12 @@ import LoginContext from '../../contexts/LoginContext';
 import Title from '../../components/Title/Title';
 import Menu from '../../components/Menu';
 
+import { logout } from '../../apis/LoginAPI';
+
 import './styles.scss';
 
 export default function ProfilePage() {
-    const { isLoggedin, onJWTChange } = useContext(LoginContext);
+    const { isLoggedin } = useContext(LoginContext);
     const navigation = useNavigation();
     const { t } = useTranslation();
     const currentURL = navigation.getCurrentValue().url.pathname;
@@ -63,8 +65,9 @@ export default function ProfilePage() {
     const logoutItems = [
         {
             label: '登出',
-            onClick: () => {
-                onJWTChange('');
+            onClick: async () => {
+                const response = await logout();
+                if (response.status === 200) navigation.refresh();
             },
         },
     ];

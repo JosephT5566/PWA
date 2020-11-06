@@ -16,7 +16,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 import { mockService } from '../../apis/mock';
-import { BACKEND_URL, CARD_TYPE } from '../../assets/types';
+import { CARD_TYPE } from '../../assets/types';
+import { getCard, updateCard } from '../../apis/CardAPI';
 
 import './styles.scss';
 
@@ -29,7 +30,7 @@ export default function BankCard({ id }) {
     useEffect(() => {
         async function getCardInfo() {
             // const _cardInfo = await mockService.fetchBankItem(userID, id);
-            const response = await fetch(`${BACKEND_URL}/card/${id}`, { credentials: 'include', method: 'GET' });
+            const response = await getCard(id);
             if (response.status === 200) {
                 const _card = await response.json();
                 setCard({ ..._card });
@@ -158,13 +159,7 @@ export default function BankCard({ id }) {
         setIsSubmit(true);
         if (isAllRequiredDataFilled()) {
             // await mockService.updateBankItem(userID, id, card);
-            await fetch(`${BACKEND_URL}/card/${id}`, {
-                method: 'PUT',
-                body: JSON.stringify(card),
-                credentials: 'include',
-                mode: 'cors',
-                headers: { 'Content-Type': 'application/json' },
-            });
+            await updateCard(id, card);
         }
         setTimeout(() => {
             setIsSubmit(false);

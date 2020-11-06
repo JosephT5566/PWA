@@ -1,5 +1,7 @@
 export const BACKEND_URL = 'http://localhost:9527';
 
+export const KEY = 'secret';
+
 export const DEFAULT_IMAGE = '';
 
 export const USER_TYPE = {

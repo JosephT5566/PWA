@@ -11,6 +11,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 
 import { mockService } from '../../apis/mock';
+import { login } from '../../apis/LoginAPI';
 
 import './styles.scss';
 
@@ -31,19 +32,6 @@ export default function Login() {
         setOpen(false);
     };
 
-    const postData = async (url, data) => {
-        const response = await fetch(url, {
-            body: JSON.stringify(data),
-            credentials: 'include',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-            }),
-            method: 'POST',
-            mode: 'cors',
-        });
-        return response;
-    };
-
     const onClickLogin = async () => {
         let isLoggedin = false;
         let jwt = null;
@@ -54,7 +42,7 @@ export default function Login() {
         if (username === '' || password === '') return;
 
         // isLoggedin = await mockService.login(username, password);
-        let response = await postData('http://localhost:9527/login', { username: username, password: password });
+        let response = await login({ username: username, password: password });
 
         if (response.status === 200) {
             jwt = await response.json();

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from 'react-navi';
+import JWT from 'jsonwebtoken';
 
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 import ImageCard from '../../components/Card/ImageCard';
@@ -9,52 +10,47 @@ import IconButton from '@material-ui/core/IconButton';
 import AddCircle from '@material-ui/icons/AddCircle';
 import RemoveCircle from '@material-ui/icons/RemoveCircle';
 
+import LoginContext from '../../contexts/LoginContext';
 import { mockService } from '../../apis/mock';
-import { BACKEND_URL, CARD_TYPE } from '../../assets/types';
+import { CARD_TYPE, KEY } from '../../assets/types';
+import { getAllCardsOfUser, createCard, deleteCard } from '../../apis/CardAPI';
 
 import './styles.scss';
 
 export default function BankInfo() {
     const [cards, setCards] = useState([]);
+    const { jwt } = useContext(LoginContext);
     const navigation = useNavigation();
     const { t } = useTranslation();
     const currentURL = navigation.getCurrentValue().url.pathname;
 
-    useEffect(() => {
-        async function getCards() {
-            // const _cards = await mockService.fetchBankItems(userID);
-            const response = await fetch(`${BACKEND_URL}/cards/user`, { method: 'GET', credentials: 'include' });
-            if (response.status !== 200) return;
+    const fetchCards = async () => {
+        const decode = JWT.verify(jwt, KEY);
+        const response = await getAllCardsOfUser(decode.userID);
+        if (response.status === 200) {
             const _cards = await response.json();
             setCards([..._cards]);
         }
-        getCards();
+    };
+
+    useEffect(() => {
+        fetchCards();
     }, []);
 
     const onClickAddCards = async () => {
         // await mockService.appendBankItem(userID);
-        const responseAdd = await fetch(`${BACKEND_URL}/card`, { method: 'POST', credentials: 'include' });
-        if (responseAdd.status !== 200) return;
-
-        // const _cards = await mockService.fetchBankItems(userID);
-        console.log('still fetch data');
-        const responseGet = await fetch(`${BACKEND_URL}/cards/user`, { method: 'GET', credentials: 'include' });
-        if (responseGet.status === 200) {
-            const _cards = await responseGet.json();
-            setCards([..._cards]);
+        const decode = JWT.verify(jwt, KEY);
+        const responseAdd = await createCard({ userID: decode.userID });
+        if (responseAdd.status === 200) {
+            await fetchCards();
         }
     };
 
     const onClickRemoveCards = async (cardID) => {
         // await mockService.removeBankItem(userID, cardID);
-        const responseDel = await fetch(`${BACKEND_URL}/card/${cardID}`, { method: 'DELETE', credentials: 'include' });
-        if (responseDel.status !== 200) return;
-
-        // const _cards = await mockService.fetchBankItems(userID);
-        const responseGet = await fetch(`${BACKEND_URL}/cards/user`, { method: 'GET', credentials: 'include' });
-        if (responseGet.status === 200) {
-            const _cards = await responseGet.json();
-            setCards([..._cards]);
+        const responseDel = await deleteCard(cardID);
+        if (responseDel.status === 200) {
+            await fetchCards();
         }
     };
 

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import JWT from 'jsonwebtoken';
+import { KEY } from 'assets/types';
+
 const Context = React.createContext(''); // default value
 
 export function LoginStore(props) {
@@ -15,7 +17,7 @@ export function LoginStore(props) {
     useEffect(() => {
         console.log('jwt is set');
         try {
-            JWT.verify(jwt, 'secret');
+            JWT.verify(jwt, KEY);
             setIsLoggenin(true);
         } catch (error) {
             setIsLoggenin(false);

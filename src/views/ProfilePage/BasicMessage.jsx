@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import JWT from 'jsonwebtoken';
 
+import LoginContext from '../../contexts/LoginContext';
 import TextInput from '../../components/CustomInput/TextInput';
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 import PhotoUpload from '../../components/PhotoUpload';
@@ -9,23 +11,27 @@ import Button from '../../components/Button';
 
 import { Alert, AlertTitle } from '@material-ui/lab';
 
-import { BACKEND_URL, USER_TYPE } from '../../assets/types';
+import { USER_TYPE, KEY } from '../../assets/types';
+import { getUser, updateUser } from '../../apis/UserAPI';
 import './styles.scss';
 
 export default function BasicMessage() {
     const [user, setUser] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
+    const { jwt } = useContext(LoginContext);
     const { t } = useTranslation();
 
+    const fetchUser = async () => {
+        const decode = JWT.verify(jwt, KEY);
+        const response = await getUser(decode.userID);
+        if (response.status === 200) {
+            const _user = await response.json();
+            setUser(_user);
+        }
+    };
+
     useEffect(() => {
-        const getUser = async () => {
-            const response = await fetch(`${BACKEND_URL}/user/`, { credentials: 'include' });
-            if (response.status === 200) {
-                const _user = await response.json();
-                setUser(_user);
-            }
-        };
-        getUser();
+        fetchUser();
     }, []);
 
     useEffect(() => {
@@ -141,13 +147,7 @@ export default function BasicMessage() {
         console.log(user);
         setIsSubmit(true);
         if (isAllRequiredDataFilled()) {
-            await fetch(`${BACKEND_URL}/user/`, {
-                method: 'PUT',
-                body: JSON.stringify(user),
-                credentials: 'include',
-                mode: 'cors',
-                headers: { 'Content-Type': 'application/json' },
-            });
+            await updateUser(user[USER_TYPE.id], user);
         }
         setTimeout(() => {
             setIsSubmit(false);
