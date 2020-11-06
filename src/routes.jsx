@@ -40,16 +40,15 @@ const routes = mount({
                 : redirect('pwa/data')
         ),
     }),
-    '/assistant': route(({ context }) => {
-        context.isAuthenticated();
-        return {
-            title: `Assistant - ${appName}`,
-            getView: () =>
-                import(
-                    /*webpackChunkName: "AssistantPage"*/
-                    './views/AssistantPage'
-                ),
-        };
+    '/assistant': route({
+        title: `Assistant - ${appName}`,
+        getView: ({ context }) => {
+            context.isAuthenticated();
+            return import(
+                /*webpackChunkName: "AssistantPage"*/
+                './views/AssistantPage'
+            );
+        },
     }),
     '/profile': mount({
         '/': map(({ context }) => {
