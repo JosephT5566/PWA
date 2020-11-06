@@ -22,8 +22,15 @@ export const createUser = async (data) => {
     return response;
 };
 
-export const updateUser = async (userID) => {
-    const response = await fetch(`${BACKEND_URL}/users/${userID}`, { method: 'PUT', credentials: 'include' });
+export const updateUser = async (userID, data) => {
+    const response = await fetch(`${BACKEND_URL}/users/${userID}`, {
+        body: JSON.stringify(data),
+        headers: new Headers({
+            'Content-Type': 'application/json',
+        }),
+        method: 'PUT',
+        credentials: 'include',
+    });
     return response;
 };
 

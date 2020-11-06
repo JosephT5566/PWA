@@ -27,8 +27,15 @@ export const createCard = async (data) => {
     return response;
 };
 
-export const updateCard = async (cardID) => {
-    const response = await fetch(`${BACKEND_URL}/cards/${cardID}`, { method: 'PUT', credentials: 'include' });
+export const updateCard = async (cardID, data) => {
+    const response = await fetch(`${BACKEND_URL}/cards/${cardID}`, {
+        body: JSON.stringify(data),
+        headers: new Headers({
+            'Content-Type': 'application/json',
+        }),
+        method: 'PUT',
+        credentials: 'include',
+    });
     return response;
 };
 
