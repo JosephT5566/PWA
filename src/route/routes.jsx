@@ -1,8 +1,8 @@
 import { mount, route, redirect, map } from 'navi';
 import React from 'react';
 
-import Plot from './views/DataPage/Plot';
-import BankCard from './views/ProfilePage/BankCard';
+import Plot from '../views/DataPage/Plot';
+import BankCard from '../views/ProfilePage/BankCard';
 
 const appName = 'PWA';
 
@@ -13,7 +13,7 @@ const routes = mount({
             context.isAuthenticated();
             return import(
                 /*webpackChunkName: "MainPage"*/
-                './views/MainPage'
+                '../views/MainPage'
             );
         },
     }),
@@ -24,7 +24,7 @@ const routes = mount({
                 context.isAuthenticated();
                 return import(
                     /*webpackChunkName: "DataPage"*/
-                    './views/DataPage'
+                    '../views/DataPage'
                 );
             },
         }),
@@ -46,7 +46,7 @@ const routes = mount({
             context.isAuthenticated();
             return import(
                 /*webpackChunkName: "AssistantPage"*/
-                './views/AssistantPage'
+                '../views/AssistantPage'
             );
         },
     }),
@@ -58,7 +58,7 @@ const routes = mount({
                 getView: () =>
                     import(
                         /*webpackChunkName: "ProfilePage"*/
-                        './views/ProfilePage'
+                        '../views/ProfilePage'
                     ),
             });
         }),
@@ -66,7 +66,7 @@ const routes = mount({
             context.isAuthenticated()
                 ? route({
                       title: `Profile/Basic Message - ${appName}`,
-                      getView: () => import('./views/ProfilePage/BasicMessage'),
+                      getView: () => import('../views/ProfilePage/BasicMessage'),
                   })
                 : redirect('/pwa/profile')
         ),
@@ -78,7 +78,7 @@ const routes = mount({
                           getView: () =>
                               import(
                                   /*webpackChunkName: "BankInfo"*/
-                                  './views/ProfilePage/BankInfo'
+                                  '../views/ProfilePage/BankInfo'
                               ),
                       })
                     : redirect('/pwa/profile')
@@ -96,19 +96,19 @@ const routes = mount({
         }),
         '/doc': route({
             title: `Profile/Documents - ${appName}`,
-            getView: () => import('./views/ProfilePage/Documents'),
+            getView: () => import('../views/ProfilePage/Documents'),
         }),
         '/about': route({
             title: `Profile/About Us - ${appName}`,
-            getView: () => import('./views/ProfilePage/About'),
+            getView: () => import('../views/ProfilePage/About'),
         }),
         '/language': route({
             title: `Profile/Language - ${appName}`,
-            getView: () => import('./views/ProfilePage/Language'),
+            getView: () => import('../views/ProfilePage/Language'),
         }),
         '/login': route({
             title: `Profile/Log in - ${appName}`,
-            getView: () => import('./views/ProfilePage/Login'),
+            getView: () => import('../views/ProfilePage/Login'),
         }),
     }),
 });
