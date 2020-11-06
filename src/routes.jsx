@@ -1,4 +1,4 @@
-import { mount, route } from 'navi';
+import { mount, route, redirect, map } from 'navi';
 import React from 'react';
 
 import Plot from './views/DataPage/Plot';
@@ -9,64 +9,91 @@ const appName = 'PWA';
 const routes = mount({
     '/': route({
         title: `Home - ${appName}`,
-        getView: () =>
-            import(
+        getView: ({ context }) => {
+            context.isAuthenticated();
+            return import(
                 /*webpackChunkName: "MainPage"*/
                 './views/MainPage'
-            ),
+            );
+        },
     }),
     '/data': mount({
         '/': route({
             title: `Data - ${appName}`,
-            getView: () =>
-                import(
+            getView: ({ context }) => {
+                context.isAuthenticated();
+                return import(
                     /*webpackChunkName: "DataPage"*/
                     './views/DataPage'
-                ),
+                );
+            },
         }),
-        '/:id': route((req) => {
-            let id = req.params.id;
-            return {
-                view: <Plot id={id} />,
-            };
-        }),
+        '/:id': map(({ context }) =>
+            context.isAuthenticated()
+                ? route((request) => {
+                      let id = request.params.id;
+                      console.log(id);
+                      return {
+                          view: <Plot id={id} />,
+                      };
+                  })
+                : redirect('pwa/data')
+        ),
     }),
-    '/assistant': route({
-        title: `Assistant - ${appName}`,
-        getView: () =>
-            import(
-                /*webpackChunkName: "AssistantPage"*/
-                './views/AssistantPage'
-            ),
-    }),
-    '/profile': mount({
-        '/': route({
-            title: `Profile - ${appName}`,
+    '/assistant': route(({ context }) => {
+        context.isAuthenticated();
+        return {
+            title: `Assistant - ${appName}`,
             getView: () =>
                 import(
-                    /*webpackChunkName: "ProfilePage"*/
-                    './views/ProfilePage'
+                    /*webpackChunkName: "AssistantPage"*/
+                    './views/AssistantPage'
                 ),
-        }),
-        '/basic': route({
-            title: `Profile/Basic Message - ${appName}`,
-            getView: () => import('./views/ProfilePage/BasicMessage'),
-        }),
-        '/bank': mount({
-            '/': route({
-                title: `Profile/Bank Info - ${appName}`,
+        };
+    }),
+    '/profile': mount({
+        '/': map(({ context }) => {
+            context.isAuthenticated();
+            return route({
+                title: `Profile - ${appName}`,
                 getView: () =>
                     import(
-                        /*webpackChunkName: "BankInfo"*/
-                        './views/ProfilePage/BankInfo'
+                        /*webpackChunkName: "ProfilePage"*/
+                        './views/ProfilePage'
                     ),
-            }),
-            '/:id': route((req) => {
-                let id = req.params.id;
-                return {
-                    view: <BankCard id={id} />,
-                };
-            }),
+            });
+        }),
+        '/basic': map(({ context }) =>
+            context.isAuthenticated()
+                ? route({
+                      title: `Profile/Basic Message - ${appName}`,
+                      getView: () => import('./views/ProfilePage/BasicMessage'),
+                  })
+                : redirect('/pwa/profile')
+        ),
+        '/bank': mount({
+            '/': map(({ context }) =>
+                context.isAuthenticated()
+                    ? route({
+                          title: `Profile/Bank Info - ${appName}`,
+                          getView: () =>
+                              import(
+                                  /*webpackChunkName: "BankInfo"*/
+                                  './views/ProfilePage/BankInfo'
+                              ),
+                      })
+                    : redirect('/pwa/profile')
+            ),
+            '/:id': map(({ context }) =>
+                context.isAuthenticated()
+                    ? route((req) => {
+                          let id = req.params.id;
+                          return {
+                              view: <BankCard id={id} />,
+                          };
+                      })
+                    : redirect('/pwa/profile')
+            ),
         }),
         '/doc': route({
             title: `Profile/Documents - ${appName}`,
