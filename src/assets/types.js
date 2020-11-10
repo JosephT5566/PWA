@@ -20,6 +20,9 @@ export const USER_TYPE = {
     birth: 'birth',
     govIDFrontImg: 'govIDFrontImg',
     govIDBackImg: 'govIDBackImg',
+    historyCon: 'historyCon',
+    intelliCon: 'intelliCon',
+    arbitrageCon: 'arbitrageCon',
 };
 
 export const CARD_TYPE = {
