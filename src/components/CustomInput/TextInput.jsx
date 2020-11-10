@@ -47,8 +47,7 @@ function TextInput({
                 autoComplete={autoComplete}
                 onChange={onValueChanged}
                 value={value}
-                placeholder={props.placeholder}
-                onKeyPress={props.onKeyPress}
+                {...props}
             />
         </div>
     );

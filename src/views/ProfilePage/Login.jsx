@@ -33,8 +33,8 @@ export default function Login() {
     };
 
     const onClickLogin = async () => {
-        let isLoggedin = false;
         let jwt = null;
+
         setIsSubmit(true);
         setTimeout(() => {
             setIsSubmit(false);
@@ -42,19 +42,15 @@ export default function Login() {
         if (username === '' || password === '') return;
 
         // isLoggedin = await mockService.login(username, password);
-        let response = await login({ username: username, password: password });
-
+        const response = await login({ username: username, password: password });
         if (response.status === 200) {
             jwt = await response.json();
-            isLoggedin = true;
-        }
-
-        if (isLoggedin) {
             onJWTChange(jwt);
+
             navigation.goBack();
-        } else {
-            handleShowSnackbar();
+            return;
         }
+        handleShowSnackbar();
     };
 
     return (

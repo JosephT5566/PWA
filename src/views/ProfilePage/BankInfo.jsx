@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from 'react-navi';
-import JWT from 'jsonwebtoken';
 
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 import ImageCard from '../../components/Card/ImageCard';
@@ -10,23 +9,22 @@ import IconButton from '@material-ui/core/IconButton';
 import AddCircle from '@material-ui/icons/AddCircle';
 import RemoveCircle from '@material-ui/icons/RemoveCircle';
 
-import LoginContext from '../../contexts/LoginContext';
+import UserContext from '../../contexts/UserContext';
 import { mockService } from '../../apis/mock';
-import { CARD_TYPE, KEY } from '../../assets/types';
+import { USER_TYPE, CARD_TYPE } from '../../assets/types';
 import { getAllCardsOfUser, createCard, deleteCard } from '../../apis/CardAPI';
 
 import './styles.scss';
 
 export default function BankInfo() {
     const [cards, setCards] = useState([]);
-    const { jwt } = useContext(LoginContext);
+    const { user } = useContext(UserContext);
     const navigation = useNavigation();
     const { t } = useTranslation();
     const currentURL = navigation.getCurrentValue().url.pathname;
 
     const fetchCards = async () => {
-        const decode = JWT.verify(jwt, KEY);
-        const response = await getAllCardsOfUser(decode.userID);
+        const response = await getAllCardsOfUser(user[USER_TYPE.id]);
         if (response.status === 200) {
             const _cards = await response.json();
             setCards([..._cards]);
@@ -39,18 +37,21 @@ export default function BankInfo() {
 
     const onClickAddCards = async () => {
         // await mockService.appendBankItem(userID);
-        const decode = JWT.verify(jwt, KEY);
-        const responseAdd = await createCard({ userID: decode.userID });
-        if (responseAdd.status === 200) {
-            await fetchCards();
+        if (window.confirm('You sure to add new card?')) {
+            const responseAdd = await createCard({ userID: user[USER_TYPE.id] });
+            if (responseAdd.status === 200) {
+                await fetchCards();
+            }
         }
     };
 
     const onClickRemoveCards = async (cardID) => {
         // await mockService.removeBankItem(userID, cardID);
-        const responseDel = await deleteCard(cardID);
-        if (responseDel.status === 200) {
-            await fetchCards();
+        if (window.confirm('You sure to delete this card?')) {
+            const responseDel = await deleteCard(cardID);
+            if (responseDel.status === 200) {
+                await fetchCards();
+            }
         }
     };
 

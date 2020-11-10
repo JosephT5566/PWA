@@ -10,7 +10,6 @@ const Context = React.createContext(''); // default value
 export function UserStore(props) {
     const { jwt, isLoggedin } = useContext(LoginContext);
     const [user, setUser] = useState({});
-    const onUserChange = (user) => setUser(user);
 
     const fetchUser = async () => {
         const userID = JWT.verify(jwt, KEY).userID;
