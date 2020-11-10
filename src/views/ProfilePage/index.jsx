@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigation } from 'react-navi';
 import { useTranslation } from 'react-i18next';
+import Cookie from 'js-cookie';
 
 import LoginContext from '../../contexts/LoginContext';
 
@@ -66,8 +67,16 @@ export default function ProfilePage() {
         {
             label: '登出',
             onClick: async () => {
-                const response = await logout();
-                if (response.status === 200) navigation.refresh();
+                try {
+                    const response = await logout();
+                    if (response.status === 200) {
+                        navigation.refresh();
+                    }
+                } catch (error) {
+                    console.log(error.message);
+                    Cookie.set('jwt', '');
+                    navigation.refresh();
+                }
             },
         },
     ];
