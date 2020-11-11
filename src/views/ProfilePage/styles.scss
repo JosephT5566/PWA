@@ -25,7 +25,7 @@
     }
 
     .bank-list-container {
-        border-radius: _size(border-radius);
+        border-radius: _size(border-radius-block);
         border: solid 1px transparentize(_palette(fg-bold), 0.75);
         position: relative;
         display: flex;
