@@ -9,13 +9,23 @@ import IconButton from '@material-ui/core/IconButton';
 
 import './styles.scss';
 
-export default function PhotoUpload({ className, title, required = false, value = '', handleChange = null, isSubmit }) {
+export default function PhotoUpload({
+    className,
+    title,
+    required = false,
+    value = '',
+    handleChange = null,
+    isSubmit,
+    disable = false,
+    direction = 'horizontal', // horizontal | straight
+}) {
     const [active, setActive] = useState(value === '' ? '' : 'active');
     const [error, setError] = useState('');
     const { t } = useTranslation();
     const inputRef = useRef(null);
     const imageRef = useRef(null);
     const requiredMark = required ? '*' : '';
+    const disableClass = disable ? 'disable' : '';
 
     // the FileList of <input/> is readonly
     const onFilesChange = () => {
@@ -53,12 +63,26 @@ export default function PhotoUpload({ className, title, required = false, value 
         }
     }, [isSubmit, required, value, setError]);
 
+    const openImage = (data) => {
+        // console.log(data);
+        var image = new Image();
+        image.src = data;
+
+        if (data.includes('http')) {
+            window.open(data);
+        } else {
+            var w = window.open('');
+            w.document.write(image.outerHTML);
+            w.document.close();
+        }
+    };
+
     return (
         <div id="photo-upload" className={className}>
             <h4 className={`title ${error}`}>{`${title} ${requiredMark}`}</h4>
             <Card className={`card-outer ${error}`} variant="outlined">
                 <Card className="card-inner" variant="outlined">
-                    <div className="content">
+                    <div className={`content ${direction}`}>
                         <CardActionArea
                             className={`update-action ${active}`}
                             onClick={() => {
@@ -72,8 +96,8 @@ export default function PhotoUpload({ className, title, required = false, value 
                             </div>
                         </CardActionArea>
                         <div className={`ready-action ${active}`}>
-                            <img src="" ref={imageRef} alt="" />
-                            <IconButton className="delete-icon" onClick={onDeleteImage}>
+                            <img src="" ref={imageRef} alt="" onClick={() => openImage(imageRef.current.src)} />
+                            <IconButton className={`delete-icon ${disableClass}`} onClick={onDeleteImage}>
                                 <DeleteIcon />
                             </IconButton>
                         </div>
