@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import JWT from 'jsonwebtoken';
 
 import Title from '../../components/Title/Title';
 import NewsCard from '../../components/Card/NewsCard';
@@ -9,7 +8,6 @@ import ImageCard from '../../components/Card/ImageCard';
 import VideoCard from '../../components/Card/VideoCard';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 
 import LoginContext from '../../contexts/LoginContext';
@@ -27,20 +25,6 @@ const useStyles = makeStyles((theme) => ({
     content: {
         padding: '10px 0',
     },
-    content2: {
-        padding: '10px 0',
-        height: '20em',
-    },
-    title: {
-        display: 'flex',
-        flexDirection: 'column',
-        [theme.breakpoints.up('lg')]: {
-            alignItems: 'left',
-        },
-        [theme.breakpoints.down('md')]: {
-            alignItems: 'center',
-        },
-    },
 }));
 
 export default function MainPage() {
@@ -52,10 +36,10 @@ export default function MainPage() {
     const renderWelcomeBlock = () => {
         let username = '';
         if (isLoggedin) {
-            username = user[USER_TYPE.username].toUpperCase();
+            username = user[USER_TYPE.username] ? user[USER_TYPE.username].toUpperCase() : user[USER_TYPE.username];
             return (
                 <>
-                    {/* <Grid className={classes.content} container spacing={3} justify={'center'}>
+                    {/* <Grid className={classes.content} container spacing={3} justitofy={'center'}>
                         <Grid className={classes.gridItem} item xs={12}>
                             <InfoCard
                                 title="Joseph"
@@ -65,8 +49,8 @@ export default function MainPage() {
                         </Grid>
                     </Grid> */}
                     <h1>{`${username}, ${t('home.welcome')}`}</h1>
-                    <Grid className={classes.content2} container spacing={3} justify={'center'}>
-                        <Grid className={classes.gridItem} item xs={4}>
+                    <div id="contractsContainer">
+                        <div className="contract">
                             <ImageCard
                                 label={t('home.history-contract')}
                                 image={
@@ -75,8 +59,8 @@ export default function MainPage() {
                                         : 'https://source.unsplash.com/KEY8_zTEckY/640x960'
                                 }
                             />
-                        </Grid>
-                        <Grid className={classes.gridItem} item xs={4}>
+                        </div>
+                        <div className="contract">
                             <ImageCard
                                 label={t('home.intelligent-contract')}
                                 image={
@@ -85,8 +69,8 @@ export default function MainPage() {
                                         : 'https://source.unsplash.com/0QHKz1EV_Gc/640x800'
                                 }
                             />
-                        </Grid>
-                        <Grid className={classes.gridItem} item xs={4}>
+                        </div>
+                        <div className="contract">
                             <ImageCard
                                 label={t('home.arbitrage-contract')}
                                 image={
@@ -95,34 +79,32 @@ export default function MainPage() {
                                         : 'https://source.unsplash.com/lJShoi-1RhA/640x1137'
                                 }
                             />
-                        </Grid>
-                    </Grid>
+                        </div>
+                    </div>
                 </>
             );
         } else return <h1>Hello Guest</h1>;
     };
 
-    return (
-        <div className="ui container">
-            <Title title={t('home.title')} />
-            {renderWelcomeBlock()}
-            <Divider />
-            <Grid className={classes.content} container spacing={3} justify={'center'}>
-                {/* {renderFroggy()} */}
-                <Grid className={classes.gridItem} item lg={6} xs={12}>
-                    <VideoCard src="https://www.youtube.com/embed/asanQH0piQE" />
-                </Grid>
-                <Grid className={classes.gridItem} item lg={6} xs={12}>
-                    <VideoCard src="https://www.youtube.com/embed/59EVB4GejGk" />
-                </Grid>
-                <Grid className={classes.gridItem} item lg={6} xs={12}>
-                    <VideoCard src="https://www.youtube.com/embed/_wH5lSI5Dgw" />
-                </Grid>
-                <Grid className={classes.gridItem} item lg={6} xs={12}>
-                    <VideoCard src="https://www.youtube.com/embed/LUaYe_7cmxQ" />
-                </Grid>
-            </Grid>
-            <Divider />
+    const renderVideos = () => (
+        <div id="videosContainer">
+            <div className="video">
+                <VideoCard src="https://player.youku.com/embed/XNDkyMjAxMzUyNA=="></VideoCard>
+            </div>
+            <div className="video">
+                <VideoCard src="https://player.youku.com/embed/XNDkxNTE1Njc2NA=="></VideoCard>
+            </div>
+            <div className="video">
+                <VideoCard src="https://player.youku.com/embed/XNDg2OTQ0ODAwOA=="></VideoCard>
+            </div>
+            <div className="video">
+                <VideoCard src="https://player.youku.com/embed/XNDg2OTQ0ODAwOA=="></VideoCard>
+            </div>
+        </div>
+    );
+
+    const renderArticles = () => (
+        <div>
             <Grid className={classes.content} container spacing={3} justify={'center'}>
                 <Grid className={classes.gridItem} item lg={6} xs={12}>
                     <NewsCard
@@ -145,6 +127,15 @@ export default function MainPage() {
                     />
                 </Grid>
             </Grid>
+        </div>
+    );
+
+    return (
+        <div id="mainPage" className="ui container">
+            <Title title={t('home.title')} />
+            {renderWelcomeBlock()}
+            {renderVideos()}
+            {renderArticles()}
         </div>
     );
 }
