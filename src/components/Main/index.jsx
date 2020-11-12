@@ -1,7 +1,7 @@
 import React, { Suspense, useContext } from 'react';
 import { Router, View } from 'react-navi';
 import HelmetProvider from 'react-navi-helmet-async';
-import routes from '../../routes';
+import routes from '../../route/routes';
 import Navigation from '../Navigation';
 import Cookie from 'js-cookie';
 import JWT from 'jsonwebtoken';
@@ -34,7 +34,7 @@ export default function Main() {
     };
 
     return (
-        <div className="main">
+        <div id="main">
             <HelmetProvider>
                 <Router routes={routes} context={{ isAuthenticated }} basename={basename}>
                     <Grid container>

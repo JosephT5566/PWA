@@ -1,6 +1,6 @@
 @import 'assets/styles/styles';
 
-.main {
+#main {
     display: flex;
     @include breakpoint('>large') {
         flex-direction: row;

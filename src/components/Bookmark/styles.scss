@@ -1,0 +1,52 @@
+@import 'assets/styles/styles';
+
+#bookmark {
+    h2 {
+        color: _palette(bg);
+    }
+    h6 {
+        color: _palette(fg-light);
+    }
+    width: 100%;
+
+    .main {
+        position: relative;
+        height: 300px;
+        overflow: 'hidden';
+        border-top-left-radius: 1em;
+        border-top-right-radius: 1em;
+        background: no-repeat center;
+        background-size: 100%;
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+        }
+
+        &.loading{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        display: flex;
+        align-items: flex-end;
+
+        .title {
+            z-index: 1;
+            padding: 1.5em 1.5em 1rem;
+        }
+    }
+
+    .description {
+        display: flex;
+        flex-direction: column;
+        min-height: 4em;
+        padding: 1em;
+        border-bottom-left-radius: 1em;
+        border-bottom-right-radius: 1em;
+    }
+}
