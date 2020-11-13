@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 
 import LoginContext from '../../contexts/LoginContext';
 import UserContext from '../../contexts/UserContext';
+import { getArticles, getVideos } from '../../apis/NewsAPI';
 import { USER_TYPE } from '../../assets/types';
 
 import './styles.scss';
@@ -29,9 +30,32 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MainPage() {
     const classes = useStyles();
+    const [videos, setVideos] = useState([]);
+    const [articles, setArticles] = useState([]);
     const { t } = useTranslation();
     const { isLoggedin } = useContext(LoginContext);
     const { user } = useContext(UserContext);
+
+    const fetchVideos = async () => {
+        const response = await getVideos();
+        if (response.status === 200) {
+            const videos = await response.json();
+            setVideos(videos);
+        }
+    };
+
+    const fetchArticles = async () => {
+        const response = await getArticles();
+        if (response.status === 200) {
+            const articles = await response.json();
+            setArticles(articles);
+        }
+    };
+
+    useEffect(() => {
+        fetchArticles();
+        fetchVideos();
+    }, []);
 
     const renderWelcomeBlock = () => {
         let username = '';
@@ -88,7 +112,12 @@ export default function MainPage() {
 
     const renderVideos = () => (
         <div id="videosContainer">
-            <div className="video">
+            {videos.map((video, index) => (
+                <div className="video" key={index}>
+                    <VideoCard src={video}></VideoCard>
+                </div>
+            ))}
+            {/* <div className="video">
                 <VideoCard src="https://player.youku.com/embed/XNDkyMjAxMzUyNA=="></VideoCard>
             </div>
             <div className="video">
@@ -99,19 +128,24 @@ export default function MainPage() {
             </div>
             <div className="video">
                 <VideoCard src="https://player.youku.com/embed/XNDg2OTQ0ODAwOA=="></VideoCard>
-            </div>
+            </div> */}
         </div>
     );
 
     const renderArticles = () => (
         <div>
             <Grid className={classes.content} container spacing={3} justify={'center'}>
-                <Grid className={classes.gridItem} item lg={6} xs={12}>
-                    <Bookmark url="https://medium.com/taotzu-changs-picture/weddingrecord05-ba5dd07a3065"/>
+                {articles.map((article, index) => (
+                    <Grid className={classes.gridItem} item lg={6} xs={12} key={index}>
+                        <Bookmark url={article} />
+                    </Grid>
+                ))}
+                {/* <Grid className={classes.gridItem} item lg={6} xs={12}>
+                    <Bookmark url="https://medium.com/taotzu-changs-picture/weddingrecord05-ba5dd07a3065" />
                 </Grid>
                 <Grid className={classes.gridItem} item lg={6} xs={12}>
-                    <Bookmark url="https://www.behance.net/gallery/105996965/_"/>
-                </Grid>
+                    <Bookmark url="https://www.behance.net/gallery/105996965/_" />
+                </Grid> */}
             </Grid>
         </div>
     );

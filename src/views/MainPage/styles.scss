@@ -1,6 +1,11 @@
 @import 'assets/styles/styles';
 
 #mainPage {
+    h1 {
+        @include breakpoint('<=large'){
+            text-align: center;
+        }
+    }
     #contractsContainer {
         display: flex;
         justify-content: space-between;
