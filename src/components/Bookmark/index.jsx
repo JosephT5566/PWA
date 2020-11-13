@@ -5,6 +5,8 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import { getPreviewData } from '../../apis/PreviewWebApi';
+
 import './styles.scss';
 
 const useStyles = makeStyles(() => ({
@@ -25,22 +27,15 @@ export default function Bookmark({ url }) {
     const [preview, setPreview] = useState({});
     const classes = useStyles();
     const loadingClass = loading ? 'loading' : '';
-    const api = 'https://lpdg.herokuapp.com/parse/link';
-    const proxy = 'http://cors-anywhere.herokuapp.com';
 
     const fetchPreviewData = async () => {
-        const response = await fetch(`${proxy}/${api}`, {
-            method: 'POST',
-            headers: new Headers({
-                // Accept: 'application/json',
-                'Content-Type': 'application/json',
-            }),
-            body: JSON.stringify({ url }),
-        });
-        const data = await response.json();
-        console.log('preview data:', data);
-        setPreview(data);
-        setLoading(false);
+        const response = await getPreviewData(url);
+        if (response.status === 200) {
+            const data = await response.json();
+            console.log('preview data:', data);
+            setPreview(data);
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
@@ -58,15 +53,15 @@ export default function Bookmark({ url }) {
                         if (!loading) window.open(url);
                     }}
                 >
-                    <div className={`main ${loadingClass}`} style={{ backgroundImage: `url(${preview.img})` }}>
+                    <div className={`main ${loadingClass}`} style={{ backgroundImage: `url(${preview.Image})` }}>
                         {renderLoading()}
                         <div className="title">
-                            <h2>{preview.title}</h2>
+                            <h2>{preview.Title}</h2>
                         </div>
                     </div>
                     <div className="description">
-                        <h3>{preview.description}</h3>
-                        <h6>{preview.domain}</h6>
+                        <h3>{preview.Description}</h3>
+                        <h6>{preview.Domain}</h6>
                     </div>
                 </CardActionArea>
             </Card>
