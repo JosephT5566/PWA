@@ -26,14 +26,15 @@ export default function Bookmark({ url }) {
     const classes = useStyles();
     const loadingClass = loading ? 'loading' : '';
     const api = 'https://lpdg.herokuapp.com/parse/link';
+    const proxy = 'http://cors-anywhere.herokuapp.com';
 
     const fetchPreviewData = async () => {
-        const response = await fetch(api, {
+        const response = await fetch(`${proxy}/${api}`, {
             method: 'POST',
-            headers: {
-                Accept: 'application/json',
+            headers: new Headers({
+                // Accept: 'application/json',
                 'Content-Type': 'application/json',
-            },
+            }),
             body: JSON.stringify({ url }),
         });
         const data = await response.json();

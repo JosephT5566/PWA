@@ -16,7 +16,7 @@
         border-top-left-radius: 1em;
         border-top-right-radius: 1em;
         background: no-repeat center;
-        background-size: 100%;
+        background-size: cover;
         &:after {
             content: '';
             position: absolute;
@@ -31,6 +31,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            .title {
+                display: none;
+            }
         }
         display: flex;
         align-items: flex-end;
