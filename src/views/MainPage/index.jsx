@@ -6,6 +6,7 @@ import NewsCard from '../../components/Card/NewsCard';
 import InfoCard from '../../components/Card/InfoCard';
 import ImageCard from '../../components/Card/ImageCard';
 import VideoCard from '../../components/Card/VideoCard';
+import Bookmark from '../../components/Bookmark';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -107,24 +108,10 @@ export default function MainPage() {
         <div>
             <Grid className={classes.content} container spacing={3} justify={'center'}>
                 <Grid className={classes.gridItem} item lg={6} xs={12}>
-                    <NewsCard
-                        title="Kentucky police pull over driver after spotting drawn-on license plate"
-                        image="https://source.unsplash.com/y46EzhejDNE/640x489"
-                        avatar="https://i.pravatar.cc/300?img=13"
-                        author="Bradford Betz"
-                        date="Sep 07 | 2 Min Read"
-                        tags={['fashion', 'funny']}
-                    />
+                    <Bookmark url="https://medium.com/taotzu-changs-picture/weddingrecord05-ba5dd07a3065"/>
                 </Grid>
                 <Grid className={classes.gridItem} item lg={6} xs={12}>
-                    <NewsCard
-                        title="Kentucky police pull over driver after spotting drawn-on license plate"
-                        image="https://source.unsplash.com/HI_pmHwEfDU/640x426"
-                        avatar="https://i.pravatar.cc/300?img=13"
-                        author="Bradford Betz"
-                        date="Sep 07 | 2 Min Read"
-                        tags={['fashion', 'funny']}
-                    />
+                    <Bookmark url="https://www.behance.net/gallery/105996965/_"/>
                 </Grid>
             </Grid>
         </div>
