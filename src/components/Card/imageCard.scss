@@ -9,16 +9,9 @@
     height: 100%;
     border-radius: _size(border-radius-block);
     border: 0;
-    color: _palette(bg) !important;
     cursor: pointer;
-    display: inline-block;
-    font-family: _font(family-heading);
-    font-size: 0.8em;
-    font-weight: _font(weight-heading);
-    letter-spacing: _font(kerning-heading);
-    text-align: center;
+    display: block;
     text-transform: uppercase;
-    white-space: nowrap;
 
     &:hover {
         background-color: transparentize(_palette(fg-bold), 0.95);
@@ -32,7 +25,7 @@
         outline: 0;
     }
 
-    div {
+    .image {
         width: inherit;
         height: inherit;
         position: absolute;
@@ -55,8 +48,11 @@
             background: rgba(0, 0, 0, 0.3);
         }
     }
-    
+
     h2 {
         color: _palette(bg);
+        @include breakpoint('<=small') {
+            font-size: 0.9em;
+        }
     }
 }

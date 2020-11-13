@@ -5,7 +5,7 @@ import './imageCard.scss';
 export default function ImageCard({ className, label, image = null, onClick }) {
     const renderImage = () => {
         if (image) {
-            return <div style={{ backgroundImage: `url(${image})` }} />;
+            return <div className="image" style={{ backgroundImage: `url(${image})` }} />;
         }
     };
     return (
