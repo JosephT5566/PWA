@@ -6,6 +6,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
+import Snackbar from '@material-ui/core/Snackbar';
+import Slide from '@material-ui/core/Slide';
 
 import './styles.scss';
 
@@ -18,9 +20,11 @@ export default function PhotoUpload({
     isSubmit,
     disable = false,
     direction = 'horizontal', // horizontal | straight
+    sizeMax = null, // Bytes
 }) {
     const [active, setActive] = useState(value === '' ? '' : 'active');
     const [error, setError] = useState('');
+    const [open, setOpen] = useState(false);
     const { t } = useTranslation();
     const inputRef = useRef(null);
     const imageRef = useRef(null);
@@ -31,17 +35,25 @@ export default function PhotoUpload({
     const onFilesChange = () => {
         const files = inputRef.current.files;
         if (files && files[0]) {
-            let reader = new FileReader();
-            reader.onload = (e) => {
-                if (handleChange) handleChange(e.target.result);
-            };
-            reader.readAsDataURL(files[0]);
+            if (sizeMax && files[0].size > sizeMax) {
+                setOpen(true);
+            } else {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    if (handleChange) handleChange(e.target.result);
+                };
+                reader.readAsDataURL(files[0]);
+            }
             inputRef.current.value = ''; // remove value
         }
     };
 
     const onDeleteImage = () => {
         if (handleChange) handleChange('');
+    };
+
+    const handleCloseSnackbar = () => {
+        setOpen(false);
     };
 
     useEffect(() => {
@@ -104,6 +116,14 @@ export default function PhotoUpload({
                     </div>
                 </Card>
             </Card>
+            <Snackbar
+                className="snackbar"
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={open}
+                onClose={handleCloseSnackbar}
+                TransitionComponent={Slide}
+                message={`檔案超過 ${sizeMax/1024}KB`}
+            />
         </div>
     );
 }

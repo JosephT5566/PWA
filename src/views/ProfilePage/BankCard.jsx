@@ -217,7 +217,8 @@ export default function BankCard({ id }) {
                         setCard({ ...card, [CARD_TYPE.cardFrontImg]: picture });
                     }}
                     isSubmit={isSubmit}
-                />
+                    sizeMax={409600}
+                    />
                 <PhotoUpload
                     className="photoupload"
                     title={t('bank.back')}
@@ -227,6 +228,7 @@ export default function BankCard({ id }) {
                         setCard({ ...card, [CARD_TYPE.cardBackImg]: picture });
                     }}
                     isSubmit={isSubmit}
+                    sizeMax={409600}
                 />
 
                 <div className="alert">
