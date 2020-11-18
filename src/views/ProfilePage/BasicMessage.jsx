@@ -29,6 +29,15 @@ export default function BasicMessage() {
         return (
             <>
                 <TextInput
+                    label={t('basic.username')}
+                    type={'text'}
+                    value={user[USER_TYPE.username]}
+                    handleChange={(value) => setUser({ ...user, [USER_TYPE.username]: value })}
+                    required={true}
+                    disabled={true}
+                    isSubmit={isSubmit}
+                />
+                <TextInput
                     autoComplete={'email'}
                     label={t('basic.email')}
                     type={'text'}
@@ -173,7 +182,8 @@ export default function BasicMessage() {
                     value={user[USER_TYPE.govIDFrontImg]}
                     handleChange={(picture) => setUser({ ...user, [USER_TYPE.govIDFrontImg]: picture })}
                     isSubmit={isSubmit}
-                />
+                    disable={true}
+                    />
                 <PhotoUpload
                     className="photoupload"
                     title={t('basic.back')}
@@ -181,6 +191,7 @@ export default function BasicMessage() {
                     value={user[USER_TYPE.govIDBackImg]}
                     handleChange={(picture) => setUser({ ...user, [USER_TYPE.govIDBackImg]: picture })}
                     isSubmit={isSubmit}
+                    disable={true}
                 />
                 {/* <Button label={t('basic.submit')} onClick={onSubmit} /> */}
             </div>
