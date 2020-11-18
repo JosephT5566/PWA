@@ -114,7 +114,7 @@ export default function MainPage() {
         <div id="videosContainer">
             {videos.map((video, index) => (
                 <div className="video" key={index}>
-                    <VideoCard src={video}></VideoCard>
+                    <VideoCard src={video.url}></VideoCard>
                 </div>
             ))}
             {/* <div className="video">
@@ -137,7 +137,7 @@ export default function MainPage() {
             <Grid className={classes.content} container spacing={3} justify={'center'}>
                 {articles.map((article, index) => (
                     <Grid className={classes.gridItem} item lg={6} xs={12} key={index}>
-                        <Bookmark url={article} />
+                        <Bookmark url={article.url} />
                     </Grid>
                 ))}
                 {/* <Grid className={classes.gridItem} item lg={6} xs={12}>
