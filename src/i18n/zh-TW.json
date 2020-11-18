@@ -29,6 +29,7 @@
     "basic": {
         "title": "基本資料",
         "warning": "當KYC認證通過。將無法自行改變名稱或地址等資料。",
+        "username": "使用者名稱",
         "email": "電子郵件",
         "first-name": "名字",
         "last-name": "姓氏",

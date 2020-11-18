@@ -29,6 +29,7 @@
     "basic": {
         "title": "基本资料",
         "warning": "当实名认证通过，将无法自行改变名称或地址等资料。",
+        "username": "用戶名",
         "email": "邮箱",
         "first-name": "名字",
         "last-name": "姓氏",
