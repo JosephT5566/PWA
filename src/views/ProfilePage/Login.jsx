@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import LoginContext from '../../contexts/LoginContext';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from 'react-navi';
+import sha1 from 'crypto-js/sha1';
 
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 import Button from '../../components/Button';
@@ -42,7 +43,7 @@ export default function Login() {
         if (username === '' || password === '') return;
 
         // isLoggedin = await mockService.login(username, password);
-        const response = await login({ username: username, password: password });
+        const response = await login({ username: username, password: sha1(password).toString() });
         if (response.status === 200) {
             jwt = await response.json();
             onJWTChange(jwt);
