@@ -37,7 +37,7 @@ const routes = mount({
                           view: <Plot id={id} />,
                       };
                   })
-                : redirect('pwa/data')
+                : redirect('/pwa/data')
         ),
     }),
     '/assistant': route({
