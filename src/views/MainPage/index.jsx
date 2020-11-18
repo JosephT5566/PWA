@@ -57,6 +57,19 @@ export default function MainPage() {
         fetchVideos();
     }, []);
 
+    const openImage = (data) => {
+        var image = new Image();
+        image.src = data;
+
+        if (data.includes('http')) {
+            window.open(data);
+        } else {
+            var w = window.open('');
+            w.document.write(image.outerHTML);
+            w.document.close();
+        }
+    };
+
     const renderWelcomeBlock = () => {
         let username = '';
         if (isLoggedin) {
@@ -82,6 +95,9 @@ export default function MainPage() {
                                         ? user[USER_TYPE.historyCon]
                                         : 'https://source.unsplash.com/KEY8_zTEckY/640x960'
                                 }
+                                onClick={() => {
+                                    openImage(user[USER_TYPE.historyCon]);
+                                }}
                             />
                         </div>
                         <div className="contract">
@@ -92,6 +108,9 @@ export default function MainPage() {
                                         ? user[USER_TYPE.intelliCon]
                                         : 'https://source.unsplash.com/0QHKz1EV_Gc/640x800'
                                 }
+                                onClick={() => {
+                                    openImage(user[USER_TYPE.intelliCon]);
+                                }}
                             />
                         </div>
                         <div className="contract">
@@ -102,6 +121,9 @@ export default function MainPage() {
                                         ? user[USER_TYPE.arbitrageCon]
                                         : 'https://source.unsplash.com/lJShoi-1RhA/640x1137'
                                 }
+                                onClick={() => {
+                                    openImage(user[USER_TYPE.arbitrageCon]);
+                                }}
                             />
                         </div>
                     </div>
