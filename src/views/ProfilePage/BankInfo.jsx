@@ -33,7 +33,7 @@ export default function BankInfo() {
 
     useEffect(() => {
         fetchCards();
-    }, []);
+    }, [user]);
 
     const onClickAddCards = async () => {
         // await mockService.appendBankItem(userID);
