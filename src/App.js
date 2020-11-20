@@ -1,5 +1,5 @@
 import React from 'react';
-import './i18n';
+import './i18n/i18n';
 import { LoginStore } from './contexts/LoginContext';
 import { UserStore } from './contexts/UserContext';
 
