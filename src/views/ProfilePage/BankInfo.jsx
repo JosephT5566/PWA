@@ -37,7 +37,7 @@ export default function BankInfo() {
 
     const onClickAddCards = async () => {
         // await mockService.appendBankItem(userID);
-        if (window.confirm('You sure to add new card?')) {
+        if (window.confirm(t('bank.add-confirm'))) {
             const responseAdd = await createCard({ userID: user[USER_TYPE.id] });
             if (responseAdd.status === 200) {
                 await fetchCards();
@@ -47,7 +47,7 @@ export default function BankInfo() {
 
     const onClickRemoveCards = async (cardID) => {
         // await mockService.removeBankItem(userID, cardID);
-        if (window.confirm('You sure to delete this card?')) {
+        if (window.confirm(t('bank.delete-confirm'))) {
             const responseDel = await deleteCard(cardID);
             if (responseDel.status === 200) {
                 await fetchCards();

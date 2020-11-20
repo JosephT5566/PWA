@@ -81,7 +81,7 @@ export default function BankCard({ id }) {
         return (
             <>
                 <TextInput
-                    label={t('bank.bank')}
+                    label={t('bank.cardname')}
                     type={'text'}
                     required={true}
                     value={card[CARD_TYPE.cardName]}

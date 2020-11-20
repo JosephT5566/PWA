@@ -57,6 +57,7 @@
         "upload": "上传",
         "warning-credential": "请确认上传的照片符合您当地国家之有效证件，并且确认上传照片清晰可辨识。",
         "bank-info-title": "请上传代操作银行资讯",
+        "cardname":"卡片名称",
         "bank": "银行名称",
         "branch": "分行名称",
         "account": "帐号",
@@ -66,6 +67,8 @@
         "online-bank-password": "网银密码",
         "security-code": " 安全码",
         "submit": "提交",
+        "add-confirm": "确定要新增卡片吗？",
+        "delete-confirm": "确定要刪除此卡片吗？",
         "modified-confirm": "卡片资料尚未提交，确定要返回吗？"
     },
     "documents": {

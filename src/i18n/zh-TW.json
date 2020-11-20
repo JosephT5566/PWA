@@ -53,6 +53,7 @@
         "upload-bank-card": "請上傳個人銀行卡",
         "hint": "護照或身分證或駕駛證",
         "front": "正面",
+        "cardname":"卡片名稱",
         "back": "背面",
         "upload": "上傳",
         "warning-credential": "請確認上傳的照片符合您當地國家之有效證件，請且確認上傳照片清晰可辨識。",
@@ -66,6 +67,8 @@
         "online-bank-password": "網銀密碼",
         "security-code": " 安全碼",
         "submit": "提交",
+        "add-confirm": "確定要新增卡片嗎？",
+        "delete-confirm": "確定要刪除此卡片嗎？",
         "modified-confirm": "卡片資料尚未提交，確定要離開嗎？"
     },
     "documents": {

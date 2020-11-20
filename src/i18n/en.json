@@ -53,6 +53,7 @@
         "upload-bank-card": "Please upload your bank card",
         "hint": "Passport / ID card / driver's license",
         "front": "Front",
+        "cardname":"Card name",
         "back": "Back",
         "upload": "Upload",
         "warning-credential": "Please make sure the credential is valid of your country, and the photos are clearly and recognizable.",
@@ -66,6 +67,8 @@
         "online-bank-password": "Online-bank password",
         "security-code": " Security code",
         "submit": "Submit",
+        "add-confirm": "You sure to add new card?",
+        "delete-confirm": "You sure to delete this card?",
         "modified-confirm": "The card data not submitted, are you sure you want to leave?"
     },
     "documents": {
