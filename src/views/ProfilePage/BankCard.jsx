@@ -25,7 +25,37 @@ export default function BankCard({ id }) {
     const [card, setCard] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const [open, setOpen] = useState(false);
+    const [modified, setModified] = useState(false);
     const { t } = useTranslation();
+
+    const exitPage = () => {
+        window.onpopstate = () => {};
+        window.history.back();
+    };
+
+    useEffect(() => {
+        window.history.pushState(null, '');
+        console.log('push state');
+    }, []);
+
+    useEffect(() => {
+        window.onpopstate = () => {
+            console.log('on pop state');
+            if (modified === true) {
+                if (window.confirm(t('bank.modified-confirm'))) {
+                    exitPage();
+                } else {
+                    window.history.pushState(null, '');
+                }
+            } else {
+                exitPage();
+            }
+        };
+
+        return () => {
+            window.onpopstate = () => {};
+        };
+    }, [modified]);
 
     useEffect(() => {
         async function getCardInfo() {
@@ -55,7 +85,10 @@ export default function BankCard({ id }) {
                     type={'text'}
                     required={true}
                     value={card[CARD_TYPE.cardName]}
-                    handleChange={(value) => setCard({ ...card, [CARD_TYPE.cardName]: value })}
+                    handleChange={(value) => {
+                        setCard({ ...card, [CARD_TYPE.cardName]: value });
+                        setModified(true);
+                    }}
                     isSubmit={isSubmit}
                 />
                 <TextInput
@@ -63,7 +96,10 @@ export default function BankCard({ id }) {
                     type={'text'}
                     required={true}
                     value={card[CARD_TYPE.bank]}
-                    handleChange={(value) => setCard({ ...card, [CARD_TYPE.bank]: value })}
+                    handleChange={(value) => {
+                        setCard({ ...card, [CARD_TYPE.bank]: value });
+                        setModified(true);
+                    }}
                     isSubmit={isSubmit}
                 />
                 <TextInput
@@ -71,7 +107,10 @@ export default function BankCard({ id }) {
                     type={'text'}
                     required={true}
                     value={card[CARD_TYPE.branch]}
-                    handleChange={(value) => setCard({ ...card, [CARD_TYPE.branch]: value })}
+                    handleChange={(value) => {
+                        setCard({ ...card, [CARD_TYPE.branch]: value });
+                        setModified(true);
+                    }}
                     isSubmit={isSubmit}
                 />
                 <TextInput
@@ -79,21 +118,30 @@ export default function BankCard({ id }) {
                     type={'text'}
                     required={true}
                     value={card[CARD_TYPE.account]}
-                    handleChange={(value) => setCard({ ...card, [CARD_TYPE.account]: value })}
+                    handleChange={(value) => {
+                        setCard({ ...card, [CARD_TYPE.account]: value });
+                        setModified(true);
+                    }}
                     isSubmit={isSubmit}
                 />
                 <PasswordInput
                     label={t('bank.pin')}
                     required={true}
                     value={card[CARD_TYPE.pin]}
-                    handleChange={(value) => setCard({ ...card, [CARD_TYPE.pin]: value })}
+                    handleChange={(value) => {
+                        setCard({ ...card, [CARD_TYPE.pin]: value });
+                        setModified(true);
+                    }}
                     isSubmit={isSubmit}
                 />
                 <PasswordInput
                     label={t('bank.payment-password')}
                     required={true}
                     value={card[CARD_TYPE.paymentPsd]}
-                    handleChange={(value) => setCard({ ...card, [CARD_TYPE.paymentPsd]: value })}
+                    handleChange={(value) => {
+                        setCard({ ...card, [CARD_TYPE.paymentPsd]: value });
+                        setModified(true);
+                    }}
                     isSubmit={isSubmit}
                 />
                 <TextInput
@@ -101,21 +149,30 @@ export default function BankCard({ id }) {
                     type={'text'}
                     required={true}
                     value={card[CARD_TYPE.onlineAccount]}
-                    handleChange={(value) => setCard({ ...card, [CARD_TYPE.onlineAccount]: value })}
+                    handleChange={(value) => {
+                        setCard({ ...card, [CARD_TYPE.onlineAccount]: value });
+                        setModified(true);
+                    }}
                     isSubmit={isSubmit}
                 />
                 <PasswordInput
                     label={t('bank.online-bank-password')}
                     required={true}
                     value={card[CARD_TYPE.onlinePsd]}
-                    handleChange={(value) => setCard({ ...card, [CARD_TYPE.onlinePsd]: value })}
+                    handleChange={(value) => {
+                        setCard({ ...card, [CARD_TYPE.onlinePsd]: value });
+                        setModified(true);
+                    }}
                     isSubmit={isSubmit}
                 />
                 <PasswordInput
                     label={t('bank.security-code')}
                     required={true}
                     value={card[CARD_TYPE.securityCode]}
-                    handleChange={(value) => setCard({ ...card, [CARD_TYPE.securityCode]: value })}
+                    handleChange={(value) => {
+                        setCard({ ...card, [CARD_TYPE.securityCode]: value });
+                        setModified(true);
+                    }}
                     isSubmit={isSubmit}
                 />
             </>
@@ -162,7 +219,8 @@ export default function BankCard({ id }) {
         setIsSubmit(true);
         if (isAllRequiredDataFilled()) {
             // await mockService.updateBankItem(userID, id, card);
-            await updateCard(id, card);
+            const response = await updateCard(id, card);
+            if (response.status === 200) setModified(false);
         }
         setTimeout(() => {
             setIsSubmit(false);
@@ -215,10 +273,11 @@ export default function BankCard({ id }) {
                     value={card[CARD_TYPE.cardFrontImg]}
                     handleChange={(picture) => {
                         setCard({ ...card, [CARD_TYPE.cardFrontImg]: picture });
+                        setModified(true);
                     }}
                     isSubmit={isSubmit}
                     sizeMax={409600}
-                    />
+                />
                 <PhotoUpload
                     className="photoupload"
                     title={t('bank.back')}
@@ -226,6 +285,7 @@ export default function BankCard({ id }) {
                     value={card[CARD_TYPE.cardBackImg]}
                     handleChange={(picture) => {
                         setCard({ ...card, [CARD_TYPE.cardBackImg]: picture });
+                        setModified(true);
                     }}
                     isSubmit={isSubmit}
                     sizeMax={409600}

@@ -65,7 +65,8 @@
         "online-bank-account": "Online-bank account",
         "online-bank-password": "Online-bank password",
         "security-code": " Security code",
-        "submit": "Submit"
+        "submit": "Submit",
+        "modified-confirm": "The card data not submitted, are you sure you want to leave?"
     },
     "documents": {
         "title": "Documents",

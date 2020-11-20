@@ -65,7 +65,8 @@
         "online-bank-account": "网银帐号",
         "online-bank-password": "网银密码",
         "security-code": " 安全码",
-        "submit": "提交"
+        "submit": "提交",
+        "modified-confirm": "卡片资料尚未提交，确定要返回吗？"
     },
     "documents": {
         "title": "文件",

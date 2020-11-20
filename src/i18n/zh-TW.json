@@ -65,7 +65,8 @@
         "online-bank-account": "網銀帳號",
         "online-bank-password": "網銀密碼",
         "security-code": " 安全碼",
-        "submit": "提交"
+        "submit": "提交",
+        "modified-confirm": "卡片資料尚未提交，確定要離開嗎？"
     },
     "documents": {
         "title": "文件",
@@ -78,5 +79,5 @@
     "alert": {
         "warning": "警告"
     },
-    "upload-pic":"上傳照片"
+    "upload-pic": "上傳照片"
 }
