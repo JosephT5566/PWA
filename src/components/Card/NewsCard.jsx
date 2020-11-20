@@ -1,12 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import Typography from '@material-ui/core/Typography';
+
+import './newsCard.scss';
 
 const useStyles = makeStyles(() => ({
     card: {
@@ -43,27 +43,8 @@ const useStyles = makeStyles(() => ({
     },
     contentImage: {
         position: 'absolute',
-        minHeight: '100%',
-    },
-    avatar: {
-        marginRight: '1rem',
-        width: 48,
-        height: 48,
-    },
-    tags: {
-        display: 'inline-flex',
-        marginBottom: '0.5rem',
-    },
-    tag: {
-        marginRight: '0.5rem',
-        backgroundColor: '#ff5dac',
-        borderRadius: '0.5rem',
-        padding: '2px 0.5rem',
-        color: '#fff',
-    },
-    title: {
-        fontSize: '2rem',
-        color: '#fff',
+        // minHeight: '100%',
+        width: '100%',
     },
     author: {
         position: 'relative',
@@ -73,43 +54,24 @@ const useStyles = makeStyles(() => ({
         borderBottomRightRadius: '1.5rem',
         backgroundColor: 'white',
     },
-    authorName: {
-        fontWeight: 500,
-    },
 }));
 
-export default function NewsCard({ title, image, avatar, author, date, tags }) {
+export default function NewsCard({ title, image, description, domain }) {
     const classes = useStyles();
 
-    const renderTags = (tags) => {
-        return tags.map((tag, index) => (
-            <div className={classes.tag} key={index}>
-                {tag}
-            </div>
-        ));
-    };
-
     return (
-        <Card className={classes.card}>
+        <Card id="newsCard" className={classes.card}>
             <CardActionArea className={classes.actionArea}>
                 <Box className={classes.main} minHeight={300} position={'relative'}>
                     <CardMedia className={classes.contentImage} component="img" image={image} />
                     <div className={classes.content}>
-                        <div className={classes.tags}>{renderTags(tags)}</div>
-                        <Typography variant={'h2'} className={classes.title}>
-                            {title}
-                        </Typography>
+                        <h2>{title}</h2>
                     </div>
                 </Box>
                 <Box className={classes.author}>
                     <div>
-                        <Avatar className={classes.avatar} src={avatar} />
-                    </div>
-                    <div>
-                        <Typography variant={'h6'} className={classes.authorName}>
-                            {author}
-                        </Typography>
-                        <Typography variant={'subtitle1'}>{date}</Typography>
+                        <h3>{description}</h3>
+                        <h6>{domain}</h6>
                     </div>
                 </Box>
             </CardActionArea>

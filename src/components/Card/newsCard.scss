@@ -1,0 +1,10 @@
+@import 'assets/styles/styles';
+
+#newsCard {
+    h2 {
+        color: _palette(bg);
+    }
+    h6 {
+        color: _palette(fg-light);
+    }
+}
