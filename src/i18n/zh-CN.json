@@ -24,7 +24,15 @@
         "bank": "银行资料",
         "document": "隐私与合约文件",
         "about": "关于我们",
-        "language": "语言"
+        "language": "语言",
+        "log-in": "登录",
+        "log-out": "登出"
+    },
+    "login": {
+        "username": "用户名称",
+        "password": "密码",
+        "log-in": "登录",
+        "login-alert": "用户名称或密码错误"
     },
     "basic": {
         "title": "基本资料",

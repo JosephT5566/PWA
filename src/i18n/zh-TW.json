@@ -24,7 +24,15 @@
         "bank": "銀行資料",
         "document": "隱私與合約文件",
         "about": "關於我們",
-        "language": "語言"
+        "language": "語言",
+        "log-in": "登入",
+        "log-out": "登出"
+    },
+    "login": {
+        "username": "使用者名稱",
+        "password": "密碼",
+        "log-in": "登入",
+        "login-alert": "使用者名稱或密碼錯誤"
     },
     "basic": {
         "title": "基本資料",

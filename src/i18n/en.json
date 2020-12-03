@@ -24,7 +24,15 @@
         "bank": "Bank Information",
         "document": "Private and term doc",
         "about": "About Us",
-        "language": "Language"
+        "language": "Language",
+        "log-in": "Log In",
+        "log-out": "Log Out"
+    },
+    "login": {
+        "username": "Username",
+        "password": "Password",
+        "log-in": "Log In",
+        "login-alert": "username or password error"
     },
     "basic": {
         "title": "Basic Message",
@@ -53,7 +61,7 @@
         "upload-bank-card": "Please upload your bank card",
         "hint": "Passport / ID card / driver's license",
         "front": "Front",
-        "cardname":"Card name",
+        "cardname": "Card name",
         "back": "Back",
         "upload": "Upload",
         "warning-credential": "Please make sure the credential is valid of your country, and the photos are clearly and recognizable.",
@@ -82,5 +90,5 @@
     "alert": {
         "warning": "Warning"
     },
-    "upload-pic":"Upload Picture"
+    "upload-pic": "Upload Picture"
 }

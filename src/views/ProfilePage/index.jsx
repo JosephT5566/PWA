@@ -56,7 +56,7 @@ export default function ProfilePage() {
 
     const loginItems = [
         {
-            label: '登入',
+            label: t('profile.log-in'),
             onClick: () => {
                 navigation.navigate(`${currentURL}/login`);
             },
@@ -65,7 +65,7 @@ export default function ProfilePage() {
 
     const logoutItems = [
         {
-            label: '登出',
+            label: t('profile.log-out'),
             onClick: async () => {
                 try {
                     const response = await logout();

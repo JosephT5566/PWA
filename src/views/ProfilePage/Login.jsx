@@ -56,10 +56,10 @@ export default function Login() {
 
     return (
         <div className="ui container">
-            <ArrowBackTitle title="登入" />
+            <ArrowBackTitle title={t('login.log-in')} />
             <div className="lv2">
                 <TextInput
-                    label="使用者"
+                    label={t('login.username')}
                     type={'text'}
                     required={true}
                     value={username}
@@ -70,7 +70,7 @@ export default function Login() {
                     }}
                 />
                 <PasswordInput
-                    label="密碼"
+                    label={t('login.password')}
                     required={true}
                     value={password}
                     handleChange={(value) => setPassword(value)}
@@ -79,14 +79,14 @@ export default function Login() {
                         if (key === 'Enter') onClickLogin();
                     }}
                 />
-                <Button onClick={onClickLogin} label="登入"></Button>
+                <Button onClick={onClickLogin} label={t('login.log-in')}></Button>
                 <Snackbar
                     className="snackbar"
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                     open={open}
                     onClose={handleCloseSnackbar}
                     TransitionComponent={Slide}
-                    message="帳號或密碼錯誤"
+                    message={t('login.login-alert')}
                 />
             </div>
         </div>
