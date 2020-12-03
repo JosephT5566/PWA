@@ -4,6 +4,10 @@ export const KEY = 'secret';
 
 export const DEFAULT_IMAGE = '';
 
+export const COOKIES = {
+    language: 'crypto_viewer_language',
+};
+
 export const USER_TYPE = {
     id: 'id',
     username: 'username',
