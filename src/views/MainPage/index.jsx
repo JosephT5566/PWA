@@ -8,7 +8,7 @@ import VideoCard from '../../components/Card/VideoCard';
 import Bookmark from '../../components/Bookmark';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import div from '@material-ui/core/Grid';
 
 import LoginContext from '../../contexts/LoginContext';
 import UserContext from '../../contexts/UserContext';
@@ -38,7 +38,7 @@ export default function MainPage() {
 
     const fetchVideos = async () => {
         const response = await getVideos();
-        if (response.status === 200) {
+        if (response.ok) {
             const videos = await response.json();
             setVideos(videos);
         }
@@ -46,7 +46,7 @@ export default function MainPage() {
 
     const fetchArticles = async () => {
         const response = await getArticles();
-        if (response.status === 200) {
+        if (response.ok) {
             const articles = await response.json();
             setArticles(articles);
         }
@@ -155,20 +155,12 @@ export default function MainPage() {
     );
 
     const renderArticles = () => (
-        <div>
-            <Grid className={classes.content} container spacing={3} justify={'center'}>
-                {articles.map((article, index) => (
-                    <Grid className={classes.gridItem} item lg={6} xs={12} key={index}>
-                        <Bookmark url={article.url} />
-                    </Grid>
-                ))}
-                {/* <Grid className={classes.gridItem} item lg={6} xs={12}>
-                    <Bookmark url="https://medium.com/taotzu-changs-picture/weddingrecord05-ba5dd07a3065" />
-                </Grid>
-                <Grid className={classes.gridItem} item lg={6} xs={12}>
-                    <Bookmark url="https://www.behance.net/gallery/105996965/_" />
-                </Grid> */}
-            </Grid>
+        <div id="articlesContainer">
+            {articles.map((article, index) => (
+                <div className="article" key={index}>
+                    <Bookmark url={article.url} />
+                </div>
+            ))}
         </div>
     );
 

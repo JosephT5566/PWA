@@ -183,7 +183,7 @@ export default function BasicMessage() {
                     handleChange={(picture) => setUser({ ...user, [USER_TYPE.govIDFrontImg]: picture })}
                     isSubmit={isSubmit}
                     disable={true}
-                    />
+                />
                 <PhotoUpload
                     className="photoupload"
                     title={t('basic.back')}

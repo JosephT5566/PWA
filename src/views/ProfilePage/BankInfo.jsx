@@ -25,7 +25,7 @@ export default function BankInfo() {
 
     const fetchCards = async () => {
         const response = await getAllCardsOfUser(user[USER_TYPE.id]);
-        if (response.status === 200) {
+        if (response.ok) {
             const _cards = await response.json();
             setCards([..._cards]);
         }

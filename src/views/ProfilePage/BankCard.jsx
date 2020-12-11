@@ -61,7 +61,7 @@ export default function BankCard({ id }) {
         async function getCardInfo() {
             // const _cardInfo = await mockService.fetchBankItem(userID, id);
             const response = await getCard(id);
-            if (response.status === 200) {
+            if (response.ok) {
                 const _card = await response.json();
                 setCard({ ..._card });
             }
@@ -220,7 +220,7 @@ export default function BankCard({ id }) {
         if (isAllRequiredDataFilled()) {
             // await mockService.updateBankItem(userID, id, card);
             const response = await updateCard(id, card);
-            if (response.status === 200) setModified(false);
+            if (response.ok) setModified(false);
         }
         setTimeout(() => {
             setIsSubmit(false);

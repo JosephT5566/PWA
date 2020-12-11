@@ -69,7 +69,7 @@ export default function ProfilePage() {
             onClick: async () => {
                 try {
                     const response = await logout();
-                    if (response.status === 200) {
+                    if (response.ok) {
                         navigation.refresh();
                     }
                 } catch (error) {

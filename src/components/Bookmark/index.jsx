@@ -30,7 +30,7 @@ export default function Bookmark({ url }) {
 
     const fetchPreviewData = async () => {
         const response = await getPreviewData(url);
-        if (response.status === 200) {
+        if (response.ok) {
             const data = await response.json();
             console.log('preview data:', data);
             setPreview(data);

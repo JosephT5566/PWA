@@ -1,12 +1,12 @@
 import { BACKEND_URL } from '../assets/types';
 
-export const login = async (data) => {
+export const login = async (username, password) => {
+    const encode = btoa(`${username}:${password}`);
     const response = await fetch(`${BACKEND_URL}/login`, {
-        body: JSON.stringify(data),
         headers: new Headers({
-            'Content-Type': 'application/json',
+            Authorization: `Basic ${encode}`,
         }),
-        method: 'POST',
+        method: 'GET',
         credentials: 'include',
     });
     return response;
