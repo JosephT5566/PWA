@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import _ from 'lodash'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -29,11 +30,21 @@ export default function Bookmark({ url }) {
     const loadingClass = loading ? 'loading' : '';
 
     const fetchPreviewData = async () => {
-        const response = await getPreviewData(url);
-        if (response.ok) {
-            const data = await response.json();
-            console.log('preview data:', data);
-            setPreview(data);
+        try {
+            const response = await getPreviewData(url);
+            if (response.ok) {
+                const data = await response.json();
+                setPreview(data);
+                setLoading(false);
+                if (_.isEmpty(data.Title)) {
+                    throw new Error('preview title is empty');
+                }
+            } else {
+                throw new Error('fetch preview data fail');
+            }
+        } catch (error) {
+            console.log('get preview data err:', error);
+            setPreview({ Title: url });
             setLoading(false);
         }
     };

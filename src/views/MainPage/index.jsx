@@ -37,18 +37,30 @@ export default function MainPage() {
     const { user } = useContext(UserContext);
 
     const fetchVideos = async () => {
-        const response = await getVideos();
-        if (response.ok) {
-            const videos = await response.json();
-            setVideos(videos);
+        try {
+            const response = await getVideos();
+            if (response.ok) {
+                const videos = await response.json();
+                setVideos(videos);
+            } else {
+                throw new Error(t('alert.fetch-fail') + ': ' + response.status);
+            }
+        } catch (error) {
+            window.alert(error);
         }
     };
 
     const fetchArticles = async () => {
-        const response = await getArticles();
-        if (response.ok) {
-            const articles = await response.json();
-            setArticles(articles);
+        try {
+            const response = await getArticles();
+            if (response.ok) {
+                const articles = await response.json();
+                setArticles(articles);
+            } else {
+                throw new Error(t('alert.fetch-fail') + ': ' + response.status);
+            }
+        } catch (error) {
+            window.alert(error);
         }
     };
 

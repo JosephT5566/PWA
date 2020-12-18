@@ -41,7 +41,7 @@ export default function BankCard({ id }) {
     useEffect(() => {
         window.onpopstate = () => {
             console.log('on pop state');
-            if (modified === true) {
+            if (modified) {
                 if (window.confirm(t('bank.modified-confirm'))) {
                     exitPage();
                 } else {
@@ -59,11 +59,17 @@ export default function BankCard({ id }) {
 
     useEffect(() => {
         async function getCardInfo() {
-            // const _cardInfo = await mockService.fetchBankItem(userID, id);
-            const response = await getCard(id);
-            if (response.ok) {
-                const _card = await response.json();
-                setCard({ ..._card });
+            try {
+                // const _cardInfo = await mockService.fetchBankItem(userID, id);
+                const response = await getCard(id);
+                if (response.ok) {
+                    const _card = await response.json();
+                    setCard({ ..._card });
+                } else {
+                    throw new Error(t('alert.fetch-fail') + ': ' + response.status);
+                }
+            } catch (error) {
+                window.alert(error);
             }
         }
         getCardInfo();
@@ -137,9 +143,9 @@ export default function BankCard({ id }) {
                 <PasswordInput
                     label={t('bank.payment-password')}
                     required={true}
-                    value={card[CARD_TYPE.paymentPsd]}
+                    value={card[CARD_TYPE.paymentPwd]}
                     handleChange={(value) => {
-                        setCard({ ...card, [CARD_TYPE.paymentPsd]: value });
+                        setCard({ ...card, [CARD_TYPE.paymentPwd]: value });
                         setModified(true);
                     }}
                     isSubmit={isSubmit}
@@ -158,9 +164,9 @@ export default function BankCard({ id }) {
                 <PasswordInput
                     label={t('bank.online-bank-password')}
                     required={true}
-                    value={card[CARD_TYPE.onlinePsd]}
+                    value={card[CARD_TYPE.onlinePwd]}
                     handleChange={(value) => {
-                        setCard({ ...card, [CARD_TYPE.onlinePsd]: value });
+                        setCard({ ...card, [CARD_TYPE.onlinePwd]: value });
                         setModified(true);
                     }}
                     isSubmit={isSubmit}
@@ -218,9 +224,17 @@ export default function BankCard({ id }) {
     const onSubmit = async () => {
         setIsSubmit(true);
         if (isAllRequiredDataFilled()) {
-            // await mockService.updateBankItem(userID, id, card);
-            const response = await updateCard(id, card);
-            if (response.ok) setModified(false);
+            try {
+                // await mockService.updateBankItem(userID, id, card);
+                const response = await updateCard(id, card);
+                if (response.ok) {
+                    setModified(false);
+                } else {
+                    throw new Error(t('alert.submit-fail') + ': ' + response.status);
+                }
+            } catch (error) {
+                window.alert(error);
+            }
         }
         setTimeout(() => {
             setIsSubmit(false);

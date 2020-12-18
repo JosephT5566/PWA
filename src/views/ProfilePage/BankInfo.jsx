@@ -24,10 +24,16 @@ export default function BankInfo() {
     const currentURL = navigation.getCurrentValue().url.pathname;
 
     const fetchCards = async () => {
-        const response = await getAllCardsOfUser(user[USER_TYPE.id]);
-        if (response.ok) {
-            const _cards = await response.json();
-            setCards([..._cards]);
+        try {
+            const response = await getAllCardsOfUser(user[USER_TYPE.id]);
+            if (response.ok) {
+                const _cards = await response.json();
+                setCards([..._cards]);
+            } else {
+                throw new Error(t('alert.fetch-fail') + ': ' + response.status);
+            }
+        } catch (error) {
+            window.alert(error);
         }
     };
 
@@ -36,11 +42,17 @@ export default function BankInfo() {
     }, [user]);
 
     const onClickAddCards = async () => {
-        // await mockService.appendBankItem(userID);
         if (window.confirm(t('bank.add-confirm'))) {
-            const responseAdd = await createCard({ userID: user[USER_TYPE.id] });
-            if (responseAdd.status === 200) {
-                await fetchCards();
+            try {
+                // await mockService.appendBankItem(userID);
+                const response = await createCard({ userID: user[USER_TYPE.id] });
+                if (response.ok) {
+                    await fetchCards();
+                } else {
+                    throw new Error(t('alert.create-fail') + ': ' + response.status);
+                }
+            } catch (error) {
+                window.alert(error);
             }
         }
     };
@@ -48,9 +60,15 @@ export default function BankInfo() {
     const onClickRemoveCards = async (cardID) => {
         // await mockService.removeBankItem(userID, cardID);
         if (window.confirm(t('bank.delete-confirm'))) {
-            const responseDel = await deleteCard(cardID);
-            if (responseDel.status === 200) {
-                await fetchCards();
+            try {
+                const response = await deleteCard(cardID);
+                if (response.ok) {
+                    await fetchCards();
+                } else {
+                    throw new Error(t('alert.delete-fail') + ': ' + response.status);
+                }
+            } catch (error) {
+                window.alert(error);
             }
         }
     };
@@ -91,7 +109,7 @@ export default function BankInfo() {
                 <div className="bank-list-container">
                     {renderBankList()}
                     <div className="icons-container">
-                        <IconButton className="icon add active" onClick={async () => await onClickAddCards()}>
+                        <IconButton className="icon add active" onClick={onClickAddCards}>
                             <AddCircle fontSize="large" />
                         </IconButton>
                     </div>

@@ -6,6 +6,7 @@ export const DEFAULT_IMAGE = '';
 
 export const COOKIES = {
     language: 'crypto_viewer_language',
+    jwt: 'jwt',
 };
 
 export const USER_TYPE = {
@@ -37,8 +38,8 @@ export const CARD_TYPE = {
     bank: 'bank',
     branch: 'branch',
     onlineAccount: 'onlineAccount',
-    onlinePsd: 'onlinePsd',
-    paymentPsd: 'paymentPsd',
+    onlinePwd: 'onlinePwd',
+    paymentPwd: 'paymentPwd',
     pin: 'pin',
     securityCode: 'securityCode',
     cardBackImg: 'cardBackImg',

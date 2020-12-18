@@ -153,7 +153,14 @@ export default function BasicMessage() {
         console.log(user);
         setIsSubmit(true);
         if (isAllRequiredDataFilled()) {
-            await updateUser(user[USER_TYPE.id], user);
+            try {
+                const response = await updateUser(user[USER_TYPE.id], user);
+                if (!response.ok) {
+                    throw new Error(t('alert.submit-fail') + ': ' + response.status);
+                }
+            } catch (error) {
+                window.alert(error);
+            }
         }
         setTimeout(() => {
             setIsSubmit(false);

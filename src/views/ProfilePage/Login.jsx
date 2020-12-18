@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import LoginContext from '../../contexts/LoginContext';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from 'react-navi';
+import _ from 'lodash';
 
 import ArrowBackTitle from '../../components/Title/ArrowBackTitle';
 import Button from '../../components/Button';
@@ -20,7 +20,6 @@ export default function Login() {
     const [password, setPassword] = useState('123456');
     const [open, setOpen] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false);
-    const { onJWTChange } = useContext(LoginContext);
     const navigation = useNavigation();
     const { t } = useTranslation();
 
@@ -39,18 +38,22 @@ export default function Login() {
         setTimeout(() => {
             setIsSubmit(false);
         }, 10);
-        if (username === '' || password === '') return;
 
-        // isLoggedin = await mockService.login(username, password);
-        const response = await login(username, password);
-        if (response.ok) {
-            jwt = await response.json();
-            onJWTChange(jwt);
+        try {
+            if (_.isEmpty(username) || _.isEmpty(password)) {
+                throw new Error();
+            }
 
-            navigation.goBack();
-            return;
+            // isLoggedin = await mockService.login(username, password);
+            const response = await login(username, password);
+            if (response.ok) {
+                navigation.goBack();
+            } else {
+                throw new Error(t('alert.login-fail'));
+            }
+        } catch (error) {
+            handleShowSnackbar();
         }
-        handleShowSnackbar();
     };
 
     return (
