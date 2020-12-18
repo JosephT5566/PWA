@@ -9,6 +9,7 @@ import Title from '../../components/Title/Title';
 import Menu from '../../components/Menu';
 
 import { logout } from '../../apis/LoginAPI';
+import { COOKIES } from '../../assets/types';
 
 import './styles.scss';
 
@@ -17,6 +18,19 @@ export default function ProfilePage() {
     const navigation = useNavigation();
     const { t } = useTranslation();
     const currentURL = navigation.getCurrentValue().url.pathname;
+
+    const handleLogout = async () => {
+        try {
+            const response = await logout();
+            if (response.ok) {
+                navigation.refresh();
+            }
+        } catch (error) {
+            console.log(error.message);
+            Cookie.remove(COOKIES.jwt);
+            navigation.refresh();
+        }
+    };
 
     const defaultItems = [
         {
@@ -66,18 +80,7 @@ export default function ProfilePage() {
     const logoutItems = [
         {
             label: t('profile.log-out'),
-            onClick: async () => {
-                try {
-                    const response = await logout();
-                    if (response.ok) {
-                        navigation.refresh();
-                    }
-                } catch (error) {
-                    console.log(error.message);
-                    Cookie.set('jwt', '');
-                    navigation.refresh();
-                }
-            },
+            onClick: handleLogout,
         },
     ];
 

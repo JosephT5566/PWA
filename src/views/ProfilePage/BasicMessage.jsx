@@ -18,7 +18,7 @@ import './styles.scss';
 export default function BasicMessage() {
     const [user, setUser] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-    const { user: contextUser, refetchUser } = useContext(UserContext);
+    const { user: contextUser, onChangeUser } = useContext(UserContext);
     const { t } = useTranslation();
 
     useEffect(() => {

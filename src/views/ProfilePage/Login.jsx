@@ -32,8 +32,6 @@ export default function Login() {
     };
 
     const onClickLogin = async () => {
-        let jwt = null;
-
         setIsSubmit(true);
         setTimeout(() => {
             setIsSubmit(false);

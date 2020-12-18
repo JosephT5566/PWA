@@ -1,30 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import JWT from 'jsonwebtoken';
-import { KEY } from 'assets/types';
+import React, { useState } from 'react';
 
 const Context = React.createContext(''); // default value
 
 export function LoginStore(props) {
-    const [jwt, setJWT] = useState('');
-    const [isLoggedin, setIsLoggenin] = useState(false);
-    const onJWTChange = (jwt) => setJWT(jwt);
+    const [isLoggedin, setIsLoggedin] = useState(false);
+    const onChangeLogin = (loginState) => setIsLoggedin(loginState);
 
-    // useEffect(() => {
-    //     console.log('isLoggedin: ', isLoggedin);
-    //     console.log('userID: ', userID);
-    // }, [userID]);
-
-    useEffect(() => {
-        console.log('jwt is set');
-        try {
-            JWT.verify(jwt, KEY);
-            setIsLoggenin(true);
-        } catch (error) {
-            setIsLoggenin(false);
-        }
-    }, [jwt]);
-
-    return <Context.Provider value={{ jwt, isLoggedin, onJWTChange }}>{props.children}</Context.Provider>;
+    return <Context.Provider value={{ isLoggedin, onChangeLogin }}>{props.children}</Context.Provider>;
 }
 
 export default Context;

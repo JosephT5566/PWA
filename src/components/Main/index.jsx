@@ -1,35 +1,35 @@
 import React, { Suspense, useContext } from 'react';
 import { Router, View } from 'react-navi';
 import HelmetProvider from 'react-navi-helmet-async';
-import routes from '../../route/routes';
-import Navigation from '../Navigation';
 import Cookie from 'js-cookie';
 import JWT from 'jsonwebtoken';
+
+import routes from '../../route/routes';
 import LoginContext from '../../contexts/LoginContext';
+import Navigation from '../Navigation';
 
 import Grid from '@material-ui/core/Grid';
 
-import { KEY } from '../../assets/types';
+import { KEY, COOKIES } from '../../assets/types';
 
 import './styles.scss';
 
 const basename = process.env.PUBLIC_URL;
 
 export default function Main() {
-    const { onJWTChange } = useContext(LoginContext);
+    const { onChangeLogin } = useContext(LoginContext);
 
     const isAuthenticated = () => {
-        const token = Cookie.get('jwt');
-        onJWTChange(token);
+        const jwt = Cookie.get(COOKIES.jwt);
         try {
-            JWT.verify(token, KEY);
-        } catch (err) {
-            setTimeout(() => {
-                console.log('token verify error: ', err.message);
-            });
-            Cookie.remove('jwt');
+            JWT.verify(jwt, KEY);
+        } catch (error) {
+            console.log('token verify error: ', error.message);
+            Cookie.remove(COOKIES.jwt);
+            onChangeLogin(false);
             return false;
         }
+        onChangeLogin(true);
         return true;
     };
 
