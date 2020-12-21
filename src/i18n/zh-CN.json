@@ -1,4 +1,11 @@
 {
+    "alert": {
+        "warning": "警告",
+        "fetch-fail": "获取失敗",
+        "submit-fail": "提交失敗",
+        "create-fail": "创建失敗",
+        "delete-fail": "移除失敗"
+    },
     "navigation": {
         "home": "首页",
         "data": "数据",
@@ -65,7 +72,7 @@
         "upload": "上传",
         "warning-credential": "请确认上传的照片符合您当地国家之有效证件，并且确认上传照片清晰可辨识。",
         "bank-info-title": "请上传代操作银行资讯",
-        "cardname":"卡片名称",
+        "cardname": "卡片名称",
         "bank": "银行名称",
         "branch": "分行名称",
         "account": "帐号",
@@ -87,8 +94,5 @@
         "income-disclaimer": "收入免责声明",
         "consent": "代为操作智能搬砖同意书"
     },
-    "alert": {
-        "warning": "警告"
-    },
-    "upload-pic":"上传照片"
+    "upload-pic": "上传照片"
 }

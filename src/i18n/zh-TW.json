@@ -1,4 +1,11 @@
 {
+    "alert": {
+        "warning": "警告",
+        "fetch-fail": "獲取失敗",
+        "submit-fail": "提交失敗",
+        "create-fail": "建立失敗",
+        "delete-fail": "移除失敗"
+    },
     "navigation": {
         "home": "首頁",
         "data": "數據",
@@ -86,9 +93,6 @@
         "anti-fraud-policy": "反詐欺政策",
         "income-disclaimer": "收入免責聲明",
         "consent": "代為操作智慧型搬磚同意書"
-    },
-    "alert": {
-        "warning": "警告"
     },
     "upload-pic": "上傳照片"
 }

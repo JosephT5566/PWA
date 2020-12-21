@@ -1,4 +1,11 @@
 {
+    "alert": {
+        "warning": "Warning",
+        "fetch-fail": "Fetch Fail",
+        "submit-fail": "Submit Fail",
+        "create-fail": "Create Fail",
+        "delete-fail": "Delete Fail"
+    },
     "navigation": {
         "home": "Home",
         "data": "Data",
@@ -86,9 +93,6 @@
         "anti-fraud-policy": "Anti-fraud policy",
         "income-disclaimer": "Income disclaimer",
         "consent": "Consent to operate intelligent arbitrage"
-    },
-    "alert": {
-        "warning": "Warning"
     },
     "upload-pic": "Upload Picture"
 }
